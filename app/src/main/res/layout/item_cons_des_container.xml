@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="24dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mDesHint"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="说明"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/mDesTitle"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="本月运势有两个重要的节点，一个是在上旬，水星进入事业宫，更加关注事业发展，目标性加
+强；而金星随之离开事业宫，原先的经验不能再为你赢得加分，反而是人脉上。。。"
+        android:layout_toRightOf="@+id/mDesHint"
+        android:layout_marginLeft="9dp"
+        android:textColor="#6B6B6B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.module_base.widget.MyToolbar
+        android:id="@+id/mQQBar"
+        app:title="QQ测吉凶"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mQQHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mQQBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="35dp"
+        android:text="输入你的QQ号码"
+        android:textColor="@color/main_ColorText"
+        android:textSize="13sp" />
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/mQQInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mQQHint"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="27dp"
+        android:maxLength="10"
+        android:hint="请输入您的QQ号码"
+        android:inputType="number"
+        app:met_clearButton="true"
+        app:met_primaryColor="@color/black" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mQQContainer"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mQQInput"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="18.5dp"
+        android:layout_marginRight="27dp" />
+
+    <Button
+        android:id="@+id/mQQTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="11.5dp"
+        android:layout_marginRight="11.5dp"
+        android:layout_marginBottom="22.5dp"
+        android:background="@drawable/shape_qq_test_bt_bg"
+        android:text="开始测试"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

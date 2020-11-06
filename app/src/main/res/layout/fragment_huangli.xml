@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/include_one"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_hl_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="2020.10.01"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tv_hl_nongli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_hl_date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:text="农历八月十五"
+            android:textColor="@color/main_ColorText"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tv_hl_suici"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_hl_nongli"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4.5dp"
+            android:text="甲午马年"
+            android:textColor="@color/main_ColorText" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="8dp"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/include_one"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+
+            android:background="@drawable/shape_home_hl_bg"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_yi"
+                android:layout_marginTop="18.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_suici"
+                android:layout_marginLeft="23.5dp"
+                android:layout_marginRight="25dp">
+
+                <ImageView
+                    android:id="@+id/iv_yi"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_yi" />
+
+                <TextView
+                    android:id="@+id/tv_yi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginBottom="13dp"
+                    android:layout_toRightOf="@id/iv_yi"
+                    android:text="迁徙  入宅  治病  会友  祭祀  安乡  祈福 迁徙  入宅  治病  会友  祭祀  安乡  祈福 "
+                    android:textColor="#03E1A4"
+                    android:textSize="14sp" />
+
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_yi"
+                    android:layout_alignLeft="@+id/tv_yi"
+                    android:layout_alignParentRight="true"
+                    android:background="#FFD1F3" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_yi"
+                android:layout_marginLeft="23.5dp"
+                android:layout_marginRight="25dp">
+
+                <ImageView
+                    android:id="@+id/iv_ji"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_ji" />
+
+                <TextView
+                    android:id="@+id/tv_ji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_toRightOf="@id/iv_ji"
+                    android:text="迁徙  入宅  治病  会友  祭祀  安乡  祈福 迁徙  入宅  治病  会友  祭祀  安乡  祈福"
+                    android:textColor="@color/main_ColorText"
+                    android:textSize="14sp" />
+
+
+                <View
+                    android:id="@+id/divider6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_ji"
+                    android:layout_alignParentRight="true"
+                    android:background="#FFD1F3" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/hint_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18.5dp"
+                    android:text="凶神"
+                    android:textColor="@color/main_ColorText" />
+
+                <TextView
+                    android:id="@+id/tv_jishenyiqu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hint_one"
+                    android:layout_alignLeft="@+id/hint_one"
+                    android:layout_marginTop="2.5dp"
+                    android:text="官日 六仪 益後 月德合 除神 玉堂 鸣犬"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/hint_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_jishenyiqu"
+                    android:layout_marginLeft="18.5dp"
+                    android:layout_marginTop="13dp"
+                    android:text="吉日"
+                    android:textColor="@color/main_ColorText" />
+
+                <TextView
+                    android:id="@+id/tv_xiongsheng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hint_two"
+                    android:layout_alignLeft="@+id/hint_one"
+                    android:layout_marginTop="7dp"
+                    android:text="官日 六仪 益後 月德合 除神 玉堂 鸣犬"
+                    android:textColor="@color/black" />
+
+
+                <View
+                    android:id="@+id/divider7"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="11.5dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_below="@+id/tv_xiongsheng"
+                    android:layout_alignParentRight="true"
+                    android:background="#FFD1F3" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="13.5dp"
+                    android:paddingBottom="13.5dp"
+                    android:layout_marginLeft="18.5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_c_hl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/main_ColorText"
+                        android:text="冲煞"
+                        />
+
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:id="@+id/tv_c_hl_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_c_hl"
+                        android:textColor="@color/black"
+                        android:text="冲"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="13.5dp"
+                    android:paddingBottom="13.5dp"
+                    android:paddingLeft="19dp">
+
+                    <TextView
+                        android:id="@+id/tv_s_hl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/main_ColorText"
+                        android:layout_marginRight="8dp"
+                        android:text="五行"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_s_hl_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_s_hl"
+                        android:textColor="@color/black"
+                        android:text="金"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="25dp"
+                android:layout_alignParentRight="true"
+                android:background="#FFD1F3" />
+
+            <RelativeLayout
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:id="@+id/hint_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="吉神宜趋"
+                    android:textColor="@color/main_ColorText" />
+
+                <TextView
+                    android:id="@+id/tv_jiri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hint_three"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_marginTop="7dp"
+                    android:text="官日 六仪 益後 月德合 除神 玉堂 鸣犬"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

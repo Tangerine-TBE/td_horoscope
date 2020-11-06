@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <com.example.module_base.widget.MyToolbar
+        android:id="@+id/mPlateBar"
+        app:title="合盘"
+        app:rightTitle="合盘记录"
+        app:rightTitleColor="@color/main_ColorText"
+        app:hasRightTitle="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <com.meetsl.scardview.SCardView
+        android:id="@+id/SCardView1"
+        android:layout_marginLeft="7.5dp"
+        android:layout_marginRight="7.5dp"
+        app:cardLightDirection="LT"
+        app:cardShadowStartColor="#E6E5FF"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        android:layout_below="@+id/mPlateBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:paddingTop="29dp"
+            android:paddingBottom="29dp"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/mNameTv1"
+                android:text="姓        名："
+                style="@style/TextViewBold"
+                />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mNameEdt1"
+                android:layout_alignBaseline="@+id/mNameTv1"
+                android:hint="请输入您的姓名"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mNameTv1"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/mSexTv1"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mNameTv1"
+                android:text="性        别："
+                style="@style/TextViewBold"
+                />
+
+
+            <com.example.module_base.widget.SmoothCheckBox
+                android:id="@+id/mCheMan1"
+                android:layout_toRightOf="@+id/mSexTv1"
+                android:layout_alignBottom="@+id/mSexTv1"
+                android:layout_alignTop="@+id/mSexTv1"
+                android:layout_width="16dp"
+                app:color_checked="@color/main_ColorText"
+                android:layout_height="16dp"/>
+
+            <TextView
+                android:text="男"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="29dp"
+                android:id="@+id/mCheManHint1"
+                android:layout_toRightOf="@+id/mCheMan1"
+                android:layout_alignBottom="@+id/mCheMan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.example.module_base.widget.SmoothCheckBox
+                android:id="@+id/mCheWoman1"
+                android:layout_toRightOf="@+id/mCheManHint1"
+                android:layout_alignBottom="@+id/mSexTv1"
+                android:layout_alignTop="@+id/mSexTv1"
+                android:layout_marginRight="11dp"
+                android:layout_width="16dp"
+                app:color_checked="@color/main_ColorText"
+                android:layout_height="16dp"/>
+
+            <TextView
+                android:text="女"
+                android:layout_toRightOf="@+id/mCheWoman1"
+                android:layout_alignBottom="@+id/mCheWoman1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/mBirthDate1"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mSexTv1"
+                android:text="出生时间："
+                style="@style/TextViewBold"
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mBirthEdt1"
+                android:focusable="false"
+                android:layout_alignBaseline="@+id/mBirthDate1"
+                android:hint="2000年1月1日"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mBirthDate1"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/mBirthPlace1"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mBirthDate1"
+                android:text="出生地点："
+                style="@style/TextViewBold"
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mPlaceEdt1"
+                android:layout_alignBaseline="@+id/mBirthPlace1"
+                android:hint="北京，北京市，东城区"
+                android:textSize="14sp"
+                android:focusable="false"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mBirthPlace1"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+    </com.meetsl.scardview.SCardView>
+
+
+
+    <com.meetsl.scardview.SCardView
+        android:id="@+id/SCardView2"
+        android:layout_marginLeft="7.5dp"
+        android:layout_marginRight="7.5dp"
+        app:cardLightDirection="LT"
+        app:cardShadowStartColor="#FFDEF6"
+        android:layout_marginTop="21dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        android:layout_below="@+id/SCardView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:paddingTop="29dp"
+            android:paddingBottom="29dp"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/mNameTv2"
+                android:text="姓        名："
+                style="@style/TextViewBold"
+                />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mNameEdt2"
+                android:layout_alignBaseline="@+id/mNameTv2"
+                android:hint="请输入您的姓名"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mNameTv2"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/mSexTv2"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mNameTv2"
+                android:text="性        别："
+                style="@style/TextViewBold"
+                />
+
+            <com.example.module_base.widget.SmoothCheckBox
+                android:id="@+id/mCheMan2"
+                android:layout_toRightOf="@+id/mSexTv2"
+                android:layout_alignBottom="@+id/mSexTv2"
+                android:layout_alignTop="@+id/mSexTv2"
+                android:layout_width="16dp"
+                app:color_checked="@color/main_ColorText"
+                android:layout_height="16dp"/>
+
+            <TextView
+                android:text="男"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="29dp"
+                android:id="@+id/mCheManHint2"
+                android:layout_toRightOf="@+id/mCheMan2"
+                android:layout_alignBottom="@+id/mCheMan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.example.module_base.widget.SmoothCheckBox
+                android:id="@+id/mCheWoman2"
+                android:layout_toRightOf="@+id/mCheManHint2"
+                android:layout_alignBottom="@+id/mSexTv2"
+                android:layout_alignTop="@+id/mSexTv2"
+                android:layout_marginRight="11dp"
+                app:color_checked="@color/main_ColorText"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+
+            <TextView
+                android:text="女"
+                android:layout_toRightOf="@+id/mCheWoman2"
+                android:layout_alignBottom="@+id/mCheWoman2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/mBirthDate2"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mSexTv2"
+                android:text="出生时间："
+                style="@style/TextViewBold"
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mBirthEdt2"
+                android:layout_alignBaseline="@+id/mBirthDate2"
+                android:hint="2000年1月1日"
+                android:textSize="14sp"
+                android:focusable="false"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mBirthDate2"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/mBirthPlace2"
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/mBirthDate2"
+                android:text="出生地点："
+                style="@style/TextViewBold"
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mPlaceEdt2"
+                android:layout_alignBaseline="@+id/mBirthPlace2"
+                android:hint="北京，北京市，东城区"
+                android:textSize="14sp"
+                android:focusable="false"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/mBirthPlace2"
+                app:met_hideUnderline="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+    </com.meetsl.scardview.SCardView>
+
+    <Button
+        android:id="@+id/mPlateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SCardView2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="11.5dp"
+        android:layout_marginRight="11.5dp"
+        android:background="@drawable/shape_qq_test_bt_bg"
+        android:text="开始合盘"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

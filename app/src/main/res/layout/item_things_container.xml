@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="8dp"
+    android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        android:id="@+id/mThingIcon"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_xs_niu"
+        android:layout_width="75dp"
+        android:layout_height="68dp"/>
+
+    <TextView
+        android:id="@+id/mThingTitle"
+        android:text="2016年将会是白羊座暂时放缓节奏，开始调整个人生活作息以及细分工作内容的一年。土星................................"
+        android:layout_marginLeft="22dp"
+        android:layout_alignTop="@+id/mThingIcon"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/mThingIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/mThingDate"
+        android:textColor="@color/main_ColorText"
+        android:text="1854年"
+        android:textSize="11sp"
+        android:layout_alignBottom="@+id/mThingIcon"
+        android:layout_alignLeft="@+id/mThingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -1,0 +1,4 @@
+include ':module_userCenter'
+include ':module_base'
+include ':app'
+rootProject.name = "td_horoscope"

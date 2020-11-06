@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/mContextIcon"
+        android:src="@mipmap/icon_sxpd"
+        android:layout_width="38dp"
+        android:layout_height="46dp"/>
+
+    <TextView
+        android:id="@+id/mContextTitle"
+        android:layout_marginTop="4.5dp"
+        android:text="生肖配对"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

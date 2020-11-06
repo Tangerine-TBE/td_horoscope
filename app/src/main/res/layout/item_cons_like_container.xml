@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="12dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mLikeHint"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="速配星座："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/mLikeTitle"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/main_ColorText"
+        android:layout_toRightOf="@+id/mLikeHint"
+        android:text="处女座"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

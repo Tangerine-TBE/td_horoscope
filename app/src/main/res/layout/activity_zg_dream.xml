@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <com.example.module_base.widget.MyToolbar
+        android:id="@+id/mDreamBar"
+        app:title="周公解梦"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:padding="15dp"
+        android:overScrollMode="never"
+        android:layout_above="@+id/mDreamBtn"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="11.5dp"
+        android:layout_marginRight="11.5dp"
+        android:background="@drawable/shape_zg_dream_bg_select"
+        android:layout_below="@+id/mDreamBar"
+        android:id="@+id/mDreamContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/mInputLayout"
+        android:layout_above="@+id/mDreamBtn"
+        android:layout_width="match_parent"
+        android:layout_marginRight="11.5dp"
+        android:layout_marginLeft="11.5dp"
+        android:background="@drawable/shape_zg_dream_bg_normal"
+        android:layout_height="170dp">
+
+        <EditText
+            android:id="@+id/mDreamText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_zg_dream_bg_normal"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:hint="请输入你梦到的东西"
+            android:padding="5dp"
+            android:textSize="16dp"
+           />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/mDreamBtn"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="11.5dp"
+        android:layout_marginRight="11.5dp"
+        android:layout_marginBottom="36.5dp"
+        android:background="@drawable/shape_qq_test_bt_bg"
+        android:text="开始解梦"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</RelativeLayout>

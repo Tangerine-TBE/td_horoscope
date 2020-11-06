@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="11.5dp"
+    android:paddingBottom="11.5dp"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginLeft="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/mPlateName1"
+            android:text="李雪"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            style="@style/TextViewNormal"
+            />
+
+        <ImageView
+            android:layout_below="@+id/mPlateName1"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginBottom="7.5dp"
+            android:id="@+id/mPlateIcon1"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/icon_xz_sheshou"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:id="@+id/mPlateCons1"
+            android:text="射手座"
+            android:gravity="center"
+            android:layout_below="@+id/mPlateIcon1"
+            android:layout_centerHorizontal="true"
+            style="@style/TextViewNormal"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mItemPlateIndex"
+        android:text="70"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginTop="14dp"
+       android:layout_centerHorizontal="true"
+        android:textColor="@color/main_ColorText"
+        android:textSize="36sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/mItemPlateIndex"
+        android:text="配对指数"
+        android:textSize="10.5sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <RelativeLayout
+        android:layout_marginRight="76dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/mPlateName2"
+            android:text="李雪"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            style="@style/TextViewNormal"
+            />
+
+        <ImageView
+            android:layout_marginTop="7.5dp"
+            android:layout_marginBottom="7.5dp"
+            android:id="@+id/mPlateIcon2"
+            android:src="@mipmap/icon_xz_sheshou"
+            android:layout_below="@+id/mPlateName2"
+            android:layout_centerHorizontal="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:id="@+id/mPlateCons2"
+            android:text="射手座"
+            android:gravity="center"
+            android:layout_below="@+id/mPlateIcon2"
+            android:layout_centerHorizontal="true"
+            style="@style/TextViewNormal"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

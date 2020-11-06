@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="19dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mQQTestHint"
+        android:text="QQ号码测试结论"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/mQQTestTitle"
+        android:layout_marginTop="11.5dp"
+        android:textSize="12sp"
+        android:text="[大吉+官运+财运+才艺]如龙得云，青云直上，智谋奋进，才略奏功"
+        android:textColor="#6B6B6B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

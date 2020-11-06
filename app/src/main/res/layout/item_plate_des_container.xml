@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="12dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mPlateDesHint"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="恋爱建议"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/mPlateDesTitle"
+        android:layout_marginTop="6dp"
+        android:textSize="12sp"
+        android:textColor="#6B6B6B"
+        android:text="白羊座性急，金牛座慢半拍，这两个星座在一起就像龟兔赛跑，牛儿永远跟在羊儿身后。你们在一起更多的互补作用，金牛座总是无怨无悔地为性急的白羊座收拾善后，默默地付出。有时你们也会像一对童心未泯的孩子，童心很重，在一定程度，牛儿还蛮依赖羊儿。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

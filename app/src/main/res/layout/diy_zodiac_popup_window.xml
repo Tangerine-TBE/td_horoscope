@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mPopupInclude"
+    android:paddingRight="11.5dp"
+    android:paddingLeft="11.5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+
+    android:paddingBottom="16dp"
+    android:paddingTop="36dp"
+    android:background="@drawable/shape_zod_popup_bg"
+    android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        android:id="@+id/mZodMan"
+        android:src="@mipmap/icon_xs_shu"
+        android:layout_toLeftOf="@+id/mZodHint"
+        android:layout_width="46dp"
+        android:layout_height="38dp"/>
+
+    <TextView
+        android:id="@+id/mZodManTitle"
+        android:layout_below="@+id/mZodMan"
+        android:layout_marginTop="8.5dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_alignLeft="@+id/mZodMan"
+        android:layout_alignRight="@+id/mZodMan"
+        android:text="生肖鼠"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:id="@+id/mZodHint"
+        android:layout_marginRight="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="34dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/icon_xs_shu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:id="@+id/mZodWomen"
+        android:layout_toRightOf="@+id/mZodHint"
+        android:src="@mipmap/icon_xs_shu"
+        android:layout_width="46dp"
+        android:layout_height="38dp"/>
+
+    <TextView
+        android:id="@+id/mZodWomenTitle"
+        android:layout_below="@+id/mZodWomen"
+        android:layout_marginTop="8.5dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="生肖鼠"
+        android:layout_alignLeft="@+id/mZodWomen"
+        android:layout_alignRight="@+id/mZodWomen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/mZodiacResult"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:textColor="@color/main_ColorText"
+        android:gravity="center"
+        android:text="“不会很好，你喜欢他的财富，而他未必肯付出太多,不是狠合适啊”"
+        android:layout_below="@+id/mZodHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/mZodResultBtn"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginRight="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/mZodiacResult"
+        android:layout_alignRight="@+id/mZodiacResult"
+        android:background="@drawable/shape_qq_test_bt_bg"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:layout_below="@+id/mZodiacResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+</RelativeLayout>

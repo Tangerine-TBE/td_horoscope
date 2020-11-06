@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.PlateIndexActivity">
+
+    <com.example.module_base.widget.MyToolbar
+        android:id="@+id/mPlateIndexBar"
+        app:title="合盘指数"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:background="@drawable/shape_cos_select_bg"
+        android:layout_width="match_parent"
+        android:layout_marginRight="11.5dp"
+        android:layout_marginLeft="11.5dp"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginBottom="13.5dp"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_toLeftOf="@+id/mPlateIndex"
+                    android:layout_marginTop="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/mPlateName1"
+                        android:text="李雪"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
+                        style="@style/TextViewNormal"
+                        />
+
+                    <ImageView
+                        android:layout_below="@+id/mPlateName1"
+                        android:layout_marginTop="7.5dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:id="@+id/mPlateIcon1"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/icon_xz_sheshou"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
+
+                    <TextView
+                        android:id="@+id/mPlateCons1"
+                        android:text="射手座"
+                        android:gravity="center"
+                        android:layout_below="@+id/mPlateIcon1"
+                        android:layout_centerHorizontal="true"
+                        style="@style/TextViewNormal"
+                        />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/mPlateIndex"
+                    android:text="70"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginRight="52dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="38dp"
+                    android:textColor="@color/main_ColorText"
+                    android:textSize="36sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_below="@+id/mPlateIndex"
+                    android:layout_centerHorizontal="true"
+                    android:text="配对指数"
+                    android:textSize="10.5sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="24dp"
+                    android:layout_toRightOf="@+id/mPlateIndex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:id="@+id/mPlateName2"
+                        android:text="李雪"
+                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
+                        style="@style/TextViewNormal"
+                        />
+
+                    <ImageView
+                        android:layout_marginTop="7.5dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:id="@+id/mPlateIcon2"
+                        android:src="@mipmap/icon_xz_sheshou"
+                        android:layout_below="@+id/mPlateName2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
+
+                    <TextView
+                        android:id="@+id/mPlateCons2"
+                        android:text="射手座"
+                        android:gravity="center"
+                        android:layout_below="@+id/mPlateIcon2"
+                        android:layout_centerHorizontal="true"
+                        style="@style/TextViewNormal"
+                        />
+                </RelativeLayout>
+
+
+
+                <TextView
+                    android:id="@+id/mPlateJieGuo"
+                    android:layout_marginTop="52dp"
+                    android:layout_below="@+id/mPlateIndex"
+                    android:text="“小吵小闹的一对”"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/main_ColorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:overScrollMode="never"
+                    android:id="@+id/mPlateIndexContainer"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/mPlateJieGuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mPlateDesContainer"
+                    android:overScrollMode="never"
+                    android:paddingLeft="36dp"
+                    android:paddingRight="48dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/mPlateIndexContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
