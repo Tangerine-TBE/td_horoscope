@@ -24,7 +24,7 @@ class HuangLiFragment:BaseFragment(), IHuangLiCallback {
     override fun getLayoutView(): Int= R.layout.fragment_huangli
 
     override fun initView() {
-     //   switchUIByState(PageState.SUCCESS)
+
     }
 
     override fun initPresent() {
@@ -96,6 +96,8 @@ class HuangLiFragment:BaseFragment(), IHuangLiCallback {
         showHuangLi(huangLi)
         SPUtil.getInstance().putString(Contents.CACHE_HUANG_LI, Gson().toJson(huangLi))
                 .putString(Contents.CACHE_HL_TIME,mCurTimeString)
+
+
     }
 
     override fun onLoading() {

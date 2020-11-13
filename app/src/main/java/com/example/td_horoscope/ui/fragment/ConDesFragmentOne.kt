@@ -83,10 +83,10 @@ class ConDesFragmentOne : BaseFragment(), IConstellationCallback {
             val consType = it.getString(Contents.CURRENT_CONSTELLATION)
             when (val dataType = it.getString(Contents.CURRENT_TYPE)) {
                 Contents.TODAY -> {
-                    mConstellationPresentImpl.getConsDayMsg(consType!!, dataType!!)
+                    mConstellationPresentImpl.getConsDayMsg(consType!!, dataType)
                 }
                 Contents.TOMORROW -> {
-                    mConstellationPresentImpl.getConsTomorrowMsg(consType!!, dataType!!)
+                    mConstellationPresentImpl.getConsTomorrowMsg(consType!!, dataType)
                 }
             }
             mConstellationPresentImpl.getConsWeekMsg(consType!!, Contents.WEEK)

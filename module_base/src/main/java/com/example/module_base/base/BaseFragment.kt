@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 open abstract class BaseFragment : Fragment() {
     protected var mCurTimeString: String? = null
     protected lateinit var mSPUtil: SPUtil
-    private lateinit var mActivity:FragmentActivity
+    protected lateinit var mActivity:FragmentActivity
     protected lateinit var mLoadingDialog //正在加载
     : LoadingDialog
     override fun onCreateView(

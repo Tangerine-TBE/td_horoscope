@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.util.SizeUtils
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.PlateIndexCacheBean
 import com.example.td_horoscope.ui.adapter.recyclerview.DocumentPlateAdapter
 import com.example.td_horoscope.util.Contents
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.litepal.LitePal
 
-class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickListener {
+class PlateDocumentActivity: MainBaseActivity() , SwipeMenuCreator, OnItemMenuClickListener {
 
     override fun getLayoutView(): Int =R.layout.activity_plate_document
 
@@ -40,13 +40,16 @@ class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickL
     }
 
     override fun initView() {
-        mDocumentPlateAdapter= DocumentPlateAdapter()
+        mDocumentPlateAdapter = DocumentPlateAdapter()
+        //查询数据库的记录
         GlobalScope.launch (Dispatchers.Main){
             mCacheList = withContext(Dispatchers.IO) {
                 LitePal.findAll(PlateIndexCacheBean::class.java)
             }
             mDocumentPlateAdapter.setList(mCacheList)
         }
+
+
         mDocumentContainer.setSwipeMenuCreator(this)
         mDocumentContainer.setOnItemMenuClickListener(this)
         mDocumentContainer.layoutManager=LinearLayoutManager(this)
@@ -78,10 +81,12 @@ class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickL
     override fun onItemClick(menuBridge: SwipeMenuBridge?, adapterPosition: Int) {
         val direction = menuBridge!!.direction // 左侧还是右侧菜单。
         if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
+            //删除选中的数据
             GlobalScope.launch(Dispatchers.Main) {
          val deleteState = withContext(Dispatchers.IO) {
              val findAll = LitePal.findAll(PlateIndexCacheBean::class.java)
-             if (adapterPosition < findAll.size) LitePal.deleteAll(PlateIndexCacheBean::class.java, "plateHint=? and plateResult=?", findAll[adapterPosition].plateHint, findAll[adapterPosition].plateResult)
+             if (adapterPosition < findAll.size)
+                 LitePal.deleteAll(PlateIndexCacheBean::class.java, "plateHint=? and plateResult=?", findAll[adapterPosition].plateHint, findAll[adapterPosition].plateResult)
               else 0
              }
              if (deleteState==1) {
@@ -111,6 +116,7 @@ class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickL
             mRxDialogSureCancel.dismiss()
         })
 
+        //删除全部记录
         mRxDialogSureCancel.setSureListener(View.OnClickListener {
             GlobalScope.launch (Dispatchers.Main){
                 val cacheData = withContext(Dispatchers.IO) {
@@ -122,12 +128,13 @@ class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickL
             }
         })
 
+        //进入选中的页面
         mDocumentPlateAdapter.setOnItemClickListener { adapter, view, position ->
             GlobalScope.launch (Dispatchers.Main){
                 val dataList = withContext(Dispatchers.IO) {
                     LitePal.findAll(PlateIndexCacheBean::class.java)
                 }
-                toOtherActivity<PlateIndexActivity>(this@PlateDocumentActivity){
+                toOtherActivity<PlateIndexActivity>(this@PlateDocumentActivity,false){
                     putExtra(Contents.PLATE_HINT, dataList[position].plateHint)
                     putExtra(Contents.PLATE_RESULT, dataList[position].plateResult)
                 }
@@ -140,6 +147,7 @@ class PlateDocumentActivity : BaseActivity(), SwipeMenuCreator, OnItemMenuClickL
 
     override fun release() {
         mRxDialogSureCancel.dismiss()
+        mCacheList=null
     }
 
 

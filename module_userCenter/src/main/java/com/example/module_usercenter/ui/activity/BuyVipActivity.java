@@ -2,23 +2,19 @@ package com.example.module_usercenter.ui.activity;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module_base.base.BaseActivity;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.provider.ModuleProvider;
 import com.example.module_base.util.LogUtils;
-import com.example.module_base.util.MyStatusBarUtil;
 import com.example.module_base.util.PackageUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;
@@ -95,14 +91,14 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
         tv_buy = findViewById(R.id.tv_buy);
         web_container = findViewById(R.id.web_container);
 
-        //scb_zfb.setImageResource(R.mipmap.icon_ck_select);
+        scb_zfb.setImageResource(R.mipmap.icon_ck_select);
 
 
 
-        mDiyToolbar.setColorBackground(ColorUtil.VIP_THEME);
-        mDiyToolbar.setIcon(R.drawable.ali_feedback_icon_back_white);
-        mDiyToolbar.setTitleColor(Color.WHITE);
-        mDiyToolbar.setTitle("VIP购买");
+        mDiyToolbar.setColorBackground(ColorUtil.WHITE);
+        mDiyToolbar.setIcon(R.drawable.ic_black_ios_24);
+        mDiyToolbar.setTitleColor(Color.BLACK);
+        mDiyToolbar.setTitle("会员");
 
         mBean = new PriceBean(Contents.VIP_title_13, Contents.VIP13, Contents.VIP_price_13);
         mPriceBeanList.add(new PriceBean(Contents.VIP_title_13, Contents.VIP13,  Contents.VIP_price_13));
@@ -151,65 +147,47 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
             }
         });
 
-        mVipPriceAdapter.setOnItemClickListener(new VipPriceAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(PriceBean bean) {
-                mBean = bean;
-            }
-        });
+        mVipPriceAdapter.setOnItemClickListener(bean -> mBean = bean);
 
         //支付宝选择
-        scb_zfb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isZfb) {
-                    mPlay = Contents.ALI_PAY;
-                    mUrl = Contents.PAY_ALI_URL;
-                }
-             //   scb_zfb.setImageResource(isZfb ? R.mipmap.icon_ck_select : R.mipmap.icon_ck_normal);
-             //   scb_wx.setImageResource(R.mipmap.icon_ck_normal);
-                isWx = true;
-
-
+        scb_zfb.setOnClickListener(v-> {
+            if (isZfb) {
+                mPlay = Contents.ALI_PAY;
+                mUrl = Contents.PAY_ALI_URL;
             }
+              scb_zfb.setImageResource(isZfb ? R.mipmap.icon_ck_select : R.mipmap.icon_ck_normal);
+              scb_wx.setImageResource(R.mipmap.icon_ck_normal);
+            isWx = true;
         });
 
         //微信选择
-        scb_wx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isWx) {
-                    mPlay = Contents.WX_PAY;
-                    mUrl = Contents.PAY_WX_URL;
-                }
-               // scb_wx.setImageResource(isWx ? R.mipmap.icon_ck_select : R.mipmap.icon_ck_normal);
-               // scb_zfb.setImageResource(R.mipmap.icon_ck_normal);
-                isZfb = true;
-
+        scb_wx.setOnClickListener(v -> {
+            if (isWx) {
+                mPlay = Contents.WX_PAY;
+                mUrl = Contents.PAY_WX_URL;
             }
+            scb_wx.setImageResource(isWx ? R.mipmap.icon_ck_select : R.mipmap.icon_ck_normal);
+            scb_zfb.setImageResource(R.mipmap.icon_ck_normal);
+            isZfb = true;
+
         });
 
         //购买会员
-        tv_buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mIsLogin = mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false);
-                if (mIsLogin) {
-                    mVipLevel = mSPUtil.getInt(Contents.USER_VIP_LEVEL, 0);
-                    if (mVipLevel > 0) {
-                        RxToast.info("您已经是VIP了");
-                    } else {
-                        toPay();
-                        isPay = true;
-                        isBuy = true;
-
-                        mSPUtil.putBoolean(Contents.NOT_BACK, true);
-                    }
+        tv_buy.setOnClickListener(v -> {
+            mIsLogin = mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false);
+            if (mIsLogin) {
+                mVipLevel = mSPUtil.getInt(Contents.USER_VIP_LEVEL, 0);
+                if (mVipLevel > 0) {
+                    RxToast.info("您已经是VIP了");
                 } else {
-                    startActivity(new Intent(BuyVipActivity.this, LoginActivity.class));
-                    mSPUtil.putBoolean(Contents.BUY_PAGER, true);
-                    isBuy = false;
+                    toPay();
+                    isPay = true;
+                    isBuy = true;
                 }
+            } else {
+                startActivity(new Intent(BuyVipActivity.this, LoginActivity.class));
+                mSPUtil.putBoolean(Contents.BUY_PAGER, true);
+                isBuy = false;
             }
         });
 
@@ -247,8 +225,9 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
 
         if (mRxDialogLoading == null) {
             mRxDialogLoading = new RxDialogShapeLoading(this);
+            mRxDialogLoading.setCancelable(false);
         }
-        mRxDialogLoading.setCancelable(false);
+
         mRxDialogLoading.setLoadingText("正在拉起支付页面...");
         mRxDialogLoading.show();
 
@@ -260,21 +239,14 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
         super.onResume();
         if (isBuy) {
             if (mRxDialogShapeLoading == null) {
-                mRxDialogShapeLoading=new RxDialogShapeLoading(BuyVipActivity.this);
+                mRxDialogShapeLoading=new RxDialogShapeLoading(this);
+                mRxDialogShapeLoading.setCancelable(false);
             }
-            mRxDialogShapeLoading.setCancelable(false);
             mRxDialogShapeLoading.setLoadingText("正在校验数据...");
             mRxDialogShapeLoading.show();
 
             LogUtils.i("onResume-------------------?");
-            BaseApplication.Companion.getMainHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    checkVIP();
-                   mSPUtil.putBoolean(Contents.NOT_BACK, true);
-                }
-
-            }, 2000);
+            BaseApplication.Companion.getMainHandler().postDelayed(() -> checkVIP(), 2000);
 
         }
 
@@ -333,7 +305,6 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
     //本地
     @Override
     public void onLoginSuccess(LoginBean loginBean) {
-
         payFinishTip(loginBean);
         Map<String, String> userType = SpUtil.saveUserType(Contents.LOCAL_TYPE, mAccount, mPwd, "");
         SpUtil.saveUserInfo(loginBean, userType);
@@ -347,7 +318,6 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
     //QQ
     @Override
     public void onThirdlyLoginSuccess(LoginBean loginBean) {
-
         payFinishTip(loginBean);
         Map<String, String> userType = SpUtil.saveUserType(Contents.QQ_TYPE, "", "", mOpenid);
         SpUtil.saveUserInfo(loginBean, userType);
@@ -373,17 +343,14 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
                 if (vip > 0) {
                     RxToast.success("支付成功");
                     if (mIsToBuy) {
-                      //  startActivity(new Intent(this, RecyclerViewCalActivityNew.class).putExtra(Contents.FRAGMENT_ID,3));
                         ARouter.getInstance().build(ModuleProvider.ROUTE_MAIN_ACTIVITY).withInt(ModuleProvider.FRAGMENT_ID,0).navigation();
                         finish();
                     }
 
                 } else {
                     RxToast.warning("支付失败");
-
                 }
                 isPay = false;
-
             }
         }
 
@@ -481,7 +448,6 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
             mWeChatPresent.unregisterCallback(this);
         }
 
-        mSPUtil.putBoolean(Contents.NOT_BACK, false);
     }
 
 

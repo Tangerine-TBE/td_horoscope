@@ -1,12 +1,12 @@
 package com.example.td_horoscope.ui.activity
 
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.util.PackageUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import kotlinx.android.synthetic.main.activity_about.*
 
-class AboutActivity : BaseActivity() {
+class AboutActivity : MainBaseActivity() {
 
 
 

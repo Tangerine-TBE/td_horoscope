@@ -33,9 +33,9 @@ public class VipPriceAdapter extends RecyclerView.Adapter<VipPriceAdapter.MyHold
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             holder.setItemData(mPriceBeanList.get(position),position);
         if (mPosition == position) {
-          //  holder.scb_checkbox.setImageResource(R.mipmap.icon_ck_select);
+            holder.scb_checkbox.setImageResource(R.mipmap.icon_ck_select);
         } else {
-           // holder.scb_checkbox.setImageResource(R.mipmap.icon_ck_normal);
+            holder.scb_checkbox.setImageResource(R.mipmap.icon_ck_normal);
         }
 
     }
@@ -60,14 +60,11 @@ public class VipPriceAdapter extends RecyclerView.Adapter<VipPriceAdapter.MyHold
             tv_price_title.setText(bean.getTitle());
             tv_price.setText(bean.getPrice()+"元");
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(bean);
-                        mPosition=position;
-                        notifyDataSetChanged();
-                    }
+            itemView.setOnClickListener(v -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(bean);
+                    mPosition=position;
+                    notifyDataSetChanged();
                 }
             });
 

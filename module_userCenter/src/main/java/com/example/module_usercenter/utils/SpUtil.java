@@ -72,6 +72,12 @@ public class SpUtil {
         return false;
     }
 
+    public static boolean  isVIP() {
+        return SPUtil.getInstance().getInt(Contents.USER_VIP_LEVEL,0) > 0 ? true : false;
+
+    }
+
+
     public static void changePwdShow(EditText mPassWord_edit, ImageView mShowPassWord_image, boolean isShow) {
         if (isShow) {
             mShowPassWord_image.setImageResource(R.mipmap.pwd_show_select);

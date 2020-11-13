@@ -17,11 +17,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.example.module_base.base.BaseApplication"
+        android:name=".base.MainBaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="${app_name_channel}"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Td_horoscope"
         android:usesCleartextTraffic="true"
@@ -37,6 +37,17 @@
         <activity android:name=".ui.activity.PlateDocumentActivity"  android:launchMode="singleTop"  android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.AlloyPlateActivity"   android:launchMode="singleTop" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.ZodiacActivity"   android:launchMode="singleTop" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.BeginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppStartTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activity.ZgDreamActivity"
             android:launchMode="singleTop" />
@@ -45,11 +56,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.QQTestActivity"

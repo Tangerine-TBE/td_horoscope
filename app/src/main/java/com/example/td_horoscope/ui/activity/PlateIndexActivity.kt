@@ -3,16 +3,15 @@ package com.example.td_horoscope.ui.activity
 import android.text.TextUtils
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.bean.PlateIndexCacheBean
 import com.example.td_horoscope.bean.consplate.ConsPlateBean
 import com.example.td_horoscope.ui.adapter.recyclerview.PlateDesAdapter
 import com.example.td_horoscope.ui.adapter.recyclerview.PlateIndexAdapter
 import com.example.td_horoscope.util.Contents
-import com.example.td_horoscope.util.LogUtil
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_plate_index.*
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,7 @@ import kotlinx.coroutines.withContext
 import org.litepal.LitePal.where
 
 
-class PlateIndexActivity : BaseActivity() {
+class PlateIndexActivity : MainBaseActivity() {
 
     private lateinit var mPlateIndexAdapter:PlateIndexAdapter
     private lateinit var mPlateDesAdapter:PlateDesAdapter
@@ -42,16 +41,16 @@ class PlateIndexActivity : BaseActivity() {
 
         val plateHintStr = intent.getStringExtra(Contents.PLATE_HINT)
         val plateResultStr = intent.getStringExtra(Contents.PLATE_RESULT)
-        LogUtil.i(this,"------------------$plateHintStr------------------------")
-        LogUtil.i(this,"------------------$plateResultStr------------------------")
+
         if (!TextUtils.isEmpty(plateHintStr) and !TextUtils.isEmpty(plateResultStr)) {
             val plateHintData = Gson().fromJson<Array<IconTitleBean>>(plateHintStr, Array<IconTitleBean>::class.java)
             val  plateResultData = Gson().fromJson(plateResultStr, ConsPlateBean::class.java)
             showPlateIndex(plateHintData,plateResultData)
+            //储存合盘记录到数据库
             GlobalScope.launch (Dispatchers.Main){
                 val saveSuccess = withContext(Dispatchers.IO) {
                     val dateList: List<PlateIndexCacheBean> = where("plateHint=? and plateResult=?", plateHintStr,plateResultStr).find(PlateIndexCacheBean::class.java)
-                    if (dateList.size == 0) {
+                    if (dateList.isEmpty()) {
                         PlateIndexCacheBean(plateHintStr!!, plateResultStr!!).save()
                     } else {
                         false

@@ -3,9 +3,9 @@ package com.example.td_horoscope.ui.activity
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.bean.dream.DreamBean
 import com.example.td_horoscope.present.impl.DreamImpl
@@ -15,7 +15,7 @@ import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_zg_dream.*
 
 
-class ZgDreamActivity : BaseActivity(), IDreamCallback {
+class ZgDreamActivity : MainBaseActivity() , IDreamCallback {
 
     override fun getLayoutView(): Int = R.layout.activity_zg_dream
 
@@ -99,5 +99,6 @@ class ZgDreamActivity : BaseActivity(), IDreamCallback {
 
     override fun release() {
         DreamImpl.unregisterCallback(this)
+        mDreamList=null
     }
 }

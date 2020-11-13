@@ -11,13 +11,13 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.bean.JsonBean
 import com.example.module_base.util.CheckUtil
 import com.example.module_base.util.GetJsonDataUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.module_base.widget.SmoothCheckBox
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.bean.consplate.ConsPlateBean
 import com.example.td_horoscope.present.impl.ConsPlateImpl
@@ -42,7 +42,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListener,
+class   AlloyPlateActivity : MainBaseActivity() , SmoothCheckBox.OnCheckedChangeListener,
     View.OnClickListener, IPlateCallback {
 
     private var mPlateHintList:MutableList<IconTitleBean>?=ArrayList()
@@ -89,6 +89,7 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
 
 
     override fun initPresent() {
+
         ConsPlateImpl.registerCallback(this)
     }
 
@@ -113,7 +114,7 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
             }
 
             override fun onRightTo() {
-                toOtherActivity<PlateDocumentActivity>(this@AlloyPlateActivity) {}
+                toOtherActivity<PlateDocumentActivity>(this@AlloyPlateActivity,false) {}
             }
         })
 
@@ -138,7 +139,6 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
                         RxToast.warning("请输选择不同性别合盘")
                     } else {
                         ConsPlateImpl.getPlateMsg(mConstellation1.deleteLastStr(),mConstellation2.deleteLastStr())
-                        LogUtil.i(this,"------------${mConstellation1.deleteLastStr()}---------------${mConstellation2.deleteLastStr()}")
                         savePlateHint()
                     }
                 }
@@ -148,6 +148,7 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
         }
     }
 
+    //保存合盘信息
     private fun savePlateHint() {
         mPlateHintList?.clear()
         var iconTitleBean = IconTitleBean()
@@ -175,12 +176,13 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
     }
 
 
+    //合盘成功回调
     override fun onLoadPlateSuccess(consPlate: ConsPlateBean) {
         dismissLoading()
         if (consPlate.result == null) {
             RxToast.error("错误码：${consPlate.error_code}")
         } else {
-            toOtherActivity<PlateIndexActivity>(this){
+            toOtherActivity<PlateIndexActivity>(this,false){
                 putExtra(Contents.PLATE_HINT,Gson().toJson(mPlateHintList))
                 putExtra(Contents.PLATE_RESULT,Gson().toJson(consPlate))
             }
@@ -424,6 +426,8 @@ class AlloyPlateActivity : BaseActivity(), SmoothCheckBox.OnCheckedChangeListene
 
     override fun release() {
         ConsPlateImpl.unregisterCallback(this)
+        mPlateHintList=null
+
     }
 
 

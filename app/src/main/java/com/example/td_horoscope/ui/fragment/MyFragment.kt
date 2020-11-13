@@ -2,12 +2,14 @@ package com.example.td_horoscope.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
 import com.example.module_usercenter.bean.*
 import com.example.module_usercenter.present.impl.LoginPresentImpl
 import com.example.module_usercenter.present.impl.LogoutPresentImpl
 import com.example.module_usercenter.present.impl.ThirdlyLoginPresentImpl
 import com.example.module_usercenter.present.impl.WeChatPresentImpl
+import com.example.module_usercenter.ui.activity.BuyVipActivity
 import com.example.module_usercenter.ui.activity.LoginActivity
 import com.example.module_usercenter.utils.Contents
 import com.example.module_usercenter.utils.SpUtil
@@ -37,11 +39,21 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
 
     override fun getLayoutView(): Int = R.layout.fragment_my
     private lateinit var mSettingAdapter: SettingAdapter
-    private var mLoginPresent:LoginPresentImpl?=null
-    private var mLogoutPresent: LogoutPresentImpl? = null
-    private var mThirdlyLoginPresent: ThirdlyLoginPresentImpl? = null
-    private var mWeChatPresent: WeChatPresentImpl? = null
-    private var mIsLogin:Boolean?=false
+    private val mLoginPresent by lazy {
+        LoginPresentImpl.getInstance()
+    }
+    private val mLogoutPresent by lazy {
+        LogoutPresentImpl.getInstance()
+    }
+    private val mThirdlyLoginPresent by lazy {
+        ThirdlyLoginPresentImpl.getInstance()
+    }
+    private val mWeChatPresent by lazy {
+        WeChatPresentImpl.getInstance()
+    }
+    private var mIsLogin=false
+    private lateinit var mFeedAd:FeedHelper
+
 
     override fun initView() {
         switchUIByState(PageState.SUCCESS)
@@ -50,41 +62,58 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
             SettingAdapter()
         mSettingAdapter.data=MyContentProvider.settingList
         mSetContainer.adapter=mSettingAdapter
+        showAd()
+    }
 
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) {
+            showAd()
+        }
+    }
+
+    private fun showAd() {
+        mFeedAd = FeedHelper(activity, mMyAdContainer)
+        mFeedAd.showAd()
     }
 
     override fun initPresent() {
-        mLoginPresent = LoginPresentImpl.getInstance()
-        mLoginPresent?.registerCallback(this)
-
-        mWeChatPresent = WeChatPresentImpl.getInstance()
-        mWeChatPresent?.registerCallback(this)
-
-        mThirdlyLoginPresent = ThirdlyLoginPresentImpl.getInstance()
-        mThirdlyLoginPresent?.registerCallback(this)
-
-        mLogoutPresent = LogoutPresentImpl.getInstance()
-        mLogoutPresent?.registerCallback(this)
+        mLoginPresent.registerCallback(this)
+        mWeChatPresent.registerCallback(this)
+        mThirdlyLoginPresent.registerCallback(this)
+        mLogoutPresent.registerCallback(this)
     }
 
+    override fun release() {
+        mLoginPresent.unregisterCallback(this)
+        mWeChatPresent.unregisterCallback(this)
+        mThirdlyLoginPresent.unregisterCallback(this)
+        mLogoutPresent.unregisterCallback(this)
+        mFeedAd.releaseAd()
+    }
 
     override fun initEvent() {
         mSettingAdapter.setOnItemClickListener { adapter, view, position ->
             when (position) {
-                1->{
+                0->{
                     FeedbackAPI.openFeedbackActivity()
                 }
 
-                3->{
-                   toOtherActivity<AboutActivity>(activity){}
+                1->{
+                   toOtherActivity<AboutActivity>(activity,false){}
                 }
             }
 
         }
 
         mLoginInclude.setOnClickListener {
-            if (!mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false)) toOtherActivity<LoginActivity>(activity){}
+            if (!mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false)) toOtherActivity<LoginActivity>(activity,false){}
+            mSPUtil.putBoolean(Contents.BUY_PAGER,false)
+        }
+
+        mVipTitle.setOnClickListener {
+            toOtherActivity<BuyVipActivity>(activity,false){putExtra(Contents.TO_BUY,false)}
         }
 
     }
@@ -92,16 +121,18 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
 
     override fun onResume() {
         super.onResume()
-
         mIsLogin = mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false)
         var userId = mSPUtil.getString(Contents.USER_ID, "");
         var userVip = mSPUtil.getInt(Contents.USER_VIP_LEVEL, 0);
         var userVipTime = mSPUtil.getString(Contents.USER_VIP_TIME, "");
-
-        if (mIsLogin!!) {
+        if (mIsLogin) {
             mLoginId.text=userId
-            mLoginHint.text= if(userVip==0) "您还不是VIP"  else "VIP等级：$userVip  有效期：$userVipTime"
-            mLoginPic.setImageResource(R.mipmap.ic_launcher)
+            if (userVip > 0) {
+                mMyAdContainer.removeAllViews()
+            }
+            mLoginHint.text= if(userVip==0) "您还不是VIP"  else "VIP等级:$userVip  有效期:$userVipTime"
+            mLoginPic.setImageResource(R.mipmap.icon_login)
+
         } else {
             logoutState()
         }
@@ -110,15 +141,20 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
     private fun logoutState() {
         mLoginId?.text="立即登录"
         mLoginHint?.text="登录数据不丢失，享受更多功能"
-        mLoginPic?.setImageResource(R.mipmap.ic_launcher)
+        mLoginPic?.setImageResource(R.mipmap.icon_no_login)
+        showAd()
     }
 
 
     private fun loginState(loginBean: LoginBean?) {
-        val data = loginBean?.data
-        mLoginId?.text=data?.id.toString()
-        mLoginHint?.text=   if (data?.vip==0) "您还不是VIP" else "VIP等级："+data?.vip+"  有效期："+data?.vipexpiretime
-        mLoginPic?.setImageResource(R.mipmap.ic_launcher)
+        loginBean?.data?.let {
+            mLoginId?.text=it.id.toString()
+            mLoginHint?.text=  if (it.vip==0) "您还不是VIP" else "VIP等级:"+it.vip+"  有效期:"+it.vipexpiretime
+            if (it.vip> 0) {
+                mMyAdContainer.removeAllViews()
+            }
+            mLoginPic?.setImageResource(R.mipmap.icon_login)
+        }
     }
 
 

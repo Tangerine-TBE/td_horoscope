@@ -70,13 +70,13 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
 
             when (val dataType = it.getString(Contents.CURRENT_TYPE)) {
                 Contents.WEEK -> {
-                    mConstellationPresentImpl.getConsWeekMsg(consType!!, dataType!!)
+                    mConstellationPresentImpl.getConsWeekMsg(consType!!, dataType)
                 }
                 Contents.MONTH -> {
-                    mConstellationPresentImpl.getConsMonthMsg(consType!!, dataType!!)
+                    mConstellationPresentImpl.getConsMonthMsg(consType!!, dataType)
                 }
                 Contents.YEAR -> {
-                    mConstellationPresentImpl.getConsYearMsg(consType!!, dataType!!)
+                    mConstellationPresentImpl.getConsYearMsg(consType!!, dataType)
                 }
                 Contents.LOVE -> {
                     val loveList = getLoveList(consType)
@@ -147,7 +147,6 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
 
     override fun onError(t: String) {
         dismissLoading()
-       // RxToast.warning("网络异常，请检查网络连接")
         switchUIByState(PageState.ERROR)
     }
 

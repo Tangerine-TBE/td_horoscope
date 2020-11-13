@@ -29,8 +29,8 @@ android {
     }
 
     signingConfigs {
-       /* release {
-            storeFile file("cn.yuntk.reader.jks")
+        release {
+            storeFile file("G:/cn.yuntk.reader.jks")
             storePassword "ltreader888"
             keyAlias "reader"
             keyPassword "ltreader888"
@@ -40,19 +40,18 @@ android {
         }
 
         debug {
-            storeFile file("cn.yuntk.reader.jks")
+            storeFile file("G:/cn.yuntk.reader.jks")
             storePassword "ltreader888"
             keyAlias "reader"
             keyPassword "ltreader888"
 
             v1SigningEnabled true
             v2SigningEnabled true
-        }*/
+        }
     }
 
     buildTypes {
         release {
-            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -172,6 +171,7 @@ dependencies {
 
     implementation project(path: ':module_base')
     implementation project(path: ':module_userCenter')
+    implementation project(path: ':module_ad')
 
     //阿里路由
     kapt  rootProject.ext.dependencies["arouter_compiler"]

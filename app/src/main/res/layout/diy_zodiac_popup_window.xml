@@ -39,13 +39,15 @@
 
     <ImageView
         android:id="@+id/mZodHint"
+        android:layout_alignTop="@+id/mZodWomen"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="34dp"
         android:layout_marginLeft="34dp"
         android:layout_marginBottom="34dp"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/icon_xs_shu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:src="@mipmap/icon_plate"
+        android:layout_width="47dp"
+        android:layout_height="54dp"/>
 
 
     <ImageView

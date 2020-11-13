@@ -1,6 +1,7 @@
 package com.example.td_horoscope.ui.widget
 
-import android.content.Context
+import android.animation.ValueAnimator
+import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -20,8 +21,9 @@ import kotlinx.android.synthetic.main.diy_zodiac_popup_window.view.*
  * @time 2020/11/2 14:57
  * @class describe
  */
-class ZodiacPopup(activity: Context):PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT) {
+class ZodiacPopup(activity: Activity):PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT) {
 
+    private val mActivity=activity
     private  var mView: View = LayoutInflater.from(activity).inflate(R.layout.diy_zodiac_popup_window, null)
 
     init {
@@ -29,8 +31,10 @@ class ZodiacPopup(activity: Context):PopupWindow(ViewGroup.LayoutParams.MATCH_PA
         setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         isFocusable = true
         isOutsideTouchable = false
-        animationStyle = R.style.ExitPopup
+        animationStyle = R.style.ZodiacPopup
+        intBgAnimation()
         initEvent()
+
 
     }
 
@@ -38,11 +42,17 @@ class ZodiacPopup(activity: Context):PopupWindow(ViewGroup.LayoutParams.MATCH_PA
         mView?.mZodResultBtn.setOnClickListener {
             dismiss()
         }
+
+        setOnDismissListener {
+            mOutValueAnimator?.start()
+        }
+
     }
 
 
     fun setPopupResult(resultInfo:ZodiacBean,topInfo:MutableList<IconTitleBean>) {
         mView?.apply {
+            mInValueAnimator?.start()
             topInfo?.let {
                 mZodMan.setImageResource(it[0].icon)
                 mZodManTitle.text="生肖${it[0].title}"
@@ -56,4 +66,27 @@ class ZodiacPopup(activity: Context):PopupWindow(ViewGroup.LayoutParams.MATCH_PA
         }
 
     }
+
+
+    private var mInValueAnimator: ValueAnimator? = null
+    private var mOutValueAnimator: ValueAnimator? = null
+    private fun intBgAnimation() {
+        mInValueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f).setDuration(300)
+        mInValueAnimator?.addUpdateListener { animation -> updateBgWindowAlpha((animation.animatedValue as Float)) }
+        mOutValueAnimator = ValueAnimator.ofFloat(0.5f, 1.0f).setDuration(300)
+        mOutValueAnimator?.addUpdateListener{ animation -> updateBgWindowAlpha(animation.animatedValue as Float) }
+    }
+
+
+
+    //设置窗口渐变
+    private fun updateBgWindowAlpha(alpha: Float) {
+        val window = mActivity.window
+        val attributes = window.attributes
+        attributes.alpha = alpha
+        window.attributes = attributes
+    }
+
+
+
 }

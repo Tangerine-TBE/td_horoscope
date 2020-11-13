@@ -56,4 +56,5 @@ interface Api {
     fun getCosPlateInfo(@Query("key") key:String,@Query("men") man:String,@Query("women") women:String): Call<ConsPlateBean>
 
 
+
 }

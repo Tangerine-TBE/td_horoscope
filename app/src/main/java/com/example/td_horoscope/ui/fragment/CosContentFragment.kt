@@ -35,26 +35,15 @@ class CosContentFragment:BaseFragment() {
     override fun initView() {
         switchUIByState(PageState.SUCCESS)
         mTabLayout.setupWithViewPager(mChildPager)
-        mTabLayout.isFocusableInTouchMode = false;
+        mTabLayout.isFocusableInTouchMode = false
         val selectCosDesFragmentAdapter =
             SelectCosDesFragmentAdapter(
                 childFragmentManager
             )
         mChildPager.adapter=selectCosDesFragmentAdapter
-        val string = arguments?.getString(Contents.CURRENT_CONSTELLATION)
-        selectCosDesFragmentAdapter.setCurrentCons(string!!)
-
-
-    }
-
-
-
-    override fun initPresent() {
-
-    }
-
-    override fun initLoadData() {
-
+        arguments?.let {
+            selectCosDesFragmentAdapter.setCurrentCons(it.getString(Contents.CURRENT_CONSTELLATION)!!)
+        }
     }
 
 }

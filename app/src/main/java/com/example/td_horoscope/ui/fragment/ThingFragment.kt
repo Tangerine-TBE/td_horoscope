@@ -12,10 +12,8 @@ import com.example.td_horoscope.present.impl.HistoryEventImpl
 import com.example.td_horoscope.ui.adapter.recyclerview.ThingDateAdapter
 import com.example.td_horoscope.ui.adapter.recyclerview.ThingsAdapter
 import com.example.td_horoscope.util.Contents
-import com.example.td_horoscope.util.LogUtil
 import com.example.td_horoscope.view.IEventCallback
 import com.google.gson.Gson
-import com.tamsiree.rxkit.RxDataTool
 import kotlinx.android.synthetic.main.fragment_thing.*
 
 
@@ -51,9 +49,6 @@ class ThingFragment:BaseFragment(), IEventCallback {
         mCurrentDate.adapter=mThingDateAdapter
         mThingDateAdapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
 
-
-        val astro = RxDataTool.getAstro(2, 8)
-        LogUtil.i(this,"----getAstro------$astro--------------->")
     }
 
 
@@ -83,7 +78,6 @@ class ThingFragment:BaseFragment(), IEventCallback {
     }
 
     override fun onLoadEventSuccess(historyEvent: HistoryEventBean) {
-
         dismissLoading()
         showThingList(historyEvent)
         SPUtil.getInstance().putString(Contents.CACHE_HISTORY_EVENT, Gson().toJson(historyEvent))
@@ -93,8 +87,10 @@ class ThingFragment:BaseFragment(), IEventCallback {
 
     private fun showThingList(historyEvent: HistoryEventBean) {
         switchUIByState(PageState.SUCCESS)
-        if (historyEvent.result?.size != 0) {
-            mThingsAdapter.setList(historyEvent.result)
+        historyEvent.result?.let {
+            if (it.isNotEmpty()) {
+                mThingsAdapter.setList(it)
+            }
         }
 
     }
@@ -106,7 +102,6 @@ class ThingFragment:BaseFragment(), IEventCallback {
     override fun onError(t: String) {
         dismissLoading()
         switchUIByState(PageState.ERROR)
-      //  RxToast.warning("网络异常，请检查网络连接")
     }
 
     override fun onEmpty() {

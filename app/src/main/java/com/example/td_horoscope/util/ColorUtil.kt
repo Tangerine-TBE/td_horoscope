@@ -14,6 +14,8 @@ object ColorUtil : Color() {
 
     //主题色
     const val THEME_COLOR=0XFFFF0ABE
+    const val THEME_COLOR_STR="#FF0ABE"
+
 
 
 }

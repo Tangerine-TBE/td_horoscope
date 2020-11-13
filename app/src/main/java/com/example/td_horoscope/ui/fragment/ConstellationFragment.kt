@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.module_base.base.BaseFragment
+import com.example.module_usercenter.ui.activity.BuyVipActivity
+import com.example.module_usercenter.utils.Contents
+import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.ui.activity.AlloyPlateActivity
 import com.example.td_horoscope.ui.activity.QQTestActivity
@@ -71,11 +74,15 @@ class ConstellationFragment:BaseFragment() {
         }
 
         mHomeContextAdapter.setOnItemClickListener { adapter, view, position ->
-            when (position) {
-                0->toOtherActivity<ZodiacActivity>(activity){}
-                1->toOtherActivity<AlloyPlateActivity>(activity){}
-                2->toOtherActivity<QQTestActivity>(activity){}
-                3->toOtherActivity<ZgDreamActivity>(activity){}
+            if (SpUtil.isVIP()) {
+                when (position) {
+                    0 -> toOtherActivity<ZodiacActivity>(activity, false) {}
+                    1 -> toOtherActivity<AlloyPlateActivity>(activity, false) {}
+                    2 -> toOtherActivity<QQTestActivity>(activity, false) {}
+                    3 -> toOtherActivity<ZgDreamActivity>(activity, false) {}
+                }
+            } else {
+                toOtherActivity<BuyVipActivity>(activity, false) {putExtra(Contents.TO_BUY,true)}
             }
         }
 

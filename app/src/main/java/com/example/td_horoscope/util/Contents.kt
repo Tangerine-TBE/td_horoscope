@@ -9,6 +9,10 @@ package com.example.td_horoscope.util
  * @class describe
  */
 object  Contents {
+    //第一次
+    const val IS_FIRST = "one"
+
+
 
     //fragment值传递key
     const val CURRENT_CONSTELLATION="current_constellation"

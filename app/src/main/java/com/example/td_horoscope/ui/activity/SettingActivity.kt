@@ -2,10 +2,11 @@ package com.example.td_horoscope.ui.activity
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.module_base.base.BaseActivity
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.widget.MyToolbar
 import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.ui.adapter.recyclerview.SetAdapter
 import com.example.td_horoscope.util.Contents
@@ -14,9 +15,9 @@ import com.tamsiree.rxkit.view.RxToast
 import com.tamsiree.rxui.view.dialog.RxDialogSureCancel
 import kotlinx.android.synthetic.main.activity_setting.*
 
-class SettingActivity :BaseActivity() {
+class SettingActivity: MainBaseActivity() {
 
-
+    private lateinit var mFeedAd: FeedHelper
     override fun getLayoutView(): Int=R.layout.activity_setting
 
     private lateinit var mSetAdapter:SetAdapter
@@ -28,7 +29,8 @@ class SettingActivity :BaseActivity() {
     }
 
     override fun initView() {
-
+        mFeedAd=FeedHelper(this,mSetAdContainer)
+        mFeedAd.showAd()
 
         mSetRv.layoutManager = LinearLayoutManager(this)
         mSetAdapter = SetAdapter()
@@ -55,10 +57,10 @@ class SettingActivity :BaseActivity() {
 
         mSetAdapter.setOnItemClickListener { adapter, view, position ->
             when (position) {
-                0-> toOtherActivity<DealActivity>(this){
+                0-> toOtherActivity<DealActivity>(this,false){
                     putExtra(Contents.SET_Deal1,position)
                 }
-                1-> toOtherActivity<DealActivity>(this){
+                1-> toOtherActivity<DealActivity>(this,false){
                     putExtra(Contents.SET_Deal1,position)
                 }
                 2->{
@@ -84,6 +86,9 @@ class SettingActivity :BaseActivity() {
 
     }
 
+    override fun release() {
+        mFeedAd.showAd()
+    }
 
 
 

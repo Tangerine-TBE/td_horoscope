@@ -22,7 +22,7 @@ class ThingsAdapter:BaseQuickAdapter<Result,BaseViewHolder>(R.layout.item_things
     override fun convert(holder: BaseViewHolder, item: Result) {
         item?.let {
              Glide.with(context).load(it.pic)
-                 .error(R.mipmap.icon_xz_jinniu)
+                 .error(R.mipmap.icon_thing_error)
                  .apply(RequestOptions.bitmapTransform(RoundedCorners(20)))
                  .into(holder.itemView.mThingIcon)
 

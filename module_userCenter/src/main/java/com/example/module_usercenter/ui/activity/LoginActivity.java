@@ -61,7 +61,9 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
-import org.json.JSONArray;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,6 +98,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     private ThirdlyLoginPresentImpl mThirdlyLoginPresent;
     private BaseUIConfig mUIConfig;
     private RegisterPresentImpl mRegisterPresent;
+    private boolean isOauth;
 
     @Override
     public int getLayoutView() {
@@ -120,8 +123,6 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         tv_login_title.setText("欢迎登录" + PackageUtil.getAppMetaData(this, Contents.APP_NAME));
         dt_toolbar.setColorBackground(Color.TRANSPARENT);
         dt_toolbar.setTitle("");
-        // dt_toolbar.setIcon(R.mipmap.tv_back);
-
 
 
         mRxDialog = new RxDialogShapeLoading(this);
@@ -129,7 +130,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         mRxDialog.setCancelable(false);
 
         //微信
-        mWxapi = WXAPIFactory.createWXAPI(this,Contents.WECHAT_APP_ID, false);
+        mWxapi = WXAPIFactory.createWXAPI(this, Contents.WECHAT_APP_ID, false);
         mWxapi.registerApp(Contents.WECHAT_APP_ID);
         //QQ初始化
         mTencent = Tencent.createInstance(Contents.QQ_ID, BaseApplication.Companion.getAppContext());
@@ -137,11 +138,12 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         sdkInit(Contents.OAUTH);
         mUIConfig = BaseUIConfig.init(0, this, mPhoneNumberAuthHelper);
     }
+
     public void sdkInit(String secretInfo) {
         mTokenResultListener = new TokenResultListener() {
             @Override
             public void onTokenSuccess(String s) {
-             //   hideLoadingDialog();
+                //   hideLoadingDialog();
                 TokenRet tokenRet = null;
                 try {
                     tokenRet = TokenRet.fromJson(s);
@@ -176,11 +178,11 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
                         }
                         finish();
                     } else {
-                      //  Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
-                       //Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
                         RxToast.warning("一键登录失败，请开启移动网络后重试或使用其他登陆方式");
-                      //  Intent pIntent = new Intent(OneKeyLoginActivity.this, MessageActivity.class);
-                      //  startActivityForResult(pIntent, 1002);
+                        //  Intent pIntent = new Intent(OneKeyLoginActivity.this, MessageActivity.class);
+                        //  startActivityForResult(pIntent, 1002);
                         mPhoneNumberAuthHelper.quitLoginPage();
                     }
                 } catch (Exception e) {
@@ -203,8 +205,10 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         mUIConfig.configAuthPage();
         getLoginToken(10000);
     }
+
     /**
      * 拉起授权页
+     *
      * @param timeout 超时时间
      */
     public void getLoginToken(int timeout) {
@@ -222,7 +226,6 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     }
 
 
-
     @Override
     public void initPresent() {
 
@@ -234,6 +237,8 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
 
         mThirdlyLoginPresent = ThirdlyLoginPresentImpl.getInstance();
         mThirdlyLoginPresent.registerCallback(this);
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -258,59 +263,42 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         });
 
 
+
         //注册
-        tv_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class).putExtra(Contents.ACTIVITY,Contents.REGISTER));
-            }
-        });
+        tv_register.setOnClickListener(v -> {
+                    isOauth = false;
+                    startActivity(new Intent(LoginActivity.this, RegisterActivity.class).putExtra(Contents.ACTIVITY, Contents.REGISTER));
+                }
+        );
 
         //找回密码
-        tv_change_pwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class).putExtra(Contents.ACTIVITY,Contents.CHANGE_PWD));
-            }
-        });
+        tv_change_pwd.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class).putExtra(Contents.ACTIVITY, Contents.CHANGE_PWD)));
 
-        bt_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNumberStr = ed_number_input.getText().toString().trim();
-                String pwd = ed_pwd_input.getText().toString().trim();
-                mMd5Pwd= Md5Util.md5(pwd);
-                if (mNumberStr.length()== 11&& mMd5Pwd.length()>=6) {
-                    Map<String, String> map = new TreeMap<>();
-                    map.put(Contents.MOBILE, mNumberStr);
-                    map.put(Contents.PASSWORD, mMd5Pwd);
-                    if (mLoginPresent != null) {
-                        mLoginPresent.toLogin(map);
-                    }
-                } else {
-                    RxToast.warning("请输入11位手机号码和6个字符以上的密码");
+        bt_login.setOnClickListener(v -> {
+            mNumberStr = ed_number_input.getText().toString().trim();
+            String pwd = ed_pwd_input.getText().toString().trim();
+            mMd5Pwd = Md5Util.md5(pwd);
+            if (mNumberStr.length() == 11 && mMd5Pwd.length() >= 6) {
+                Map<String, String> map = new TreeMap<>();
+                map.put(Contents.MOBILE, mNumberStr);
+                map.put(Contents.PASSWORD, mMd5Pwd);
+                if (mLoginPresent != null) {
+                    mLoginPresent.toLogin(map);
+                    isOauth=true;
                 }
-
+            } else {
+                RxToast.warning("请输入11位手机号码和6个字符以上的密码");
             }
+
         });
 
 
         //微信
-        iv_wx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkWXInstalled();
-            }
-        });
+        iv_wx.setOnClickListener(v -> checkWXInstalled());
 
 
         //QQ
-        iv_qq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginQQ();
-            }
-        });
+        iv_qq.setOnClickListener(v -> loginQQ());
     }
 
     /**
@@ -334,7 +322,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
 
                     //检查是否注册
                     doCheckRegister();
-                    mSPUtil.putBoolean(Contents.NOT_BACK,true);
+                    mSPUtil.putBoolean(Contents.NOT_BACK, true);
                     //获取个人信息
                     getQQInfo();
                 } catch (Exception e) {
@@ -411,9 +399,9 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     private void doCheckRegister() {
         mRxDialog.show();
         if (mThirdlyLoginPresent != null) {
-            Map<String, String> userInfo= new TreeMap<>();
-            userInfo.put(Contents.OPENID,mOpenId);
-            userInfo.put(Contents.TYPE,Contents.QQ_TYPE);
+            Map<String, String> userInfo = new TreeMap<>();
+            userInfo.put(Contents.OPENID, mOpenId);
+            userInfo.put(Contents.TYPE, Contents.QQ_TYPE);
             mThirdlyLoginPresent.checkRegister(userInfo);
         }
     }
@@ -433,41 +421,48 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
 
     @Override
     public void onLoginSuccess(LoginBean loginBean) {
-        Map<String, String> userType = SpUtil.saveUserType(Contents.LOCAL_TYPE, mNumberStr, mMd5Pwd, "");
-        SpUtil.saveUserInfo(loginBean,userType);
-        mRxDialog.dismiss();
-        finish();
+        if (isOauth) {
+            Map<String, String> userType = SpUtil.saveUserType(Contents.LOCAL_TYPE, mNumberStr, mMd5Pwd, "");
+            SpUtil.saveUserInfo(loginBean, userType);
+            mRxDialog.dismiss();
+            finish();
+        }
     }
 
     @Override
     public void onNumberSuccess(OauthBean oauthBean) {
-        LogUtils.i("-----onNumberSuccess----------"+oauthBean.toString());
-        if (oauthBean.getRet()==200) {
+        LogUtils.i("-----onNumberSuccess----------" + oauthBean.toString());
+        if (oauthBean.getRet() == 200) {
             Data data = oauthBean.getData();
             mNumberStr = data.getMobile();
             String passwd = data.getPasswd();
-            mMd5Pwd=Md5Util.md5(passwd);
+            mMd5Pwd = Md5Util.md5(passwd);
             Map<String, String> map = new TreeMap<>();
-            map.put(Contents.MOBILE,mNumberStr);
-            map.put(Contents.CODE, data.getCode()+"");
-            map.put(Contents.PASSWORD,  passwd);
+            map.put(Contents.MOBILE, mNumberStr);
+            map.put(Contents.CODE, data.getCode() + "");
+            map.put(Contents.PASSWORD, passwd);
             map.put(Contents.PACKAGE, Contents.APP_PACKAGE);
             map.put(Contents.PLATFORM, PackageUtil.getAppMetaData(this, Contents.PLATFORM_KEY));
             if (mRegisterPresent != null) {
+                isOauth = true;
                 mRegisterPresent.registerNumber(map);
+
             }
 
         }
     }
+
     @Override
     public void onRegisterSuccess(RegisterBean registerBean) {
-        LogUtils.i("-----RegisterBean----------"+registerBean.toString());
-        if (registerBean.getRet()==200||registerBean.getRet()==700) {
-            Map<String, String> map = new TreeMap<>();
-            map.put(Contents.MOBILE, mNumberStr);
-            map.put(Contents.PASSWORD, mMd5Pwd);
-            if (mLoginPresent != null) {
-                mLoginPresent.toLogin(map);
+        if (isOauth) {
+            LogUtils.i("-----RegisterBean----------" + registerBean.toString());
+            if (registerBean.getRet() == 200 || registerBean.getRet() == 700) {
+                Map<String, String> map = new TreeMap<>();
+                map.put(Contents.MOBILE, mNumberStr);
+                map.put(Contents.PASSWORD, mMd5Pwd);
+                if (mLoginPresent != null) {
+                    mLoginPresent.toLogin(map);
+                }
             }
         }
 
@@ -477,7 +472,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     @Override
     public void onLoginError() {
         mRxDialog.dismiss();
-        RxToast.warning(this,"登陆失败").show();
+        RxToast.warning(this, "登陆失败").show();
     }
 
     @Override
@@ -486,6 +481,17 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
             mRxDialog.show();
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void dismissDialog(boolean isDis) {
+        if (isDis) {
+            if (mRxDialog != null) {
+                mRxDialog.dismiss();
+            }
+        }
+    }
+
+
 
     @Override
     public void onError() {
@@ -506,26 +512,26 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
             mRegisterPresent.unregisterCallback(this);
         }
 
-       mSPUtil.putBoolean(Contents.NOT_BACK,false);
+        EventBus.getDefault().unregister(this);
+
     }
 
     @Override
     public void onThirdlyLoginSuccess(LoginBean registerBean) {
-        mSPUtil.putBoolean(Contents.NOT_BACK,false);
         int ret = registerBean.getRet();
         if (ret == 200) {
             mRxDialog.dismiss();
-            Map<String, String> userType = SpUtil.saveUserType(Contents.QQ_TYPE, "","",mOpenId);
+            Map<String, String> userType = SpUtil.saveUserType(Contents.QQ_TYPE, "", "", mOpenId);
             SpUtil.saveUserInfo(registerBean, userType);
             finish();
-            LogUtils.i( "----------------------->：" + registerBean.getMsg());
+            LogUtils.i("----------------------->：" + registerBean.getMsg());
 
         }
     }
 
     @Override
     public void onThirdlyLoginError() {
-        RxToast.error(this,"QQ登陆失败").show();
+        RxToast.error(this, "QQ登陆失败").show();
     }
 
     @Override
@@ -548,16 +554,16 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     public void onThirdlyRegisterSuccess(ThirdlyRegisterBean registerBean) {
         mRxDialog.show();
         int ret = registerBean.getRet();
-        LogUtils.i( "onThirdlyRegisterSuccess----------------------->：" + ret);
+        LogUtils.i("onThirdlyRegisterSuccess----------------------->：" + ret);
         if (ret == 200) {
             doQQLogin();
-            LogUtils.i( "onThirdlyRegisterSuccess---------200-------------->：" + ret);
+            LogUtils.i("onThirdlyRegisterSuccess---------200-------------->：" + ret);
         }
 
-        if (ret==700) {
+        if (ret == 700) {
             if (registerBean.getMsg().equals("该帐号已经注册")) {
                 doQQLogin();
-                LogUtils.i( "onThirdlyRegisterSuccess--------------700--------->：" );
+                LogUtils.i("onThirdlyRegisterSuccess--------------700--------->：");
             }
 
         }
@@ -566,11 +572,11 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     //QQ注册
     private void doRegister() {
         if (mThirdlyLoginPresent != null) {
-            Map<String, String> userInfo= new TreeMap<>();
-            userInfo.put(Contents.TYPE,Contents.QQ_TYPE);
-            userInfo.put(Contents.OPENID,mOpenId);
-            userInfo.put(Contents.PACKAGE,Contents.APP_PACKAGE);
-            userInfo.put(Contents.PLATFORM,  PackageUtil.getAppMetaData(this, Contents.PLATFORM_KEY));
+            Map<String, String> userInfo = new TreeMap<>();
+            userInfo.put(Contents.TYPE, Contents.QQ_TYPE);
+            userInfo.put(Contents.OPENID, mOpenId);
+            userInfo.put(Contents.PACKAGE, Contents.APP_PACKAGE);
+            userInfo.put(Contents.PLATFORM, PackageUtil.getAppMetaData(this, Contents.PLATFORM_KEY));
             mThirdlyLoginPresent.toThirdlyRegister(userInfo);
         }
     }
@@ -581,14 +587,14 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
         if (mThirdlyLoginPresent != null) {
             Map<String, String> userInfo = new TreeMap<>();
             userInfo.put(Contents.OPENID, mOpenId);
-            userInfo.put(Contents.TYPE,Contents.QQ_TYPE);
+            userInfo.put(Contents.TYPE, Contents.QQ_TYPE);
             mThirdlyLoginPresent.toThirdlyLogin(userInfo);
         }
     }
 
     @Override
     public void onThirdlyRegisterError() {
-        RxToast.error(this,"QQ注册失败").show();
+        RxToast.error(this, "QQ注册失败").show();
     }
 
 

@@ -20,7 +20,7 @@ import org.litepal.LitePal
  * @time 2020/10/27 19:34
  * @class describe
  */
- class BaseApplication:Application() {
+ open class BaseApplication:Application() {
 
     companion object {
         var appContext: Context? = null
@@ -57,6 +57,11 @@ import org.litepal.LitePal
             e.printStackTrace()
         }
         FeedbackAPI.setAppExtInfo(jsonObject)
+        initChild()
+    }
+
+    open fun initChild() {
 
     }
+
 }

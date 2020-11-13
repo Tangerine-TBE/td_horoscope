@@ -184,7 +184,7 @@
     <ImageView
         android:id="@+id/iv_phone"
         android:layout_centerHorizontal="true"
-        android:background="@color/black"
+        android:src="@mipmap/icon_login_aouth"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="87dp"

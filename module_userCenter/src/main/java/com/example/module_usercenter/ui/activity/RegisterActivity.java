@@ -27,6 +27,8 @@ import com.example.module_usercenter.view.IRegisterCallback;
 import com.tamsiree.rxkit.view.RxToast;
 import com.tamsiree.rxui.view.dialog.RxDialogShapeLoading;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -54,13 +56,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
     public void initView() {
         Intent intent = getIntent();
         mTypeAction = intent.getStringExtra(Contents.ACTIVITY);
-
         dt_res_toolbar= findViewById(R.id.dt_res_toolbar);
         lv_register= findViewById(R.id.lv_register);
-
-
         dt_res_toolbar.setColorBackground(Color.TRANSPARENT);
-      //  dt_res_toolbar.setIcon(R.mipmap.tv_back);
         if (mTypeAction.equals(Contents.CHANGE_PWD)) {
             dt_res_toolbar.setTitle("密码找回");
             lv_register.setLoginBtText("找回密码");
@@ -70,8 +68,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
         }
 
         mRxDialogLoading = new RxDialogShapeLoading(this);
-        mRxDialogLoading.setCancelable(false);
-        mRxDialogLoading.setLoadingText("正在注册账号");
+
     }
 
     @Override
@@ -158,7 +155,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
 
     @Override
     public void onFindPwdSuccess(RegisterBean registerBean) {
-        mRxDialogLoading.dismiss();
+        if (mRxDialogLoading != null) {
+            mRxDialogLoading.dismiss();
+        }
         int ret = registerBean.getRet();
         if (ret == 200) {
             RxToast.success(this, "修改密码成功").show();
@@ -182,36 +181,45 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
             }
             RxToast.success(this, "注册成功").show();
         } else {
-            mRxDialogLoading.dismiss();
+            if (mRxDialogLoading != null) {
+                mRxDialogLoading.dismiss();
+            }
             RxToast.warning(this, registerBean.getMsg()).show();
         }
+        EventBus.getDefault().post(true);
     }
 
     @Override
     public void onLoading() {
-
-        mRxDialogLoading.show();
+        if (mRxDialogLoading != null) {
+            mRxDialogLoading.show();
+            mRxDialogLoading.setCancelable(false);
+            mRxDialogLoading.setLoadingText("正在注册账号");
+        }
     }
 
     @Override
     public void onError() {
-        mRxDialogLoading.dismiss();
+        if (mRxDialogLoading != null) {
+            mRxDialogLoading.dismiss();
+        }
         RxToast.error(this,"登陆失败").show();
     }
 
     @Override
     public void onLoginSuccess(LoginBean loginBean) {
-        mRxDialogLoading.dismiss();
+        if (mRxDialogLoading != null) {
+            mRxDialogLoading.dismiss();
+        }
         if (loginBean.getRet()==200) {
             Map<String, String> userType = SpUtil.saveUserType(Contents.LOCAL_TYPE, phoneNumber, pwdNumber, "");
             SpUtil.saveUserInfo(loginBean, userType);
             LogUtils.i("onLoginSuccess----------------------?"+   loginBean.getData().getId());
             boolean isBuyPager =mSPUtil.getBoolean(Contents.BUY_PAGER, false);
-
             if (isBuyPager) {
                 startActivity(new Intent(this, BuyVipActivity.class));
             } else {
-                ARouter.getInstance().build(ModuleProvider.ROUTE_MAIN_ACTIVITY).withInt(ModuleProvider.FRAGMENT_ID,0).navigation();
+                ARouter.getInstance().build(ModuleProvider.ROUTE_MAIN_ACTIVITY).withInt(ModuleProvider.FRAGMENT_ID,3).navigation();
             }
             finish();
         }
@@ -224,7 +232,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
 
     @Override
     public void onLoginError() {
-        mRxDialogLoading.dismiss();
+        if (mRxDialogLoading != null) {
+            mRxDialogLoading.dismiss();
+        }
     }
 
 

@@ -2,9 +2,9 @@ package com.example.td_horoscope.ui.activity
 
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.module_base.base.BaseActivity
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.bean.qq.QQBean
 import com.example.td_horoscope.present.impl.QQImpl
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_qq_test.*
  * @time 2020/10/30 15:08
  * @class describe
  */
-class QQTestActivity : BaseActivity(), IQQCallback {
+class QQTestActivity: MainBaseActivity() , IQQCallback {
 
     private lateinit var mQQTestAdapter: QQTestAdapter
     override fun getLayoutView(): Int = R.layout.activity_qq_test
@@ -34,7 +34,6 @@ class QQTestActivity : BaseActivity(), IQQCallback {
     }
 
     override fun initPresent() {
-
         QQImpl.registerCallback(this)
     }
 

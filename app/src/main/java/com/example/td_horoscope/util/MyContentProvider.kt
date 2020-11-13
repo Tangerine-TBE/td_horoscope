@@ -13,6 +13,10 @@ import com.example.td_horoscope.bean.IconTitleBean
  */
 object MyContentProvider {
 
+    val permissionList= arrayListOf(
+        IconTitleBean(R.mipmap.per_device,"为您提供精确的扫描、清理服务","存储")
+    )
+
 
     val homeHoroscope = arrayListOf(
             IconTitleBean(R.mipmap.icon_xz_baiyang,    Contents.BAIYANG, "03.21-04.19")
@@ -73,10 +77,9 @@ object MyContentProvider {
     )
 
 
-    val settingList = arrayListOf(IconTitleBean(R.mipmap.icon_xs_shu, "客服中心")
-            , IconTitleBean(R.mipmap.icon_xs_shu, "意见反馈")
-            , IconTitleBean(R.mipmap.icon_xs_shu, "推荐分享")
-            , IconTitleBean(R.mipmap.icon_xs_shu, "关于我们")
+    val settingList = arrayListOf(
+            IconTitleBean(R.mipmap.icon_idea, "意见反馈")
+            , IconTitleBean(R.mipmap.icon_about, "关于我们")
 
     )
 

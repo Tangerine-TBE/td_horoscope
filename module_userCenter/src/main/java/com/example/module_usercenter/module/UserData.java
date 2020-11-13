@@ -63,6 +63,7 @@ public class UserData {
          int random = new Random().nextInt();
          //获取时间戳
          long currentTimeMillis = System.currentTimeMillis();
+
          String value = SortMapUtil.sortMapByValue(map);
 
          String checkCode = Md5Util.md5(Contents.TOKEN+currentTimeMillis+random+ Contents.ADD_USER+value);
@@ -72,9 +73,9 @@ public class UserData {
      }
 
      public void doLogin(Map<String, String> userInfo, Callback<LoginBean> callback) {
-         String sortMapByValue = SortMapUtil.sortMapByValue(userInfo);
          long currentTimeMillis = System.currentTimeMillis();
          int random = new Random().nextInt();
+         String sortMapByValue = SortMapUtil.sortMapByValue(userInfo);
          String md5 = Md5Util.md5(Contents.TOKEN + currentTimeMillis + random + Contents.LOGIN+sortMapByValue);
          Map<String, Object> stringObjectMap = ApiMapUtil.setMapValues(Contents.LOGIN,currentTimeMillis, random, md5,userInfo);
          mApi.toLogin(stringObjectMap).enqueue(callback);

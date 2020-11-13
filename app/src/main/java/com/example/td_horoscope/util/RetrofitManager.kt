@@ -50,6 +50,7 @@ object RetrofitManager {
             .build()
 
 
+
    inline fun <reified T> createConstellation(): T = cosRetrofit.create(T::class.java)
 
    inline fun <reified T> createHuangLi(): T = hlRetrofit.create(T::class.java)

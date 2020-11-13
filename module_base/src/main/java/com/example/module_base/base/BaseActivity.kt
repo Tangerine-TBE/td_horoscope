@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import com.example.module_base.util.MyActivityManager
 import com.example.module_base.util.MyStatusBarUtil
 import com.example.module_base.util.SPUtil
 import com.example.module_base.widget.LoadingDialog
@@ -24,7 +25,8 @@ open abstract class BaseActivity:FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutView())
-        MyStatusBarUtil.setColor(this,Color.WHITE)
+        MyStatusBarUtil.setColor(this, Color.WHITE)
+        MyActivityManager.addActivity(this)
         mLoadingDialog = LoadingDialog(this)
         mLoadingDialog.setCancelable(true)
         mSPUtil= SPUtil.getInstance();
@@ -83,6 +85,7 @@ open abstract class BaseActivity:FragmentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        MyActivityManager.removeActivity(this)
         release()
     }
 

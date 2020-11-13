@@ -92,5 +92,7 @@ dependencies {
     api rootProject.ext.dependencies["agentweb"]
     //wechat
     api rootProject.ext.dependencies["wechat"]
+    //权限
+    api rootProject.ext.dependencies["permissionx"]
 
 }
