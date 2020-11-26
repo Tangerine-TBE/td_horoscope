@@ -10,8 +10,8 @@ ext {
     versions = [
             //com.feisukj.calendar
             //com.twx.constellation
-            applicationId    : "com.feisukj.calendar",   //应用ID
-            applicationName  : "星座物语",                  //应用名称
+            applicationId    : "com.twx.constellation",   //应用ID
+            applicationName  : "星座运势专家",                  //应用名称
             versionCode      : 10000,                    //版本号
             versionName      : "1.0",              //版本名称
 

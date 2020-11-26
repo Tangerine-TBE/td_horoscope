@@ -9,7 +9,7 @@
         android:id="@+id/mDreamHint"
         android:text="红棺材"
         android:textSize="17sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -19,7 +19,7 @@
         android:id="@+id/mDreamTitle"
         android:text="梦见红棺材，预兆要发财，有财运。梦见棺材可以隐喻着重生，或者思想或灵魂蜕变进入另一阶段，以及戒除了不健康的坏习惯，离开了旧的环境等等。"
         android:layout_marginTop="10.5dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

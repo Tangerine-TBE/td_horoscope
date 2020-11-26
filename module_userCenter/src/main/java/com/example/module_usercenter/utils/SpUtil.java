@@ -1,15 +1,19 @@
 package com.example.module_usercenter.utils;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.module_base.base.BaseApplication;
+import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.SPUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;
+import com.tamsiree.rxkit.RxTimeTool;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +21,11 @@ import java.util.Map;
 
 public class SpUtil {
 
+    public static void removeAdView(boolean hidden,FrameLayout frameLayout){
+        if (SPUtil.getInstance().getInt(Contents.USER_VIP_LEVEL)>0) {
+            if (!hidden) frameLayout.removeAllViews();
+        }
+    }
 
     public static Map<String, String> saveUserType(String type, String number, String pwd, String openId) {
         Map<String, String> mUserInfo = new HashMap<>();
@@ -53,17 +62,19 @@ public class SpUtil {
     }
 
 
-    private static final int sLoginTime = 30;
+    private static final int sLoginTime = 1;
 
     public static boolean loginTimeOut() {
-        long startTime = SPUtil.getInstance().getLong(Contents.USER_LOGIN_TIME, 0);
+        String vipTime = SPUtil.getInstance().getString(Contents.USER_VIP_TIME);
         boolean isLogin = SPUtil.getInstance().getBoolean(Contents.USER_IS_LOGIN, false);
-        if (isLogin & startTime != 0) {
-            Date startDate = new Date(startTime);
+        if (isLogin &!TextUtils.isEmpty(vipTime)) {
+            long endTime= RxTimeTool.string2Milliseconds(vipTime);
+            Date startDate = new Date(endTime);
             Date stopDate = new Date(System.currentTimeMillis());
             // 这样得到的差值是微秒级别
             long diff = stopDate.getTime() - startDate.getTime();
             long days = diff / (1000 * 60 * 60 * 24);
+            LogUtils.i( "----------------loginTimeOut-------------------->"+days);
             if (days > sLoginTime) {
                 deleteUserInfo();
                 return true;

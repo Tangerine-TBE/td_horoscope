@@ -22,7 +22,7 @@ public class Contents {
     public static final String AD_INFO = "ad";
 
     //穿山甲
-    public static final String  CSJ_APPID= "5116466";
+    public static final String  CSJ_APPID= "5122509";
 
 
     //广告key

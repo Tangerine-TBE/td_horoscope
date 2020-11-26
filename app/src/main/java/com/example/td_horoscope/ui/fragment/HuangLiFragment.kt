@@ -1,8 +1,11 @@
 package com.example.td_horoscope.ui.fragment
 
 import android.text.TextUtils
+import com.example.module_ad.advertisement.AdType
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
 import com.example.module_base.util.SPUtil
+import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.HuangLiBean
 import com.example.td_horoscope.present.impl.HuangLiImpl
@@ -24,7 +27,19 @@ class HuangLiFragment:BaseFragment(), IHuangLiCallback {
     override fun getLayoutView(): Int= R.layout.fragment_huangli
 
     override fun initView() {
+        showAd()
+    }
 
+    private lateinit var mFeedHelper: FeedHelper
+   private fun  showAd(){
+       mFeedHelper = FeedHelper(activity, mHlFeedContainer)
+       mFeedHelper.showAd(AdType.ALMANAC_PAGE)
+   }
+
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        SpUtil.removeAdView(hidden,mHlFeedContainer)
     }
 
     override fun initPresent() {
@@ -115,7 +130,8 @@ class HuangLiFragment:BaseFragment(), IHuangLiCallback {
     }
 
     override fun release() {
-        HuangLiImpl.unregisterCallback( this)
+        HuangLiImpl.unregisterCallback(this)
+        mFeedHelper.releaseAd()
     }
 
 }

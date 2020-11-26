@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.module_ad.advertisement.AdType
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
+import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.*
 import com.example.td_horoscope.present.impl.ConstellationPresentImpl
@@ -62,6 +65,18 @@ class ConDesFragmentOne : BaseFragment(), IConstellationCallback {
         mConsDes.adapter = mConsDesAdapter
         mConsDesAdapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
 
+        showAd()
+    }
+    private lateinit var mFeedHelper: FeedHelper
+    private fun  showAd(){
+        mFeedHelper = FeedHelper(activity, mHomeFeedContainerOne)
+        mFeedHelper.showAd(AdType.HOME_PAGE)
+    }
+
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        SpUtil.removeAdView(hidden,mHomeFeedContainerOne)
     }
 
     override fun initPresent() {
@@ -96,7 +111,11 @@ class ConDesFragmentOne : BaseFragment(), IConstellationCallback {
 
     override fun release() {
         mConstellationPresentImpl.unregisterCallback(this)
+        mFeedHelper.releaseAd()
     }
+
+
+
     private fun showDayInfo(dayData: ToDayBean) {
         switchUIByState(PageState.SUCCESS)
         dismissLoading()

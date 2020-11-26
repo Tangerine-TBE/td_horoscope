@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:overScrollMode="never"
     android:layout_height="match_parent">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/include_one"
         android:layout_marginTop="12dp"
@@ -41,15 +44,10 @@
             android:textColor="@color/main_ColorText" />
 
     </RelativeLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="8dp"
-        android:overScrollMode="never"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/include_one"
-        android:layout_height="match_parent">
-
         <LinearLayout
+            android:id="@+id/mhl_include"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/include_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11dp"
@@ -301,7 +299,13 @@
             </RelativeLayout>
 
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
-</RelativeLayout>
+        </LinearLayout>
+    <FrameLayout
+        android:layout_below="@+id/mhl_include"
+        android:id="@+id/mHlFeedContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

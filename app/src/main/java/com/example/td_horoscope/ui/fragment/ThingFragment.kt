@@ -4,8 +4,11 @@ import android.text.TextUtils
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.module_ad.advertisement.AdType
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
 import com.example.module_base.util.SPUtil
+import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.historyevent.HistoryEventBean
 import com.example.td_horoscope.present.impl.HistoryEventImpl
@@ -32,6 +35,7 @@ class ThingFragment:BaseFragment(), IEventCallback {
     private lateinit var mThingDateAdapter: ThingDateAdapter
     private val mDateList:MutableList<String>?=ArrayList()
 
+
     override fun initView() {
        // switchUIByState(PageState.SUCCESS)
         mThingsContainer.layoutManager = LinearLayoutManager(activity)
@@ -49,8 +53,21 @@ class ThingFragment:BaseFragment(), IEventCallback {
         mCurrentDate.adapter=mThingDateAdapter
         mThingDateAdapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
 
+        showAd()
     }
 
+    private lateinit var mFeedHelper:FeedHelper
+     private fun showAd(){
+        mFeedHelper = FeedHelper(activity,mFeedContainer)
+         mFeedHelper.showAd(AdType.TODAY_IN_HISTORY_PAGE)
+
+    }
+
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        SpUtil.removeAdView(hidden,mFeedContainer)
+    }
 
     override fun initPresent() {
         HistoryEventImpl.registerCallback(this)
@@ -111,5 +128,6 @@ class ThingFragment:BaseFragment(), IEventCallback {
 
     override fun release() {
         HistoryEventImpl.unregisterCallback(this)
+        mFeedHelper.releaseAd()
     }
 }

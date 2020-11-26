@@ -173,6 +173,7 @@
 
         <ImageView
             android:id="@+id/iv_wx"
+            android:visibility="invisible"
            android:src="@mipmap/icon_login_wx"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"

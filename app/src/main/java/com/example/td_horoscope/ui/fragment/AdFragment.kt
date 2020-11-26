@@ -48,7 +48,7 @@ class AdFragment:BaseFragment(), IAdCallback {
             madPresent.getAdMsg()
 
         } else {
-            toOtherActivity<MainActivity>(activity,true){}
+           toOtherActivity<MainActivity>(activity,true){}
         }
     }
 
@@ -63,7 +63,7 @@ class AdFragment:BaseFragment(), IAdCallback {
     }
 
     override fun onLoadError() {
-        toOtherActivity<MainActivity>(activity,true){}
+       toOtherActivity<MainActivity>(activity,true){}
     }
 
 

@@ -8,12 +8,9 @@ public class Contents {
 
     //一键登录密钥
     //正式版
-   // public static final String OAUTH="y+czmTYnrQxWjdb3ISbKZDo5Sy2ILDcvkHiV48RxiMHtVHA0g5msOElKeSzpbjACu0cSpMHVp9usRwMWwo8V6pRLpidoShvbPFh17P6UR314xxJj9PVSQc3KcITk6173MS8Z3wdp1FvnFWWGccvKxOcsHHRJVTjovaTNpo4D1j+F/t+lmz86IUxV6XqbJiqvOcbzfLYkdUrIQ6i6s8TRGxas6/0TVMXNa6Hwn41rzx/tUNXpvjMzk/MTRz66wqn7ok9pvaAeBPkwkUFtj0AmVcd20o+dqcZXPSmBzzxVoyZm9NDCnKY9iKIZdsJMazpT";
+    public static final String OAUTH="y+czmTYnrQxWjdb3ISbKZDo5Sy2ILDcvkHiV48RxiMHtVHA0g5msOElKeSzpbjACu0cSpMHVp9usRwMWwo8V6pRLpidoShvbPFh17P6UR314xxJj9PVSQc3KcITk6173MS8Z3wdp1FvnFWWGccvKxOcsHHRJVTjovaTNpo4D1j+F/t+lmz86IUxV6XqbJiqvOcbzfLYkdUrIQ6i6s8TRGxas6/0TVMXNa6Hwn41rzx/tUNXpvjMzk/MTRz66wqn7ok9pvaAeBPkwkUFtj0AmVcd20o+dqcZXPSmBzzxVoyZm9NDCnKY9iKIZdsJMazpT";
     //广告测试版
-    public static final String OAUTH="ERp1eKYioAS2vWah9le0FRXuM3HHB231sz4Fyc6CdgziGaveJOJehkP330uGtE0NqZCMcIyhrN0CipHmvWt7uHWoKaG6Cs2yfy6a+arR4NaZ7gQQOrc7st0HukYpVVWPtrlb4PcT8LLlsEUypASJsy4daWf12pbplNv7pP6ely0QnBvsLzHWdWrozWQcwaZAN3N3MH9YkaWBSi/8NDu7vbtEWW5uyJmn0qK58i9DNAZBvbM38kjRQFoZSbWXUu1hYtIsNg/9/6QXKJLtnOVqXh5BWZ5IwMuvsRRXEa56KKNiGP32DYnZoQ==";
-
-
-
+   // public static final String OAUTH="ERp1eKYioAS2vWah9le0FRXuM3HHB231sz4Fyc6CdgziGaveJOJehkP330uGtE0NqZCMcIyhrN0CipHmvWt7uHWoKaG6Cs2yfy6a+arR4NaZ7gQQOrc7st0HukYpVVWPtrlb4PcT8LLlsEUypASJsy4daWf12pbplNv7pP6ely0QnBvsLzHWdWrozWQcwaZAN3N3MH9YkaWBSi/8NDu7vbtEWW5uyJmn0qK58i9DNAZBvbM38kjRQFoZSbWXUu1hYtIsNg/9/6QXKJLtnOVqXh5BWZ5IwMuvsRRXEa56KKNiGP32DYnZoQ==";
     //包名
     public static final String APP_PACKAGE = PackageUtil.getAppProcessName(BaseApplication.Companion.getAppContext());
 
@@ -75,16 +72,16 @@ public class Contents {
     public static final String VIP_title_3 = "三个月";
     public static final String VIP_title_1 = "一个月";
 
-/*    public static final double VIP_price_13 = 18;
-    public static final double VIP_price_12 = 17.99;
-    public static final double VIP_price_3 = 16.99;
-    public static final double VIP_price_1 = 19;*/
+    public static final double VIP_price_13 = 26;
+    public static final double VIP_price_12 = 25;
+    public static final double VIP_price_3 = 24;
+    public static final double VIP_price_1 = 23;
 
-    //测试
+/*    //测试
     public static final double VIP_price_13 = 0.01;
     public static final double VIP_price_12 = 0.01;
     public static final double VIP_price_3 =0.01;
-    public static final double VIP_price_1 = 0.01;
+    public static final double VIP_price_1 = 0.01;*/
 
     //储存用户信息
     public static final String LOCAL_TYPE = "2";//本地登陆

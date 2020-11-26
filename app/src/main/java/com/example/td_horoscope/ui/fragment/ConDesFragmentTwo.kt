@@ -3,7 +3,10 @@ package com.example.td_horoscope.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.module_ad.advertisement.AdType
+import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
+import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.*
 import com.example.td_horoscope.present.impl.ConstellationPresentImpl
@@ -49,6 +52,17 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
         mConsDesAdapter = ConsDesAdapter()
         mDesContainer.adapter = mConsDesAdapter
         mConsDesAdapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInLeft)
+        showAd()
+    }
+
+    private lateinit var mFeedHelper: FeedHelper
+    private fun  showAd(){
+        mFeedHelper = FeedHelper(activity, mHomeFeedContainerTwo)
+        mFeedHelper.showAd(AdType.HOME_PAGE)
+    }
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        SpUtil.removeAdView(hidden,mHomeFeedContainerTwo)
     }
 
     override fun initPresent() {
@@ -165,6 +179,7 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
 
     override fun release() {
         mConstellationPresentImpl.unregisterCallback(this)
+        mFeedHelper.releaseAd()
     }
 
     //爱情运选择

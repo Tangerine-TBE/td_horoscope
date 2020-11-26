@@ -1,6 +1,9 @@
 package com.example.module_ad.request;
 
+
+
 import com.example.module_ad.utils.Contents;
+import com.example.module_ad.utils.InterceptUtil;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -32,6 +35,7 @@ public class RetrofitUtil {
          adService = new Retrofit.Builder()
                  .baseUrl(Contents.AD_URL)
                  .addConverterFactory(GsonConverterFactory.create())
+                 .client(InterceptUtil.interceptClient())
                  .build()
                  .create(AdService.class);
      }

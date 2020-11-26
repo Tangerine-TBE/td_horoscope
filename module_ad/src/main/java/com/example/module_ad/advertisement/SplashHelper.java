@@ -1,7 +1,6 @@
 package com.example.module_ad.advertisement;
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.module_ad.base.IShowAdCallback;
@@ -40,7 +39,7 @@ public class SplashHelper {
                 BaseApplication.Companion.getMainHandler().post(new Runnable() {
                     @Override
                     public void run() {
-                        if ( Math.random() > AdProbabilityUtil.showAdProbability(spread_screen.getAd_percent())) {
+                        if (Math.random() > AdProbabilityUtil.showAdProbability(spread_screen.getAd_percent())) {
                             showTtSplashAd();
                         } else {
                             showTxSplashAd();
@@ -50,6 +49,8 @@ public class SplashHelper {
             } else {
                 StartActivityUtil.startActivity(mActivity, mClass, true);
             }
+        } else {
+            StartActivityUtil.startActivity(mActivity, mClass, true);
         }
     }
 

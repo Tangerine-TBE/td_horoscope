@@ -58,4 +58,6 @@ public  class AdWatcher implements IAdWatcher<IShowAdCallback> {
     public void setOnShowError(IShowAdCallback iShowAdCallback) {
         this.mIShowAdCallback=iShowAdCallback;
     }
+
+
 }

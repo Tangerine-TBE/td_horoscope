@@ -58,6 +58,17 @@ open abstract class BaseActivity:FragmentActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+       // MobclickAgent.onResume(this)
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+      //  MobclickAgent.onPause(this)
+    }
+
 
 
     abstract fun getLayoutView(): Int

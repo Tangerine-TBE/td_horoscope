@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
 
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mCurrentDate"
@@ -16,14 +16,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+
+    <androidx.core.widget.NestedScrollView
+        android:paddingTop="11dp"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
     <androidx.recyclerview.widget.RecyclerView
        android:paddingRight="11dp"
         android:paddingLeft="11dp"
-        android:paddingTop="11dp"
         android:overScrollMode="never"
         android:id="@+id/mThingsContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+
+        <FrameLayout
+            android:id="@+id/mFeedContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

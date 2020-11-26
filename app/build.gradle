@@ -75,7 +75,6 @@ android {
     }
 
     productFlavors {
-
         _anzhi {
             manifestPlaceholders = [
                     app_name_channel: rootProject.ext.versions.applicationName,

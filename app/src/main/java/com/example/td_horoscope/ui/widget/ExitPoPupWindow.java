@@ -12,6 +12,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+
+import com.example.module_ad.advertisement.AdType;
 import com.example.module_ad.advertisement.FeedHelper;
 import com.example.module_ad.utils.BaseBackstage;
 import com.example.module_base.util.MyActivityManager;
@@ -86,7 +88,7 @@ public class ExitPoPupWindow extends PopupWindow {
     public void popupShowAd(Activity activity) {
           mInValueAnimator.start();
         mFeedHelper = new FeedHelper(activity, mAdContainer);
-        mFeedHelper.showAd();
+        mFeedHelper.showAd(AdType.EXIT_PAGE);
     }
 
     //设置窗口渐变

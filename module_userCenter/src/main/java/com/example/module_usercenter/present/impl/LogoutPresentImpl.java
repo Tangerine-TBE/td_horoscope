@@ -33,6 +33,9 @@ public class LogoutPresentImpl implements ILogoutPresent {
 
     @Override
     public void toLogout(String id) {
+        if (mILogoutCallback != null) {
+            mILogoutCallback.onLogoutLoading();
+        }
         mUserData.doLogout(id, new Callback<RegisterBean>() {
             @Override
             public void onResponse(Call<RegisterBean> call, Response<RegisterBean> response) {

@@ -1,5 +1,6 @@
 package com.example.td_horoscope.ui.adapter.recyclerview
 
+import android.graphics.Color
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.td_horoscope.R
@@ -16,7 +17,9 @@ import kotlinx.android.synthetic.main.item_set_container.view.*
  */
 class SetAdapter : BaseQuickAdapter<IconTitleBean, BaseViewHolder>(R.layout.item_set_container) {
     override fun convert(holder: BaseViewHolder, item: IconTitleBean) {
-        holder.itemView.mSetHint.text= item.hint
-
+        if (holder.adapterPosition==3) {
+            holder.itemView.mSetHint.setTextColor(Color.RED)
+        }
+        holder.itemView.mSetHint.text = item.hint
     }
 }

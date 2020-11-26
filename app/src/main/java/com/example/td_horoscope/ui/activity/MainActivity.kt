@@ -22,24 +22,16 @@ import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = ModuleProvider.ROUTE_MAIN_ACTIVITY)
-class MainActivity : MainBaseActivity()  {
+class MainActivity : MainBaseActivity(){
 
     private var mLastFragment: Fragment? = null
-    private val mConstellationFragment by lazy {
-        ConstellationFragment()
-    }
-    private val mHuangLiFragment by lazy {
-        HuangLiFragment()
-    }
-    private val mThingFragment by lazy {
-        ThingFragment()
-    }
-    private val mMyFragment by lazy {
-        MyFragment()
-    }
-    private val mExitPoPupWindow by lazy {
-        ExitPoPupWindow(this)
-    }
+    private val mConstellationFragment by lazy { ConstellationFragment() }
+    private val mHuangLiFragment by lazy { HuangLiFragment() }
+    private val mThingFragment by lazy { ThingFragment() }
+    private val mMyFragment by lazy { MyFragment() }
+    private val mExitPoPupWindow by lazy { ExitPoPupWindow(this) }
+
+
 
     @Titles
     private val mTitles = arrayOf("星座物语", "老黄历", "今日往事", "我的")
@@ -68,10 +60,11 @@ class MainActivity : MainBaseActivity()  {
         //开启后台广告
         mSPUtil.putBoolean(com.example.module_ad.utils.Contents.NO_BACK, false)
         if (SpUtil.loginTimeOut()) {
-            RxToast.normal("本地登录已过期,请重新登录")
+            RxToast.normal("您的Vip身份已过期,请重新登录")
         }
         switchFragment(mConstellationFragment)
     }
+
 
     override fun initEvent() {
         mJPTabBar.setTabListener(object : OnTabSelectListener {
@@ -130,7 +123,6 @@ class MainActivity : MainBaseActivity()  {
         }
     }
 
-
     override fun onResume() {
         super.onResume()
         when (intent.getIntExtra(ModuleProvider.FRAGMENT_ID, 5)) {
@@ -148,4 +140,5 @@ class MainActivity : MainBaseActivity()  {
         }
         return super.onKeyDown(keyCode, event)
     }
+
 }

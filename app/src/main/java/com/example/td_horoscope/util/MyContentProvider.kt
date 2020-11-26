@@ -78,9 +78,9 @@ object MyContentProvider {
 
 
     val settingList = arrayListOf(
-            IconTitleBean(R.mipmap.icon_idea, "意见反馈")
-            , IconTitleBean(R.mipmap.icon_about, "关于我们")
-
+            IconTitleBean(R.mipmap.icon_idea, "意见反馈"),
+        IconTitleBean(R.mipmap.icon_about, "关于我们"),
+        IconTitleBean(R.mipmap.icon_kefu, "联系邮箱  2681706890@qq.com")
     )
 
     //生肖

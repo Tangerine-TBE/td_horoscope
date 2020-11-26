@@ -9,6 +9,7 @@ import com.example.module_base.provider.ModuleProvider
 import com.example.module_base.util.PackageUtil
 import com.example.module_base.util.SPUtil
 import com.tamsiree.rxkit.RxTool
+import com.umeng.commonsdk.UMConfigure
 import org.json.JSONObject
 import org.litepal.LitePal
 
@@ -57,6 +58,9 @@ import org.litepal.LitePal
             e.printStackTrace()
         }
         FeedbackAPI.setAppExtInfo(jsonObject)
+        //友盟
+        UMConfigure.init(applicationContext, UMConfigure.DEVICE_TYPE_PHONE, "5fb66104509a646ab9389456")
+        UMConfigure.setLogEnabled(true)
         initChild()
     }
 

@@ -15,5 +15,6 @@ class MainBaseApplication:BaseApplication() {
 
     override fun initChild() {
         TTAdManagerHolder.init(this)
+
     }
 }

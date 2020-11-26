@@ -1,4 +1,5 @@
 package com.example.module_ad.request;
+
 import com.example.module_ad.bean.AdBean;
 
 import java.util.Map;
@@ -15,6 +16,6 @@ import retrofit2.http.QueryMap;
  * @class describe
  */
 public interface AdService {
-    @GET("anFeisuXingZuo")
+    @GET("anfeisuXingzuoYunShi")
     Call<AdBean> getAdMessage(@QueryMap Map<String,String> params);
 }

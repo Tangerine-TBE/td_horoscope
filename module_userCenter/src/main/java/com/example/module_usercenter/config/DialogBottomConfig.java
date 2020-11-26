@@ -66,7 +66,8 @@ public class DialogBottomConfig extends BaseUIConfig {
 
         mAuthHelper.setAuthUIConfig(new AuthUIConfig.Builder()
 
-                .setAppPrivacyOne("《隐私协议》", "https://www.baidu.com")
+              /*  .setAppPrivacyOne("《隐私协议》", "https://www.baidu.com")*/
+
                 .setAppPrivacyColor(Color.GRAY, Color.parseColor("#002E00"))
 
 

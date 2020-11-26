@@ -21,6 +21,7 @@ import com.example.td_horoscope.ui.activity.MainActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.PermissionAdapter
 import com.example.td_horoscope.util.ColorUtil
 import com.example.td_horoscope.util.Contents
+import com.example.td_horoscope.util.LogUtil
 import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.google.gson.Gson
@@ -156,7 +157,7 @@ class PermissionFragment:BaseFragment(), IAdCallback {
     }
 
     override fun onLoadError() {
-
+        LogUtil.i(this,"66666666666666666666666666");
     }
 
 

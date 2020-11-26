@@ -2,19 +2,17 @@ package com.example.td_horoscope.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
+import com.example.module_ad.advertisement.AdType
 import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
 import com.example.module_usercenter.bean.*
 import com.example.module_usercenter.present.impl.LoginPresentImpl
-import com.example.module_usercenter.present.impl.LogoutPresentImpl
 import com.example.module_usercenter.present.impl.ThirdlyLoginPresentImpl
 import com.example.module_usercenter.present.impl.WeChatPresentImpl
 import com.example.module_usercenter.ui.activity.BuyVipActivity
 import com.example.module_usercenter.ui.activity.LoginActivity
 import com.example.module_usercenter.utils.Contents
-import com.example.module_usercenter.utils.SpUtil
 import com.example.module_usercenter.view.ILoginCallback
-import com.example.module_usercenter.view.ILogoutCallback
 import com.example.module_usercenter.view.IThirdlyLoginCallback
 import com.example.module_usercenter.view.IWeChatCallback
 import com.example.td_horoscope.R
@@ -22,7 +20,6 @@ import com.example.td_horoscope.ui.activity.AboutActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.SettingAdapter
 import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.util.top.toOtherActivity
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.fragment_my.*
 
 /**
@@ -33,24 +30,20 @@ import kotlinx.android.synthetic.main.fragment_my.*
  * @time 2020/10/28 9:41
  * @class describe
  */
-class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLoginCallback,
-    ILogoutCallback {
-
-
+class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLoginCallback {
     override fun getLayoutView(): Int = R.layout.fragment_my
     private lateinit var mSettingAdapter: SettingAdapter
     private val mLoginPresent by lazy {
         LoginPresentImpl.getInstance()
     }
-    private val mLogoutPresent by lazy {
-        LogoutPresentImpl.getInstance()
-    }
+
     private val mThirdlyLoginPresent by lazy {
         ThirdlyLoginPresentImpl.getInstance()
     }
     private val mWeChatPresent by lazy {
         WeChatPresentImpl.getInstance()
     }
+
     private var mIsLogin=false
     private lateinit var mFeedAd:FeedHelper
 
@@ -66,50 +59,41 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
     }
 
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (hidden) {
-            showAd()
-        }
-    }
+
 
     private fun showAd() {
         mFeedAd = FeedHelper(activity, mMyAdContainer)
-        mFeedAd.showAd()
+        mFeedAd.showAd(AdType.MY_PAGE)
     }
 
     override fun initPresent() {
         mLoginPresent.registerCallback(this)
         mWeChatPresent.registerCallback(this)
         mThirdlyLoginPresent.registerCallback(this)
-        mLogoutPresent.registerCallback(this)
+
     }
 
     override fun release() {
         mLoginPresent.unregisterCallback(this)
         mWeChatPresent.unregisterCallback(this)
         mThirdlyLoginPresent.unregisterCallback(this)
-        mLogoutPresent.unregisterCallback(this)
         mFeedAd.releaseAd()
     }
 
     override fun initEvent() {
         mSettingAdapter.setOnItemClickListener { adapter, view, position ->
             when (position) {
-                0->{
-                    FeedbackAPI.openFeedbackActivity()
-                }
-
-                1->{
-                   toOtherActivity<AboutActivity>(activity,false){}
-                }
+                0 -> FeedbackAPI.openFeedbackActivity()
+                1 -> toOtherActivity<AboutActivity>(activity, false) {}
             }
 
         }
 
         mLoginInclude.setOnClickListener {
-            if (!mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false)) toOtherActivity<LoginActivity>(activity,false){}
-            mSPUtil.putBoolean(Contents.BUY_PAGER,false)
+            if (!mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false)) {
+                toOtherActivity<LoginActivity>(activity, false) {}
+                mSPUtil.putBoolean(Contents.BUY_PAGER, false)
+            }
         }
 
         mVipTitle.setOnClickListener {
@@ -174,21 +158,12 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
 
     }
 
+
+
     override fun onNumberSuccess(oauthBean: OauthBean?) {
 
     }
 
-    override fun onLogoutSuccess(registerBean: RegisterBean?) {
-        if (registerBean?.ret==200) {
-            logoutState()
-            SpUtil.deleteUserInfo()
-            RxToast.success("注销成功！")
-        }
-    }
-
-    override fun onLogoutError() {
-
-    }
 
     override fun onThirdlyLoginSuccess(loginBean: LoginBean?) {
         loginState(loginBean)

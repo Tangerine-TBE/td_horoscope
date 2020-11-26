@@ -2,14 +2,18 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="@color/main_ColorText"/>
+            <solid android:color="@color/white"/>
         </shape>
     </item>
 
-
     <item>
-        <bitmap android:src="@mipmap/launch_bg"
-            android:gravity="fill"/>
+        <bitmap android:src="@mipmap/qdt_bg"
+            android:gravity="top"/>
+    </item>
+
+    <item  android:bottom="65dp">
+        <bitmap android:src="@mipmap/qdt_logo"
+            android:gravity="bottom|center"/>
     </item>
 
 </layer-list>

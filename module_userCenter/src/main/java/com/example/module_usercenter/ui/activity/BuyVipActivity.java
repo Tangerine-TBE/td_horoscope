@@ -4,9 +4,9 @@ package com.example.module_usercenter.ui.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,8 +49,12 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
     private DiyToolbar mDiyToolbar;
     private RecyclerView rv_price_container;
     private ImageView scb_zfb;
+    private RelativeLayout rl_vip_bg;
     private ImageView scb_wx;
     private TextView tv_buy;
+    private TextView tv_vip_hint_text;
+    private TextView tv_VipLastTime;
+    private TextView tv_vip_hint_use;
     private LinearLayout web_container;
     private List<PriceBean> mPriceBeanList = new ArrayList<>();
     private VipPriceAdapter mVipPriceAdapter;
@@ -89,8 +93,11 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
         scb_zfb = findViewById(R.id.scb_zfb);
         scb_wx = findViewById(R.id.scb_wx);
         tv_buy = findViewById(R.id.tv_buy);
+        rl_vip_bg = findViewById(R.id.rl_vip_bg);
+        tv_vip_hint_use = findViewById(R.id.tv_vip_hint_use);
+        tv_VipLastTime = findViewById(R.id.tv_VipLastTime);
+        tv_vip_hint_text = findViewById(R.id.tv_vip_hint_text);
         web_container = findViewById(R.id.web_container);
-
         scb_zfb.setImageResource(R.mipmap.icon_ck_select);
 
 
@@ -113,8 +120,27 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
         rv_price_container.setAdapter(mVipPriceAdapter);
 
 
+        setVipInfo();
+
     }
 
+    private void setVipInfo() {
+        int vipLevel = mSPUtil.getInt(Contents.USER_VIP_LEVEL,0);
+        String vipTime = mSPUtil.getString(Contents.USER_VIP_TIME,"");
+       if(vipLevel>0){
+           tv_buy.setBackgroundResource(R.drawable.shape_vip_ever_bt_bg);
+           rl_vip_bg.setBackgroundResource(R.mipmap.icon_vip_bg_normal);
+           tv_VipLastTime.setText(vipTime+"    到期");
+           visible(tv_VipLastTime,tv_vip_hint_use,tv_vip_hint_text);
+
+       }else {
+           tv_buy.setBackgroundResource(R.drawable.shape_vip_buy_bt_bg);
+           rl_vip_bg.setBackgroundResource(R.mipmap.icon_vip_ad);
+           invisible(tv_VipLastTime,tv_vip_hint_use,tv_vip_hint_text);
+        }
+
+
+    }
 
 
     @Override
@@ -177,8 +203,8 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
             mIsLogin = mSPUtil.getBoolean(Contents.USER_IS_LOGIN, false);
             if (mIsLogin) {
                 mVipLevel = mSPUtil.getInt(Contents.USER_VIP_LEVEL, 0);
-                if (mVipLevel > 0) {
-                    RxToast.info("您已经是VIP了");
+                if (mVipLevel >0) {
+                    RxToast.info("您已经是尊贵的VIP了");
                 } else {
                     toPay();
                     isPay = true;
@@ -241,12 +267,12 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
             if (mRxDialogShapeLoading == null) {
                 mRxDialogShapeLoading=new RxDialogShapeLoading(this);
                 mRxDialogShapeLoading.setCancelable(false);
-            }
-            mRxDialogShapeLoading.setLoadingText("正在校验数据...");
-            mRxDialogShapeLoading.show();
+                mRxDialogShapeLoading.setLoadingText("正在校验数据...");
+                mRxDialogShapeLoading.show();
 
-            LogUtils.i("onResume-------------------?");
-            BaseApplication.Companion.getMainHandler().postDelayed(() -> checkVIP(), 2000);
+                LogUtils.i("onResume-------------------?");
+                BaseApplication.Companion.getMainHandler().postDelayed(() -> checkVIP(), 2000);
+            }
 
         }
 
@@ -305,9 +331,9 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
     //本地
     @Override
     public void onLoginSuccess(LoginBean loginBean) {
-        payFinishTip(loginBean);
         Map<String, String> userType = SpUtil.saveUserType(Contents.LOCAL_TYPE, mAccount, mPwd, "");
         SpUtil.saveUserInfo(loginBean, userType);
+        payFinishTip(loginBean);
     }
 
     @Override
@@ -318,18 +344,18 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
     //QQ
     @Override
     public void onThirdlyLoginSuccess(LoginBean loginBean) {
-        payFinishTip(loginBean);
         Map<String, String> userType = SpUtil.saveUserType(Contents.QQ_TYPE, "", "", mOpenid);
         SpUtil.saveUserInfo(loginBean, userType);
+        payFinishTip(loginBean);
     }
 
 
     //微信
     @Override
     public void onWxLoginSuccess(LoginBean loginBean) {
-        payFinishTip(loginBean);
         Map<String, String> userType = SpUtil.saveUserType(Contents.WECHAT_TYPE, "", "", mOpenid);
         SpUtil.saveUserInfo(loginBean, userType);
+        payFinishTip(loginBean);
     }
 
     private void payFinishTip(LoginBean loginBean) {
@@ -346,6 +372,7 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
                         ARouter.getInstance().build(ModuleProvider.ROUTE_MAIN_ACTIVITY).withInt(ModuleProvider.FRAGMENT_ID,0).navigation();
                         finish();
                     }
+                    setVipInfo();
 
                 } else {
                     RxToast.warning("支付失败");

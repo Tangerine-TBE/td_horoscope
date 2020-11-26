@@ -63,18 +63,8 @@ public class BanFeedHelper {
     }
 
 
-  public   enum AdType {
-      SETTING_PAGE,
-      MY_PAGE
-    }
 
-    private void switchAdType(AdType type, AdBean.DataBean dataBean) {
-        if (type== AdType.SETTING_PAGE) {
-            mManager_page = dataBean.getSetting_page();
-        } else if (type== AdType.MY_PAGE) {
-            mManager_page = dataBean.getSetting_page();
-        }
-    }
+
 
     public void showAd(AdType type) {
         if (SpUtil.isVIP()) {
@@ -83,9 +73,9 @@ public class BanFeedHelper {
         mFeedContainer.setVisibility(View.VISIBLE);
         if (AdMsgUtil.isHaveAdData()) {
             //状态信息
-            switchAdType(type, AdMsgUtil.getAdState());
+            mManager_page=AdMsgUtil.switchAdType(type, AdMsgUtil.getAdState());
             mBanner_screen = mManager_page.getBaseBanner_screen();
-            mNative_screen = mManager_page.getBaseBanner_screen();
+            mNative_screen = mManager_page.getBaseNative_screen();
             // 显示比例
             double bannerProbability = AdProbabilityUtil.showAdProbability(mBanner_screen.getBaseAd_percent());
             double nativeProbability = AdProbabilityUtil.showAdProbability(mNative_screen.getBaseAd_percent());
