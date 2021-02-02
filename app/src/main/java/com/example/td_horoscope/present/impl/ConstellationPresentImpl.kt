@@ -79,7 +79,9 @@ class  ConstellationPresentImpl: BasePresent<IConstellationCallback>(),IConstell
                 if (response.code()==HttpURLConnection.HTTP_OK) {
                     val body = response.body()
                     mCallbacks.forEach {
-                        it.onLoadWeekSuccess(body!!)
+                        if (body != null) {
+                            it.onLoadWeekSuccess(body)
+                        }
                     }
                 }
             }
@@ -112,7 +114,9 @@ class  ConstellationPresentImpl: BasePresent<IConstellationCallback>(),IConstell
                 if (response.code()==HttpURLConnection.HTTP_OK) {
                     val body = response.body()
                     mCallbacks.forEach {
-                        it.onLoadYearSuccess(body!!)
+                        if (body != null) {
+                            it.onLoadYearSuccess(body)
+                        }
                     }
                 }
             }

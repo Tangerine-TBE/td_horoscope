@@ -1,7 +1,5 @@
 package com.example.td_horoscope.ui.fragment
 
-import android.Manifest
-import android.graphics.Color
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
@@ -21,12 +19,12 @@ import com.example.td_horoscope.ui.activity.MainActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.PermissionAdapter
 import com.example.td_horoscope.util.ColorUtil
 import com.example.td_horoscope.util.Contents
-import com.example.td_horoscope.util.LogUtil
 import com.example.td_horoscope.util.MyContentProvider
+import com.example.td_horoscope.util.top.checkRuntimePermission
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.google.gson.Gson
-import com.permissionx.guolindev.PermissionX
 import com.tamsiree.rxkit.RxNetTool
+import com.tamsiree.rxkit.view.RxToast.normal
 import kotlinx.android.synthetic.main.fragment_permissions.*
 
 /**
@@ -80,47 +78,30 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
-            checkRuntimePermission()
+            if (mCheck.isChecked) {
+                checkRuntimePermission(activity,MyContentProvider.permissions,false){
+                    goHome()
+                }
+            } else {
+                normal("请确保您已同意本应用的隐私政策和用户协议")
+            }
         }
 
         bt_try.setOnClickListener {
-            checkRuntimePermission()
+            goHome()
         }
 
     }
 
-    private val permissions = arrayListOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
 
-    private fun checkRuntimePermission() {
-        PermissionX.init(activity)
-            .permissions(permissions)
-            .setDialogTintColor(
-                Color.parseColor(ColorUtil.THEME_COLOR_STR),
-                Color.parseColor(ColorUtil.THEME_COLOR_STR)
-            )
-            .onExplainRequestReason { scope, deniedList, beforeRequest ->
-                val msg = "即将申请的权限是程序必须依赖的权限"
-                scope.showRequestReasonDialog(deniedList, msg, "开启", "取消")
-            }
-            .onForwardToSettings { scope, deniedList ->
-                val msg = "您需要去应用程序设置当中手动开启权限"
-                scope.showForwardToSettingsDialog(deniedList, msg, "开启", "取消")
-            }
-            .request { allGranted, grantedList, deniedList ->
-                if (allGranted) {
-                    if (RxNetTool.isNetworkAvailable(mActivity)) {
-                        mSplashHelper.showAd()
-                    } else {
-                        toOtherActivity<MainActivity>(activity,true){}
-                    }
-                    mSPUtil.putBoolean(Contents.IS_FIRST, false)
-                }
-            }
+    private fun goHome() {
+        if (RxNetTool.isNetworkAvailable(mActivity)) {
+            mSplashHelper.showAd()
+        } else {
+            toOtherActivity<MainActivity>(activity, true) {}
+        }
+        mSPUtil.putBoolean(Contents.IS_FIRST, false)
     }
-
 
 
     inner class TextViewSpan1 : ClickableSpan() {
@@ -157,7 +138,6 @@ class PermissionFragment:BaseFragment(), IAdCallback {
     }
 
     override fun onLoadError() {
-        LogUtil.i(this,"66666666666666666666666666");
     }
 
 

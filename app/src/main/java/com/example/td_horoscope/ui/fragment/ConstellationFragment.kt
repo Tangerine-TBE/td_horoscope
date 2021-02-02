@@ -18,6 +18,7 @@ import com.example.td_horoscope.ui.adapter.recyclerview.ConstellationAdapter
 import com.example.td_horoscope.ui.adapter.recyclerview.HomeContextAdapter
 import com.example.td_horoscope.ui.adapter.viewpager.SelectCosFragmentAdapter
 import com.example.td_horoscope.util.MyContentProvider
+import com.example.td_horoscope.util.top.checkRuntimePermission
 import com.example.td_horoscope.util.top.toOtherActivity
 import kotlinx.android.synthetic.main.fragment_constellation.*
 
@@ -49,7 +50,7 @@ class ConstellationFragment:BaseFragment() {
         mConstellationContent.adapter=mConstellationAdapter
         mConstellationAdapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
 
-        mHomeContext.layoutManager=GridLayoutManager(activity,4)
+       mHomeContext.layoutManager= GridLayoutManager(activity,MyContentProvider.homeContext.size)
         mHomeContextAdapter =
             HomeContextAdapter()
         mHomeContextAdapter.data=MyContentProvider.homeContext
@@ -77,7 +78,11 @@ class ConstellationFragment:BaseFragment() {
             if (SpUtil.isVIP()) {
                 when (position) {
                     0 -> toOtherActivity<ZodiacActivity>(activity, false) {}
-                    1 -> toOtherActivity<AlloyPlateActivity>(activity, false) {}
+                    1 -> {
+                        checkRuntimePermission(activity,MyContentProvider.permissions,true){
+                            toOtherActivity<AlloyPlateActivity>(activity, false) {}
+                        }
+                    }
                     2 -> toOtherActivity<QQTestActivity>(activity, false) {}
                     3 -> toOtherActivity<ZgDreamActivity>(activity, false) {}
                 }

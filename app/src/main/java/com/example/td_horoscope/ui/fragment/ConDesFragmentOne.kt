@@ -150,18 +150,29 @@ class ConDesFragmentOne : BaseFragment(), IConstellationCallback {
         LogUtil.i(this,"---onLoadTomorrowSuccess--${dayData.toString()}-----")
     }
 
+    private val weekList:MutableList<IconTitleBean>?=ArrayList()
     override fun onLoadWeekSuccess(week: WeekBean) {
+        LogUtil.i(this,"---onLoadWeekSuccess--${week}-----")
         if (week.date == null) return
-        week?.let {
-            val weekList = arrayListOf(
-                    IconTitleBean(hint = "说    明", title = it.job.substring(3)),
-                    IconTitleBean(hint = "事业运", title = it.work.substring(3)),
-                    IconTitleBean(hint = "感情运", title = it.love.substring(3)),
-                    IconTitleBean(hint = "财    运", title = it.money.substring(3))
-            )
+        weekList?.apply {
+            week?.let { it ->
+                if (it.job?.length>0){
+                    add(IconTitleBean(hint = "说    明", title = it.job?.substring(3)))
+                }
+                if (it.work?.length>0){
+                    add(IconTitleBean(hint = "事业运", title = it.work?.substring(3)))
+                }
+                if (it.love?.length>0){
+                    add(IconTitleBean(hint = "感情运", title = it.love?.substring(3)))
+                }
+                if (it.money?.length>0){
+                    add(IconTitleBean(hint = "财    运", title = it.money?.substring(3)))
+                }
+            }
             mConsDesAdapter.setList(weekList)
         }
     }
+
 
     override fun onLoading() {
         showLoading()
@@ -170,7 +181,7 @@ class ConDesFragmentOne : BaseFragment(), IConstellationCallback {
     override fun onError(t: String) {
         dismissLoading()
        //RxToast.warning("网络异常，请检查网络连接")
-        switchUIByState(PageState.ERROR)
+        switchUIByState(BaseFragment.PageState.ERROR)
     }
 
 

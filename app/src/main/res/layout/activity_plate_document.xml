@@ -21,7 +21,6 @@
 
     <com.yanzhenjie.recyclerview.SwipeRecyclerView
         android:layout_marginTop="6dp"
-
         android:id="@+id/mDocumentContainer"
         android:overScrollMode="never"
         android:layout_width="match_parent"

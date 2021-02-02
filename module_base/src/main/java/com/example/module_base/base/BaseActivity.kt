@@ -8,6 +8,7 @@ import com.example.module_base.util.MyActivityManager
 import com.example.module_base.util.MyStatusBarUtil
 import com.example.module_base.util.SPUtil
 import com.example.module_base.widget.LoadingDialog
+import com.umeng.analytics.MobclickAgent
 
 
 /**
@@ -60,13 +61,13 @@ open abstract class BaseActivity:FragmentActivity() {
 
     override fun onResume() {
         super.onResume()
-       // MobclickAgent.onResume(this)
+        MobclickAgent.onResume(this)
 
     }
 
     override fun onPause() {
         super.onPause()
-      //  MobclickAgent.onPause(this)
+       MobclickAgent.onPause(this)
     }
 
 

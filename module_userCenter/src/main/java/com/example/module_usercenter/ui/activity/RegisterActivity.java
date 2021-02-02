@@ -59,6 +59,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
         dt_res_toolbar= findViewById(R.id.dt_res_toolbar);
         lv_register= findViewById(R.id.lv_register);
         dt_res_toolbar.setColorBackground(Color.TRANSPARENT);
+        if (!TextUtils.isEmpty(mTypeAction)) {
         if (mTypeAction.equals(Contents.CHANGE_PWD)) {
             dt_res_toolbar.setTitle("密码找回");
             lv_register.setLoginBtText("找回密码");
@@ -66,9 +67,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
             dt_res_toolbar.setTitle("账号注册");
             lv_register.setLoginBtText("注册");
         }
-
         mRxDialogLoading = new RxDialogShapeLoading(this);
-
+        }
     }
 
     @Override

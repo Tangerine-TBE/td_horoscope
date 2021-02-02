@@ -127,7 +127,7 @@ android {
 
 
             manifestPlaceholders = [
-                    app_name_channel:  rootProject.ext.versions.applicationName,
+                    app_name_channel:  "星座运势万年历",
                     CHANNEL_VALUE:"_huawei"]
         }
         _meizu {

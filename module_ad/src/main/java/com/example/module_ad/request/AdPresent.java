@@ -41,6 +41,7 @@ public class AdPresent implements IAdPresent {
          mAdParameter.put(Contents.AD_NAME, Contents.APP_PACKAGE);
          mAdParameter.put(Contents.AD_VERSION, Contents.AD_VERSION_VALUES);
          mAdParameter.put(Contents.AD_CHANNEL, PackageUtil.getAppMetaData(BaseApplication.Companion.getAppContext(), Contents.PLATFORM_KEY));
+
      }
     @Override
     public void getAdMsg() {

@@ -53,25 +53,19 @@ public class ExitPoPupWindow extends PopupWindow {
     }
 
     private void initEvent() {
-        mCancelBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mOutValueAnimator.start();
-                dismiss();
-                mAdContainer.removeAllViews();
-            }
+        mCancelBt.setOnClickListener(view -> {
+            mOutValueAnimator.start();
+            dismiss();
+            mAdContainer.removeAllViews();
         });
 
-        mSureBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mSureBt.setOnClickListener(view -> {
 
-                dismiss();
-                BaseBackstage.isExit=true;
-                MyActivityManager.removeAllActivity();
-                if (mFeedHelper != null) {
-                    mFeedHelper.releaseAd();
-                }
+            dismiss();
+            BaseBackstage.isExit=true;
+            MyActivityManager.removeAllActivity();
+            if (mFeedHelper != null) {
+                mFeedHelper.releaseAd();
             }
         });
 

@@ -1,6 +1,7 @@
 package com.example.td_horoscope.ui.fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.module_ad.advertisement.AdType
@@ -56,13 +57,14 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
     }
 
     private lateinit var mFeedHelper: FeedHelper
-    private fun  showAd(){
+    private fun showAd() {
         mFeedHelper = FeedHelper(activity, mHomeFeedContainerTwo)
         mFeedHelper.showAd(AdType.HOME_PAGE)
     }
+
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        SpUtil.removeAdView(hidden,mHomeFeedContainerTwo)
+        SpUtil.removeAdView(hidden, mHomeFeedContainerTwo)
     }
 
     override fun initPresent() {
@@ -102,57 +104,84 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
     }
 
 
+    private val weekList: MutableList<IconTitleBean>? = ArrayList()
     override fun onLoadWeekSuccess(week: WeekBean) {
         if (week.date == null) return
         switchUIByState(PageState.SUCCESS)
         dismissLoading()
-        week?.let {
-            val weekList = arrayListOf(
-                IconTitleBean(hint = "说    明", title = it.job.substring(3)),
-                IconTitleBean(hint = "事业运", title = it.work.substring(3)),
-                IconTitleBean(hint = "感情运", title = it.love.substring(3)),
-                IconTitleBean(hint = "财    运", title = it.money.substring(3))
-            )
+        weekList?.apply {
+            week?.let { it ->
+                if (it.job?.length > 0) {
+                    add(IconTitleBean(hint = "说    明", title = it.job?.substring(3)))
+                }
+                if (it.work?.length > 0) {
+                    add(IconTitleBean(hint = "事业运", title = it.work?.substring(3)))
+                }
+                if (it.love?.length > 0) {
+                    add(IconTitleBean(hint = "感情运", title = it.love?.substring(3)))
+                }
+                if (it.money?.length > 0) {
+                    add(IconTitleBean(hint = "财    运", title = it.money?.substring(3)))
+                }
+            }
             mConsDesAdapter.setList(weekList)
-
         }
     }
 
+    private val monthList: MutableList<IconTitleBean>? = ArrayList()
     override fun onLoadMonthSuccess(month: MonthBean) {
         if (month.date == null) return
         switchUIByState(PageState.SUCCESS)
         dismissLoading()
-        month?.let {
-            val monthList = arrayListOf(
-                    IconTitleBean(hint = "说    明", title = it.all.substring(4)),
-                    IconTitleBean(hint = "事业运", title = it.work.substring(4)),
-                    IconTitleBean(hint = "感情运", title = it.love.substring(4)),
-                    IconTitleBean(hint = "财    运", title = it.money.substring(3))
-            )
+        monthList?.apply {
+            month?.let { it ->
+                if (it.all?.length > 0) {
+                    add(IconTitleBean(hint = "说    明", title = it.all.substring(4)))
+                }
+                if (it.work?.length > 0) {
+                    add(IconTitleBean(hint = "事业运", title = it.work.substring(4)))
+                }
+                if (it.love?.length > 0) {
+                    add(IconTitleBean(hint = "感情运", title = it.love.substring(4)))
+                }
+                if (it.money?.length > 0) {
+                    add(IconTitleBean(hint = "财    运", title = it.money.substring(3)))
+                }
+            }
             mConsDesAdapter.setList(monthList)
         }
-
-
     }
 
+
+    private val yearList: MutableList<IconTitleBean>? = ArrayList()
     override fun onLoadYearSuccess(year: YearBean) {
         if (year.date == null) return
         switchUIByState(PageState.SUCCESS)
         dismissLoading()
         val mima = year.mima
-        val info = mima.info
-        val text = mima.text
-        year?.let {
-            val yearList = arrayListOf(
-                    IconTitleBean(hint = "概    述", title = info),
-                    IconTitleBean(hint = "说    明", title = text[0]),
-                    IconTitleBean(hint = "事业运", title = it.career[0]),
-                    IconTitleBean(hint = "感情运", title = it.love[0]),
-                    IconTitleBean(hint = "财    运", title = it.finance[0])
-            )
+        val info = mima?.info
+        val text = mima?.text
+        yearList?.apply {
+            year?.let {
+                if (!TextUtils.isEmpty(info)) {
+                    add(IconTitleBean(hint = "概    述", title = info))
+                }
+                if (text.isNotEmpty()) {
+                    add(IconTitleBean(hint = "说    明", title = text[0]))
+                }
+                if (it.career.isNotEmpty()) {
+                    add(IconTitleBean(hint = "事业运", title = it.career[0]))
+                }
+                if (it.love.isNotEmpty()) {
+                    add(IconTitleBean(hint = "感情运", title = it.love[0]))
+                }
+                if (it.finance.isNotEmpty()) {
+                    add(IconTitleBean(hint = "财    运", title = it.finance[0]))
+                }
+
+            }
             mConsDesAdapter.setList(yearList)
         }
-
     }
 
     override fun onLoading() {
@@ -184,46 +213,48 @@ class ConDesFragmentTwo : BaseFragment(), IConstellationCallback {
 
     //爱情运选择
     private fun getLoveList(consType: String?): ArrayList<IconTitleBean> {
-        return arrayListOf(when (consType) {
-            Contents.BAIYANG ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_baiyang)
+        return arrayListOf(
+            when (consType) {
+                Contents.BAIYANG ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_baiyang)
 
-            Contents.JINGNIU ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_jinniu)
+                Contents.JINGNIU ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_jinniu)
 
-            Contents.SHUANGZI ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuangzi)
+                Contents.SHUANGZI ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuangzi)
 
-            Contents.JUXIE ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_juxie)
+                Contents.JUXIE ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_juxie)
 
-            Contents.SHIZI ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_shizi)
+                Contents.SHIZI ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_shizi)
 
-            Contents.CHUNV ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_chunv)
+                Contents.CHUNV ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_chunv)
 
-            Contents.TINGPING ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_tianping)
+                Contents.TINGPING ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_tianping)
 
-            Contents.TIANXIE ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_tianxie)
+                Contents.TIANXIE ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_tianxie)
 
-            Contents.SHESHOU ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_sheshou)
+                Contents.SHESHOU ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_sheshou)
 
-            Contents.MOJIE ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_mojie)
+                Contents.MOJIE ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_mojie)
 
-            Contents.SHUIPING ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuiping)
+                Contents.SHUIPING ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuiping)
 
-            Contents.SHUANGYU ->
-                IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuangyu)
+                Contents.SHUANGYU ->
+                    IconTitleBean(hint = "感情运", title = MyContentProvider.love_shuangyu)
 
-            else -> IconTitleBean(hint = "感情运", title ="暂无数据")
+                else -> IconTitleBean(hint = "感情运", title = "暂无数据")
 
-        })
+            }
+        )
     }
 
 }

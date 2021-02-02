@@ -85,17 +85,28 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.64" />
 
+
+            <com.example.module_base.widget.SmoothCheckBox
+                android:id="@+id/mCheck"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:color_checked="@color/main_ColorText"
+                app:color_unchecked_stroke="@color/main_ColorText"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="@+id/guideline50"
+                />
+
             <TextView
                 android:id="@+id/user_agreement"
                 android:layout_width="0dp"
-                android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="13sp"
+                android:text="sss"
                 app:layout_constraintEnd_toStartOf="@+id/guideline45"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintStart_toEndOf="@+id/mCheck"
                 app:layout_constraintTop_toTopOf="@+id/guideline50" />
 
             <Button
