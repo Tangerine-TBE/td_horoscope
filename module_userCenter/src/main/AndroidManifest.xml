@@ -3,6 +3,13 @@
     package="com.example.module_usercenter">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.eg.android.AlipayGphone" />
+        <package android:name="com.tencent.mobileqq" />
+    </queries>
+
     <application
 
         >
@@ -79,9 +86,12 @@
 
         <!--====================================================================================-->
 
-
-
-
     </application>
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.eg.android.AlipayGphone" />
+        <package android:name="com.tencent.mobileqq" />
+    </queries>
+
 
 </manifest>

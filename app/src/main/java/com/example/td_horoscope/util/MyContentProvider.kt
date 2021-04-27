@@ -15,7 +15,7 @@ import com.example.td_horoscope.bean.IconTitleBean
 object MyContentProvider {
 
     val permissionList = arrayListOf(
-        IconTitleBean(R.mipmap.per_device, "为您提供精确的扫描、清理服务", "存储")
+        IconTitleBean(R.mipmap.per_device, "为您提供缓存信息服务", "存储")
     )
 
 
@@ -75,9 +75,9 @@ object MyContentProvider {
 
     val homeContext = arrayListOf(
         IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
-        IconTitleBean(R.mipmap.icon_hp, "合盘"),
-        IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
-        IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
+        IconTitleBean(R.mipmap.icon_hp, "合盘")
+        //IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
+       // IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
     )
 
     val dateContent = arrayListOf(
