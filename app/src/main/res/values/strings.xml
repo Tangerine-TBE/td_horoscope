@@ -1,4 +1,4 @@
 <resources>
     <string name="welcome">欢迎使用%1$s</string>
-    <string name="user_agreement">请您在使用前仔细阅读《用户服务协议》和《隐私政策》。开始使用代表您已阅读并同意</string>
+    <string name="user_agreement">请您在使用前仔细阅读《用户服务协议》和《隐私政策》，开始使用代表您已阅读并同意。</string>
 </resources>

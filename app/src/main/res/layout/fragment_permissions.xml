@@ -48,7 +48,7 @@
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="由于手机系统升级，以及为了提供更优质的功能，需要向您申请活动以下权限："
+                android:text="由于手机系统升级，以及为了提供更优质的功能体验，需要向您申请活动以下权限："
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:gravity="center"
@@ -86,15 +86,7 @@
                 app:layout_constraintGuide_percent="0.64" />
 
 
-            <com.example.module_base.widget.SmoothCheckBox
-                android:id="@+id/mCheck"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:color_checked="@color/main_ColorText"
-                app:color_unchecked_stroke="@color/main_ColorText"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="@+id/guideline50"
-                />
+
 
             <TextView
                 android:id="@+id/user_agreement"
@@ -106,7 +98,7 @@
                 android:textSize="13sp"
                 android:text="sss"
                 app:layout_constraintEnd_toStartOf="@+id/guideline45"
-                app:layout_constraintStart_toEndOf="@+id/mCheck"
+                app:layout_constraintStart_toEndOf="@+id/guideline5"
                 app:layout_constraintTop_toTopOf="@+id/guideline50" />
 
             <Button
@@ -114,7 +106,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_permission_bg"
-                android:text="立即开启"
+                android:text="同意"
                 android:textColor="@color/white"
                 android:textSize="18.5sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline53"
@@ -148,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="仅浏览"
+                android:text="不同意"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

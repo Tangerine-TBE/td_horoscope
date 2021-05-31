@@ -75,9 +75,9 @@ object MyContentProvider {
 
     val homeContext = arrayListOf(
         IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
-        IconTitleBean(R.mipmap.icon_hp, "合盘")
-        //IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
-       // IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
+        IconTitleBean(R.mipmap.icon_hp, "合盘"),
+       IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
+        IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
     )
 
     val dateContent = arrayListOf(
@@ -93,7 +93,9 @@ object MyContentProvider {
     val settingList = arrayListOf(
         IconTitleBean(R.mipmap.icon_idea, "意见反馈"),
         IconTitleBean(R.mipmap.icon_about, "关于我们"),
-        IconTitleBean(R.mipmap.icon_kefu, "联系邮箱  2681706890@qq.com")
+        IconTitleBean(R.mipmap.icon_kefu, "联系邮箱  2681706890@qq.com"),
+        IconTitleBean(R.mipmap.icon_idea,title ="用户协议"),
+        IconTitleBean(R.mipmap.icon_idea,title ="隐私政策")
     )
 
     //生肖

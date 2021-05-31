@@ -17,6 +17,7 @@ import com.example.module_usercenter.view.IThirdlyLoginCallback
 import com.example.module_usercenter.view.IWeChatCallback
 import com.example.td_horoscope.R
 import com.example.td_horoscope.ui.activity.AboutActivity
+import com.example.td_horoscope.ui.activity.DealActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.SettingAdapter
 import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.util.top.toOtherActivity
@@ -84,7 +85,17 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
         mSettingAdapter.setOnItemClickListener { adapter, view, position ->
             when (position) {
                 0 -> FeedbackAPI.openFeedbackActivity()
-                1 -> toOtherActivity<AboutActivity>(activity, false) {}
+                1 -> toOtherActivity<AboutActivity>(activity) {}
+                3->{
+                    toOtherActivity<DealActivity>(activity) {
+                        putExtra(com.example.td_horoscope.util.Contents.SET_Deal1,0)
+                    }
+                }
+                4->{
+                    toOtherActivity<DealActivity>(activity) {
+                        putExtra(com.example.td_horoscope.util.Contents.SET_Deal1,1)
+                    }
+                }
             }
 
         }

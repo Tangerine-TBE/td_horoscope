@@ -24,7 +24,7 @@ import com.example.td_horoscope.util.top.checkRuntimePermission
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.google.gson.Gson
 import com.tamsiree.rxkit.RxNetTool
-import com.tamsiree.rxkit.view.RxToast.normal
+import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.fragment_permissions.*
 
 /**
@@ -78,17 +78,13 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
-            if (mCheck.isChecked) {
                 checkRuntimePermission(activity,MyContentProvider.permissions,false){
                     goHome()
                 }
-            } else {
-                normal("请确保您已同意本应用的隐私政策和用户协议")
-            }
         }
 
         bt_try.setOnClickListener {
-            goHome()
+            RxToast.normal("您需要同意后才能继续使${PackageUtil.getAppMetaData(activity,"APP_NAME")}提供的服务")
         }
 
     }

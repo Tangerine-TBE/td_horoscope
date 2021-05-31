@@ -142,7 +142,7 @@ android {
 
             manifestPlaceholders = [
                     app_name_channel:  rootProject.ext.versions.applicationName,
-                    CHANNEL_VALUE:"_alibaba"]
+                    CHANNEL_VALUE:"_ali"]
         }
         _google {
 
