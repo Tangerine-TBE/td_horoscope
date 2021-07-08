@@ -11,9 +11,11 @@ import com.example.module_ad.advertisement.SplashHelper
 import com.example.module_ad.bean.AdBean
 import com.example.module_ad.request.AdPresent
 import com.example.module_ad.request.IAdCallback
+import com.example.module_base.base.BaseApplication
 import com.example.module_base.base.BaseFragment
 import com.example.module_base.util.PackageUtil
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseApplication
 import com.example.td_horoscope.ui.activity.DealActivity
 import com.example.td_horoscope.ui.activity.MainActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.PermissionAdapter
@@ -78,6 +80,7 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
+            MainBaseApplication.initSdk()
                 checkRuntimePermission(activity,MyContentProvider.permissions,false){
                     goHome()
                 }

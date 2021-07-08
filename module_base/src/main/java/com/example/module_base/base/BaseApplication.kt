@@ -25,6 +25,7 @@ import org.litepal.LitePal
 
     companion object {
         var appContext: Context? = null
+        lateinit var application: BaseApplication
         fun getContext(): Context {
             return appContext!!
         }
@@ -40,6 +41,7 @@ import org.litepal.LitePal
     override fun onCreate() {
         super.onCreate()
         appContext = baseContext
+        application = this
         mMainHandler= Handler()
         SPUtil.init(this)
         RxTool.init(this)
@@ -47,25 +49,24 @@ import org.litepal.LitePal
         LitePal.getDatabase()
        // ARouter.openDebug();
         ARouter.init(this)
-        //用户反馈
-        FeedbackAPI.init(this, "25822454", "7a8bb94331a5141dcea61ecb1056bbbd")
-        val jsonObject = JSONObject()
-        try {
-            jsonObject.put("appId", PackageUtil.getAppProcessName(this))
-            jsonObject.put("appName",PackageUtil.getAppMetaData(this,ModuleProvider.APP_NAME))
-            jsonObject.put("ver", PackageUtil.packageCode2(applicationContext))
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        FeedbackAPI.setAppExtInfo(jsonObject)
-        //友盟
-        UMConfigure.init(applicationContext, UMConfigure.DEVICE_TYPE_PHONE, "5fb66104509a646ab9389456")
-        UMConfigure.setLogEnabled(true)
-        initChild()
+//        initChild()
     }
 
     open fun initChild() {
-
+//        //友盟
+//        UMConfigure.init(applicationContext, UMConfigure.DEVICE_TYPE_PHONE, "5fb66104509a646ab9389456")
+//        UMConfigure.setLogEnabled(true)
+//        //用户反馈
+//        FeedbackAPI.init(this, "25822454", "7a8bb94331a5141dcea61ecb1056bbbd")
+//        val jsonObject = JSONObject()
+//        try {
+//            jsonObject.put("appId", PackageUtil.getAppProcessName(this))
+//            jsonObject.put("appName",PackageUtil.getAppMetaData(this,ModuleProvider.APP_NAME))
+//            jsonObject.put("ver", PackageUtil.packageCode2(applicationContext))
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//        FeedbackAPI.setAppExtInfo(jsonObject)
     }
 
 }

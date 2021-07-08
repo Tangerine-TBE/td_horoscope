@@ -8,6 +8,7 @@ import com.example.module_ad.utils.AdMsgUtil
 import com.example.module_ad.utils.Contents
 import com.example.module_base.base.BaseFragment
 import com.example.td_horoscope.R
+import com.example.td_horoscope.base.MainBaseApplication
 import com.example.td_horoscope.ui.activity.MainActivity
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.google.gson.Gson
@@ -33,6 +34,7 @@ class AdFragment:BaseFragment(), IAdCallback {
     private lateinit var mSplashHelper:SplashHelper
 
     override fun initView() {
+        MainBaseApplication.initSdk()
         switchUIByState(PageState.SUCCESS)
         mSplashHelper= SplashHelper(activity, mSplashContainer, MainActivity::class.java)
     }
