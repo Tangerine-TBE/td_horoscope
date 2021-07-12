@@ -1,6 +1,8 @@
 package com.example.td_horoscope.util
 
 import android.Manifest
+import com.example.module_base.base.BaseApplication
+import com.example.module_base.util.PackageUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.IconTitleBean
 
@@ -73,10 +75,18 @@ object MyContentProvider {
                 "在恋爱的时候，双鱼会不顾一切地爱着对方，乃至于对方身上再不好的缺点，双鱼也会尽全力去包容，去迁就，即使知道这样会伤害到自己，他们仍然会不顾一切。但是总是处于卑微的地位的爱情，始终很难维持长久。唯有从美好的幻想中清醒过来，保持冷静的头脑去思考这份感情吧！别忘了，除了爱情，你们还有梦想。"
 
 
-    val homeContext = arrayListOf(
+    val homeContext = if (PackageUtil.getAppMetaData(
+            BaseApplication.application,
+            "CHANNEL"
+        ) == "_huawei"
+    ) arrayListOf(
+        IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
+        IconTitleBean(R.mipmap.icon_hp, "合盘")
+    )
+    else arrayListOf(
         IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
         IconTitleBean(R.mipmap.icon_hp, "合盘"),
-       IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
+        IconTitleBean(R.mipmap.icon_cjx, "QQ测吉凶"),
         IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
     )
 
