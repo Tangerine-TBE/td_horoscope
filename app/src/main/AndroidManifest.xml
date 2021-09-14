@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Td_horoscope"
         android:usesCleartextTraffic="true"
-
+        android:requestLegacyExternalStorage="true"
         tools:replace="android:allowBackup,android:label">
         <activity android:name=".ui.activity.DealActivity"   android:launchMode="singleTop"  android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.activity.AboutActivity" android:launchMode="singleTop"    android:screenOrientation="portrait" />

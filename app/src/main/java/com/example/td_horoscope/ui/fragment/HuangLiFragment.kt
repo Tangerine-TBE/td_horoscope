@@ -71,36 +71,32 @@ class HuangLiFragment:BaseFragment(), IHuangLiCallback {
     private fun showHuangLi(data: HuangLiBean) {
         switchUIByState(PageState.SUCCESS)
         val resultBean = data.result
-        resultBean.suici
-        val stringBuffer = StringBuffer()
-        val suici: List<String> = resultBean.suici
-        for (s in suici) {
-            stringBuffer.append("$s  ")
-        }
         tv_hl_date.text=
-            resultBean.year+ "." + resultBean.month + "." + resultBean.day
+            resultBean.yangli
 
-        val nongli: String = resultBean.nongli
-        tv_hl_nongli.text=nongli.substring(7, nongli.length)
-        tv_hl_suici.text=stringBuffer.toString() + "  星期" + resultBean.week
+        val yinli = resultBean.yinli
+        val nongli= "农历${yinli.substring(yinli.indexOf("年")+1)}"
+        val suici = yinli.substring(0,yinli.indexOf("年")+1)
+        tv_hl_nongli.text=nongli
+        tv_hl_suici.text=suici
 
         // 宜
-        val stringBuffer1 = StringBuffer()
-        for (s in resultBean.yi) {
-            stringBuffer1.append("$s  ")
-        }
-        tv_yi.text=stringBuffer1
+//        val stringBuffer1 = StringBuffer()
+//        for (s in resultBean.yi) {
+//            stringBuffer1.append("$s  ")
+//        }
+        tv_yi.text=resultBean.yi
         //忌
-        val stringBuffer2 = StringBuffer()
-        for (s in resultBean.ji) {
-            stringBuffer2.append("$s  ")
-        }
-        tv_ji.text=stringBuffer2
-        tv_xiongsheng.text=resultBean.jiri
-        tv_jishenyiqu.text=resultBean.xiongshen
-        tv_c_hl_text.text=resultBean.chong + "  " + resultBean.sha
+//        val stringBuffer2 = StringBuffer()
+//        for (s in resultBean.ji) {
+//            stringBuffer2.append("$s  ")
+//        }
+        tv_ji.text=resultBean.ji
+        tv_xiongsheng.text=resultBean.xiongshen
+        tv_jishenyiqu.text=resultBean.jishen
+        tv_c_hl_text.text=resultBean.chongsha
         tv_s_hl_text.text=resultBean.wuxing
-        tv_jiri.text=resultBean.jishenyiqu
+        tv_jiri.text=resultBean.baiji
 
 
     }

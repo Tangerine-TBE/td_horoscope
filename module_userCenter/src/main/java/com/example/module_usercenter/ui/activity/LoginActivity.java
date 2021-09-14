@@ -464,6 +464,10 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
                     mLoginPresent.toLogin(map);
                 }
             }
+        }else{
+            if (mRxDialog != null) {
+                mRxDialog.dismiss();
+            }
         }
 
     }

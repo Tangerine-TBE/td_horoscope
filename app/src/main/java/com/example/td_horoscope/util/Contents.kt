@@ -71,8 +71,8 @@ object  Contents {
     //爱情
     const val LOVE_URL="http://web.juhe.cn:8080/constellation/"
     //黄历
-    const val HUANG_LI_KEY = "APPCODE dad203ec1a164924b728fd76d67429f7"
-    const val HUANG_LI_URL = "https://jisuhlcx.market.alicloudapi.com/"
+    const val HUANG_LI_KEY = "5bc896feb96a91a619c72937e88c10a3"
+    const val HUANG_LI_URL = "http://v.juhe.cn/"
     //今日往事
     const val EVENT_KEY="7e049f81b99044ac0a18a7c7a5d5ed9c"
     const val EVENT_VERSION="1.0"

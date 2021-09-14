@@ -33,12 +33,12 @@ interface Api {
     fun getYearInfo(@Query("consName") name:String,@Query("type") type:String,@Query("key") key:String): Call<YearBean>
 
     //黄历
-    @GET("huangli/date")
+    @GET("laohuangli/d")
     open fun getHuangLi(
-        @Header("Authorization") key: String?,
-        @Query("day") day: String?,
-        @Query("month") month: String?,
-        @Query("year") year: String?): Call<HuangLiBean>
+//        @Header("Authorization") key: String?,
+//        @Query("day") day: String?,
+        @Query("key") key: String?,
+        @Query("date") date: String?): Call<HuangLiBean>
     //往事
     @GET("toh")
     fun getHistoryEventInfo(@Query("key") key:String,@Query("v") version:String,@Query("month") month:String,@Query("day") day:String): Call<HistoryEventBean>

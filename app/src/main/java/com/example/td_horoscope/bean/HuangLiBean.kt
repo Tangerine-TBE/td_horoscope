@@ -9,34 +9,20 @@ package com.example.td_horoscope.bean
  * @class describe
  */
 data class HuangLiBean(
-    val msg: String,
+    val reason: String,
     val result: Result,
-    val status: String
+    val error_code: String
 )
 
 data class Result(
-    val caishen: String,
-    val chong: String,
-    val day: String,
-    val emonth: String,
-    val eweek: String,
-    val fushen: String,
-    val ji: List<String>,
-    val jiri: String,
-    val jishenyiqu: String,
-    val month: String,
-    val nongli: String,
-    val sha: String,
-    val shengxiao: String,
-    val star: String,
-    val suici: List<String>,
-    val taishen: String,
-    val week: String,
-    val wuxing: String,
-    val xiongshen: String,
-    val xishen: String,
+    val id: String,
     val yangli: String,
-    val year: String,
-    val yi: List<String>,
-    val zhiri: String
+    val yinli: String,
+    val wuxing: String,
+    val chongsha: String,
+    val baiji: String,
+    val jishen: String,
+    val yi: String,
+    val xiongshen: String,
+    val ji: String,
 )

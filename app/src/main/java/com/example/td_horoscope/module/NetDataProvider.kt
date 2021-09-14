@@ -8,6 +8,7 @@ import com.example.td_horoscope.bean.qq.QQBean
 import com.example.td_horoscope.bean.zodiac.ZodiacBean
 import com.example.td_horoscope.util.Contents
 import com.example.td_horoscope.util.RetrofitManager
+import com.example.td_horoscope.util.TimeUtils
 import retrofit2.Callback
 import java.util.*
 
@@ -81,9 +82,10 @@ object NetDataProvider {
     fun getHuangLiInfo(callback: Callback<HuangLiBean>) {
         mHuangLiApi.getHuangLi(
             Contents.HUANG_LI_KEY,
-            mCalender[Calendar.DAY_OF_MONTH].toString(),
-            (mCalender[Calendar.MONTH] + 1).toString(),
-            mCalender[Calendar.YEAR].toString()
+            TimeUtils.getDate()
+//            mCalender[Calendar.DAY_OF_MONTH].toString(),
+//            (mCalender[Calendar.MONTH] + 1).toString(),
+//            mCalender[Calendar.YEAR].toString()
         ).enqueue(callback)
     }
 
