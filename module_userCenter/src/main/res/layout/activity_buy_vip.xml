@@ -99,7 +99,7 @@
             android:layout_marginLeft="45dp"
             android:drawableTop="@mipmap/icon_vip_no_ad"
             android:drawablePadding="13dp"
-            android:text="免除所有广告"
+            android:text="解锁所有功能"
             android:textColor="@color/black"
             android:textSize="13sp" />
 

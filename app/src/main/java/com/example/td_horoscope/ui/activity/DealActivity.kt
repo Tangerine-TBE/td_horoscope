@@ -28,7 +28,6 @@ class DealActivity : MainBaseActivity()  {
     private val umUrl = "https://www.umeng.com/page/policy?spm=a211eg.10560647.0.0.547034dcafEUZJ"
     private val gdtUrl = "https://imgcache.qq.com/gdt/cdn/adn/uniondoc/ylh_sdk_privacy_statement.html"
     private val ttUrl = "https://partner.oceanengine.com/privacy"
-    private val feedbackUrl = "https://help.aliyun.com/document_detail/53266.html?spm=a2c4g.11186623.6.562.4da733fcTJ1tDC"
     private val loginUrl = "https://terms.aliyun.com/legal-agreement/terms/suit_bu1_ali_cloud/suit_bu1_ali_cloud202012111723_19126.html?spm=a2c4g.11186623.2.2.2665974el1mtM9"
     private var count = 10
     private val email = "2681706890@qq.com"
@@ -84,7 +83,6 @@ class DealActivity : MainBaseActivity()  {
         val um = SpannableString(umUrl)
         val gdt = SpannableString(gdtUrl)
         val tt = SpannableString(ttUrl)
-        val feedback = SpannableString(feedbackUrl)
         val login = SpannableString(loginUrl)
 
         val personalInformation1 = SpannableString("个人常用设备信息、位置信息、网络信息、个人通信信息")
@@ -120,14 +118,6 @@ class DealActivity : MainBaseActivity()  {
                 startActivity(intent)
             }
         }, 0, tt.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        feedback.setSpan(object : ClickableSpan() {
-            override fun onClick(view: View) {
-                val intent = Intent()
-                intent.setAction("android.intent.action.VIEW");
-                intent.data = Uri.parse(feedbackUrl)
-                startActivity(intent)
-            }
-        }, 0, feedback.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         login.setSpan(object : ClickableSpan() {
             override fun onClick(view: View) {
@@ -141,7 +131,6 @@ class DealActivity : MainBaseActivity()  {
         um.setSpan(ForegroundColorSpan(Color.parseColor("#09C1CE")), 0, um.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         gdt.setSpan(ForegroundColorSpan(Color.parseColor("#09C1CE")), 0, gdt.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         tt.setSpan(ForegroundColorSpan(Color.parseColor("#09C1CE")), 0, tt.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        feedback.setSpan(ForegroundColorSpan(Color.parseColor("#09C1CE")), 0, feedback.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         login.setSpan(ForegroundColorSpan(Color.parseColor("#09C1CE")), 0, login.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         personalInformation1.setSpan(UnderlineSpan(),0,personalInformation1.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -254,32 +243,7 @@ class DealActivity : MainBaseActivity()  {
                     "隐私政策：")
             .append(tt)
             .append("\n\n")
-            .append("4.移动用户反馈SDK\n" +
-                    "\n" +
-                    "提供方名称：阿里巴巴集团\n" +
-                    "\n" +
-                    "场景描述：通过识别设备信息为App赋予即时消息送达能力，用于即时消息；可用于应用程序内聊天，联系客服，即时反馈用户问题，和解决用户的问题\n" +
-                    "\n" +
-                    "收集方式：调用系统相关接口自动采集\n" +
-                    "\n" +
-                    "个人信息类型：")
-            .append(personalInformation4)
-            .append("\n"+
-                    "\n" +
-                    "个人信息字段：设备信息：设备标识符（IMEI、IDFA、Android ID、MAC、OAID等相关信息）、应用信息（应用崩溃信息、通知开关状态、软件列表等相关信息）、设备参数及系统信息（设备类型、设备型号、操作系统及硬件相关信息）\n" +
-                    "\n" +
-                    "网络信息：IP地址，WiFi信息，基站信息等相关信息\n" +
-                    "\n" +
-                    "用途或目的：为App赋予即时通讯能力，可用于即时消息；可用于应用程序内聊天，联系客服，即时反馈用户问题，和解决用户的问题\n" +
-                    "\n" +
-                    "是否为必要信息：是\n" +
-                    "\n" +
-                    "信息处理方式：采用去标识化方式对个人信息进行脱敏展示\n" +
-                    "\n" +
-                    "隐私政策：")
-            .append(feedback)
-            .append("\n\n")
-            .append("5.一键登录SDK\n" +
+            .append("4.一键登录SDK\n" +
                     "\n" +
                     "提供方名称：阿里巴巴集团\n" +
                     "\n" +
@@ -324,7 +288,7 @@ class DealActivity : MainBaseActivity()  {
                         "\n" +
                         "（二）注销账号\n" +
                         "\n" +
-                        "通过客服邮箱联系客服注销账号\n" +
+                        "登录账号后，点击“我的”进入我的界面，然后点击右上角设置按钮进入设置界面，最后点击账号注销按钮，点击注销按钮后我们将即刻删除你的账号。\n" +
                         "\n" +
                         "信息保护\n" +
                         "\n" +

@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.td_horoscope">
 
-    <uses-permission
-        android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <queries>
         <package android:name="com.tencent.mm" />
@@ -15,33 +14,52 @@
         <package android:name="com.tencent.mobileqq" />
     </queries>
 
-
     <application
         android:name=".base.MainBaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="${app_name_channel}"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Td_horoscope"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         tools:replace="android:allowBackup,android:label">
-        <activity android:name=".ui.activity.DealActivity"   android:launchMode="singleTop"  android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.activity.AboutActivity" android:launchMode="singleTop"    android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.FeedbackActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.DealActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.SettingActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop" />
-        <activity android:name=".ui.activity.PlateIndexActivity"   android:launchMode="singleTop"  android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.PlateDocumentActivity"  android:launchMode="singleTop"  android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.AlloyPlateActivity"   android:launchMode="singleTop" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ZodiacActivity"   android:launchMode="singleTop" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.BeginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.PlateIndexActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.PlateDocumentActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AlloyPlateActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ZodiacActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.BeginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppStartTheme"
-            >
+            android:theme="@style/AppStartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,10 +72,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            >
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.activity.QQTestActivity"
             android:launchMode="singleTop" />
@@ -67,12 +82,13 @@
             android:value="${CHANNEL_VALUE}" />
         <meta-data
             android:name="APP_NAME"
-            android:value="${app_name_channel}" />
-
-        <!--友盟-->
-        <meta-data android:value="5fb66104509a646ab9389456" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="${CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
-
+            android:value="${app_name_channel}" /> <!-- 友盟 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5fb66104509a646ab9389456" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
     </application>
 
 </manifest>

@@ -114,6 +114,8 @@ public class DialogBottomConfig extends BaseUIConfig {
                 .setDialogHeight(dialogHeight)
                 .setDialogBottom(true)
                 .setScreenOrientation(authPageOrientation)
+                .setCheckboxHidden(false)
+                .setPrivacyState(false)
                 .create());
 
 

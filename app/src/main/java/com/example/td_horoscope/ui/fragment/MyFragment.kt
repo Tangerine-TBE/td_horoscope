@@ -1,7 +1,7 @@
 package com.example.td_horoscope.ui.fragment
 
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
 import com.example.module_ad.advertisement.AdType
 import com.example.module_ad.advertisement.FeedHelper
 import com.example.module_base.base.BaseFragment
@@ -18,6 +18,7 @@ import com.example.module_usercenter.view.IWeChatCallback
 import com.example.td_horoscope.R
 import com.example.td_horoscope.ui.activity.AboutActivity
 import com.example.td_horoscope.ui.activity.DealActivity
+import com.example.td_horoscope.ui.activity.FeedbackActivity
 import com.example.td_horoscope.ui.adapter.recyclerview.SettingAdapter
 import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.util.top.toOtherActivity
@@ -84,7 +85,7 @@ class MyFragment : BaseFragment(), ILoginCallback, IWeChatCallback, IThirdlyLogi
     override fun initEvent() {
         mSettingAdapter.setOnItemClickListener { adapter, view, position ->
             when (position) {
-                0 -> FeedbackAPI.openFeedbackActivity()
+                0 -> startActivity(Intent(mActivity,FeedbackActivity::class.java))
                 1 -> toOtherActivity<AboutActivity>(activity) {}
                 3->{
                     toOtherActivity<DealActivity>(activity) {

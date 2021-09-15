@@ -169,6 +169,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.github.getActivity:XXPermissions:11.5'
+
     implementation project(path: ':module_base')
     implementation project(path: ':module_userCenter')
     implementation project(path: ':module_ad')

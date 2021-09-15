@@ -4,13 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.os.Handler
 import com.alibaba.android.arouter.launcher.ARouter
-import com.alibaba.sdk.android.feedback.impl.FeedbackAPI
-import com.example.module_base.provider.ModuleProvider
-import com.example.module_base.util.PackageUtil
 import com.example.module_base.util.SPUtil
 import com.tamsiree.rxkit.RxTool
-import com.umeng.commonsdk.UMConfigure
-import org.json.JSONObject
 import org.litepal.LitePal
 
 /**
