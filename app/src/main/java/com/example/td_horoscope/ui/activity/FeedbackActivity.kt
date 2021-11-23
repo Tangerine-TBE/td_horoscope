@@ -249,7 +249,7 @@ class FeedbackActivity : BaseActivity() {
         map1["contact"] = "${qq.text}--${email.text}"
         map1["user_system"] = "1"
         map1["user_package"] = BaseApplication.application.packageName
-        map1["package_chn"] = "优话实时距离测量"
+        map1["package_chn"] = "天王星星座"
         val map2: MutableMap<String, String> = HashMap()
         if (imageUrl1 != "")
             map2["img_one"] = imageUrl1

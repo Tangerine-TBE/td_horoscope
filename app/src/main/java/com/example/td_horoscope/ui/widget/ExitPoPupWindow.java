@@ -16,9 +16,9 @@ import android.widget.PopupWindow;
 import com.example.module_ad.advertisement.AdType;
 import com.example.module_ad.advertisement.FeedHelper;
 import com.example.module_ad.utils.BaseBackstage;
+import com.example.module_ad.utils.DeviceUtils;
 import com.example.module_base.util.MyActivityManager;
 import com.example.td_horoscope.R;
-import com.tamsiree.rxkit.RxDeviceTool;
 
 
 
@@ -34,7 +34,7 @@ public class ExitPoPupWindow extends PopupWindow {
     public ExitPoPupWindow(Activity activity) {
         super(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.mActivity=activity;
-        int screenHeight = RxDeviceTool.getScreenHeight(activity);
+        int screenHeight = DeviceUtils.getScreenHeight(activity);
         mView = LayoutInflater.from(activity).inflate(R.layout.diy_exit_popup_window, null);
         setContentView(mView);
         setHeight(screenHeight);

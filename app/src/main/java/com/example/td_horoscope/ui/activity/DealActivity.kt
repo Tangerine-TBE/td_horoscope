@@ -166,6 +166,10 @@ class DealActivity : MainBaseActivity()  {
                 "\n" +
                 "穿山甲SDK通过IP地址获取设备所在区域来甄别广告推送通道；友盟SDK通过IP地址获取设备所在区域，来统计用户分布情况\n" +
                 "\n" +
+                "5.获取手机号\n" +
+                "\n" +
+                "用户进行登录操作时，应用会自动获取用户手机号，便于用户进行登录操作\n" +
+                "\n" +
                 "使用的sdk\n" +
                 "\n")
             .append("1.友盟移动统计\n" +
@@ -335,7 +339,7 @@ class DealActivity : MainBaseActivity()  {
                         " \n" +
                         " 客服邮箱：${email}\n" +
                         "\n" +
-                        "最后更新时间：2021年5月27日\n"
+                        "最后更新时间：2021年11月23日\n"
             )
         return stringBuilder
     }

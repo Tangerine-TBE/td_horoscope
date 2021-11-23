@@ -14,6 +14,9 @@ import com.bigkoo.pickerview.view.TimePickerView
 import com.example.module_base.bean.JsonBean
 import com.example.module_base.util.CheckUtil
 import com.example.module_base.util.GetJsonDataUtil
+import com.example.module_base.util.Rx.RxKeyboardTool
+import com.example.module_base.util.Rx.RxTimeTool
+import com.example.module_base.util.ToastUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.module_base.widget.SmoothCheckBox
 import com.example.td_horoscope.R
@@ -29,9 +32,6 @@ import com.example.td_horoscope.util.top.getAstro
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.example.td_horoscope.view.IPlateCallback
 import com.google.gson.Gson
-import com.tamsiree.rxkit.RxKeyboardTool
-import com.tamsiree.rxkit.RxTimeTool
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_alloy_plate.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -130,13 +130,13 @@ class   AlloyPlateActivity : MainBaseActivity() , SmoothCheckBox.OnCheckedChange
 
             if (TextUtils.isEmpty(mName1) || TextUtils.isEmpty(mDate1) || TextUtils.isEmpty(mPlace1) ||
                 TextUtils.isEmpty(mName2) || TextUtils.isEmpty(mDate2) || TextUtils.isEmpty(mPlace2)) {
-                RxToast.warning("以上信息不能为空")
+                    ToastUtil.showShortToast("以上信息不能为空")
             } else {
                 if (!CheckUtil.validateName(mName1) ||! CheckUtil.validateName(mName2)) {
-                    RxToast.warning("请输入正确的姓名")
+                    ToastUtil.showLongToast("请输入正确的姓名")
                 } else {
                     if (mSex1 == mSex2) {
-                        RxToast.warning("请输选择不同性别合盘")
+                        ToastUtil.showLongToast("请输选择不同性别合盘")
                     } else {
                         ConsPlateImpl.getPlateMsg(mConstellation1.deleteLastStr(),mConstellation2.deleteLastStr())
                         savePlateHint()
@@ -180,7 +180,7 @@ class   AlloyPlateActivity : MainBaseActivity() , SmoothCheckBox.OnCheckedChange
     override fun onLoadPlateSuccess(consPlate: ConsPlateBean) {
         dismissLoading()
         if (consPlate.result == null) {
-            RxToast.error("错误码：${consPlate.error_code}")
+            ToastUtil.showShortToast("错误码：${consPlate.error_code}")
         } else {
             toOtherActivity<PlateIndexActivity>(this,false){
                 putExtra(Contents.PLATE_HINT,Gson().toJson(mPlateHintList))
@@ -417,7 +417,7 @@ class   AlloyPlateActivity : MainBaseActivity() , SmoothCheckBox.OnCheckedChange
 
     override fun onError(t: String) {
        dismissLoading()
-        RxToast.error(t)
+        ToastUtil.showShortToast(t)
     }
 
     override fun onEmpty() {

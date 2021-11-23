@@ -10,10 +10,10 @@ import com.bytedance.sdk.openadsdk.TTAdDislike;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
+import com.example.module_ad.utils.DeviceUtils;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
-import com.tamsiree.rxkit.RxDeviceTool;
-import com.tamsiree.rxkit.RxNetTool;
+import com.example.module_base.util.NetworkUtils;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class TTBannerAd extends AdWatcher {
     @Override
     //banner广告申请
     public void showAd() {
-        if (!RxNetTool.isNetworkAvailable(BaseApplication.Companion.getAppContext())) {
+        if (!NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
             return;
         }
 
@@ -45,7 +45,7 @@ public class TTBannerAd extends AdWatcher {
                 .setCodeId(mKTouTiaoBannerKey)
                 .setSupportDeepLink(true)
                 .setAdCount(3)
-                .setExpressViewAcceptedSize(RxDeviceTool.getScreenWidth(mActivity),80) //期望模板广告view的size,单位dp
+                .setExpressViewAcceptedSize(DeviceUtils.getScreenWidth(mActivity),80) //期望模板广告view的size,单位dp
                 .build();
 
 

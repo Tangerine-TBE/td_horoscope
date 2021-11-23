@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.module_base.util.SizeUtils
+import com.example.module_base.util.ToastUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseActivity
@@ -15,8 +16,7 @@ import com.example.td_horoscope.bean.PlateIndexCacheBean
 import com.example.td_horoscope.ui.adapter.recyclerview.DocumentPlateAdapter
 import com.example.td_horoscope.util.Contents
 import com.example.td_horoscope.util.top.toOtherActivity
-import com.tamsiree.rxkit.view.RxToast
-import com.tamsiree.rxui.view.dialog.RxDialogSureCancel
+import com.feisukj.base.widget.Rx.RxDialogSureCancel
 import com.yanzhenjie.recyclerview.*
 import kotlinx.android.synthetic.main.activity_plate_document.*
 import kotlinx.coroutines.Dispatchers
@@ -108,7 +108,7 @@ class PlateDocumentActivity: MainBaseActivity() , SwipeMenuCreator, OnItemMenuCl
                 finish()
             }
             override fun onRightTo() {
-                    if (mCacheList?.size?:0 > 0) mRxDialogSureCancel.show() else RxToast.warning("暂无合盘记录")
+                    if (mCacheList?.size?:0 > 0) mRxDialogSureCancel.show() else ToastUtil.showToast("暂无合盘记录")
             }
         })
 

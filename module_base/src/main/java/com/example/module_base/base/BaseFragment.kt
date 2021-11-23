@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.module_base.R
+import com.example.module_base.util.Rx.RxTimeTool
 import com.example.module_base.util.SPUtil
 import com.example.module_base.widget.LoadingDialog
-import com.tamsiree.rxkit.RxTimeTool
 import java.text.SimpleDateFormat
 
 /**

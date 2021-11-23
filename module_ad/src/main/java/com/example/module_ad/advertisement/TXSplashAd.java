@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.widget.FrameLayout;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
+import com.example.module_base.util.NetworkUtils;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 import com.qq.e.comm.managers.GDTADManager;
+import com.qq.e.comm.managers.GDTAdSdk;
 import com.qq.e.comm.util.AdError;
-import com.tamsiree.rxkit.RxNetTool;
 
 public class TXSplashAd extends AdWatcher{
 
@@ -28,13 +29,13 @@ public class TXSplashAd extends AdWatcher{
         this.mSplashContainer=frameLayout;
         this.mIsClose=isClose;
         this.mClass=aClass;
-        GDTADManager.getInstance().initWith(activity, mKgdtMobSDKAppKey);
+        GDTAdSdk.init(activity, mKgdtMobSDKAppKey);
     }
 
 
     @Override
     public void showAd() {
-        if (!RxNetTool.isConnected(BaseApplication.Companion.getAppContext())) {
+        if (!NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
             return;
         }
         mSplashAD = new SplashAD(mActivity, mKgdtMobSDKKaiPingKey, new SplashADListener() {

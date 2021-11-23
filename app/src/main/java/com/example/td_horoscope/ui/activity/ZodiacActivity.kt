@@ -2,6 +2,8 @@ package com.example.td_horoscope.ui.activity
 
 import android.view.Gravity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.module_ad.utils.DeviceUtils
+import com.example.module_base.util.ToastUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseActivity
@@ -11,8 +13,6 @@ import com.example.td_horoscope.ui.adapter.recyclerview.ZodiacAdapter
 import com.example.td_horoscope.ui.widget.ZodiacPopup
 import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.view.IZodiacCallback
-import com.tamsiree.rxkit.RxImageTool
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_zodiac.*
 
 class ZodiacActivity : MainBaseActivity() , IZodiacCallback {
@@ -45,7 +45,7 @@ class ZodiacActivity : MainBaseActivity() , IZodiacCallback {
         mZodiacBtn.setOnClickListener {
             mZodiacAdapter.getSelectList()?.let {
                 if (it.size != 2) {
-                    RxToast.warning("请选择两个生肖进行配对")
+                    ToastUtil.showToast("请选择两个生肖进行配对")
                 } else {
                     ZodiacImpl.getZodiacMsg(it[0].title, it[1].title)
                 }
@@ -69,7 +69,7 @@ class ZodiacActivity : MainBaseActivity() , IZodiacCallback {
     override fun onLoadZodiacSuccess(zodiac: ZodiacBean) {
         dismissLoading()
         mZodiacPopup.setPopupResult(zodiac, mZodiacAdapter?.getSelectList())
-        mZodiacPopup.showAsDropDown(mZodiacHint, 0, RxImageTool.dip2px(23f), Gravity.CENTER)
+        mZodiacPopup.showAsDropDown(mZodiacHint, 0, DeviceUtils.dp2px(this,23f), Gravity.CENTER)
 
     }
 
@@ -79,7 +79,7 @@ class ZodiacActivity : MainBaseActivity() , IZodiacCallback {
 
     override fun onError(t: String) {
         dismissLoading()
-        RxToast.warning("无网络连接，请检查网络设置")
+        ToastUtil.showToast("无网络连接，请检查网络设置")
     }
 
     override fun onEmpty() {

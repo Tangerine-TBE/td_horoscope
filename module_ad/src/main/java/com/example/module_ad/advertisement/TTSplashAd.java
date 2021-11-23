@@ -14,7 +14,7 @@ import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.example.module_ad.utils.DeviceUtils;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
-import com.tamsiree.rxkit.RxNetTool;
+import com.example.module_base.util.NetworkUtils;
 
 public class TTSplashAd extends AdWatcher {
 
@@ -38,7 +38,7 @@ public class TTSplashAd extends AdWatcher {
 
     @Override
     public void showAd() {
-        if (!RxNetTool.isNetworkAvailable(BaseApplication.Companion.getAppContext())) {
+        if (!NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
             return;
         }
         int screenHeight = DeviceUtils.getScreenHeight(mActivity);

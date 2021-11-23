@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_base.provider.ModuleProvider
+import com.example.module_base.util.ToastUtil
 import com.example.module_usercenter.utils.SpUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseActivity
@@ -18,7 +19,6 @@ import com.jpeng.jptabbar.OnTabSelectListener
 import com.jpeng.jptabbar.anno.NorIcons
 import com.jpeng.jptabbar.anno.SeleIcons
 import com.jpeng.jptabbar.anno.Titles
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = ModuleProvider.ROUTE_MAIN_ACTIVITY)
@@ -60,7 +60,7 @@ class MainActivity : MainBaseActivity(){
         //开启后台广告
         mSPUtil.putBoolean(com.example.module_ad.utils.Contents.NO_BACK, false)
         if (SpUtil.loginTimeOut()) {
-            RxToast.normal("您的Vip身份已过期,请重新登录")
+            ToastUtil.showToast("您的Vip身份已过期,请重新登录")
         }
         switchFragment(mConstellationFragment)
     }

@@ -16,6 +16,7 @@ import com.example.module_base.base.BaseApplication;
 import com.example.module_base.provider.ModuleProvider;
 import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.PackageUtil;
+import com.example.module_base.util.ToastUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;
 import com.example.module_usercenter.bean.OauthBean;
@@ -34,9 +35,8 @@ import com.example.module_usercenter.utils.SpUtil;
 import com.example.module_usercenter.view.ILoginCallback;
 import com.example.module_usercenter.view.IThirdlyLoginCallback;
 import com.example.module_usercenter.view.IWeChatCallback;
+import com.feisukj.base.widget.Rx.RxDialogShapeLoading;
 import com.just.agentweb.AgentWeb;
-import com.tamsiree.rxkit.view.RxToast;
-import com.tamsiree.rxui.view.dialog.RxDialogShapeLoading;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -204,7 +204,7 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
             if (mIsLogin) {
                 mVipLevel = mSPUtil.getInt(Contents.USER_VIP_LEVEL, 0);
                 if (mVipLevel >0) {
-                    RxToast.info("您已经是尊贵的VIP了");
+                    ToastUtil.showToast("您已经是尊贵的VIP了");
                 } else {
                     toPay();
                     isPay = true;
@@ -367,7 +367,7 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
                 }
                 int vip = data.getVip();
                 if (vip > 0) {
-                    RxToast.success("支付成功");
+                    ToastUtil.showToast("支付成功");
                     if (mIsToBuy) {
                         ARouter.getInstance().build(ModuleProvider.ROUTE_MAIN_ACTIVITY).withInt(ModuleProvider.FRAGMENT_ID,0).navigation();
                         finish();
@@ -375,7 +375,7 @@ public class BuyVipActivity extends BaseActivity implements ILoginCallback, IThi
                     setVipInfo();
 
                 } else {
-                    RxToast.warning("支付失败");
+                    ToastUtil.showToast("支付失败");
                 }
                 isPay = false;
             }

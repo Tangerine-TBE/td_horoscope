@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import com.example.module_ad.activity.BackActivity;
 import com.example.module_ad.bean.AdBean;
+import com.example.module_base.util.NetworkUtils;
 import com.example.module_base.util.SPUtil;
-import com.tamsiree.rxkit.RxNetTool;
 
 import java.util.List;
 public class BaseBackstage {
@@ -63,7 +63,7 @@ public class BaseBackstage {
     public static void setBackstage(Activity context) {
         boolean no_back = SPUtil.getInstance().getBoolean(Contents.NO_BACK, false);
         if (!no_back) {
-            if (RxNetTool.isNetworkAvailable(context)) {
+            if (NetworkUtils.isConnected(context)) {
                 AdBean.DataBean adState = AdMsgUtil.getAdState();
                 if (adState != null ) {
                     if (adState.getStart_page()!=null) {

@@ -9,6 +9,7 @@ import com.example.module_base.base.BaseActivity;
 import com.example.module_base.provider.ModuleProvider;
 import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.PackageUtil;
+import com.example.module_base.util.ToastUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;
 import com.example.module_usercenter.bean.OauthBean;
@@ -24,8 +25,7 @@ import com.example.module_usercenter.utils.SpUtil;
 import com.example.module_usercenter.view.IFindPwdCallback;
 import com.example.module_usercenter.view.ILoginCallback;
 import com.example.module_usercenter.view.IRegisterCallback;
-import com.tamsiree.rxkit.view.RxToast;
-import com.tamsiree.rxui.view.dialog.RxDialogShapeLoading;
+import com.feisukj.base.widget.Rx.RxDialogShapeLoading;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -112,7 +112,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
                         LogUtils.i( "---------------------->" + number);
                     }
                 } else {
-                    RxToast.warning( "请输入手机号码");
+                    ToastUtil.showToast("请输入手机号码");
                 }
             }
 
@@ -147,9 +147,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
     public void onLoadCode(RegisterBean bean) {
         int ret = bean.getRet();
         if (ret==200) {
-            RxToast.normal(this, "验证码已发送").show();
+            ToastUtil.showToast("验证码已发送");
         } else if (ret == 700) {
-            RxToast.warning(bean.getMsg()+"");
+            ToastUtil.showToast(bean.getMsg()+"");
         }
     }
 
@@ -160,11 +160,11 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
         }
         int ret = registerBean.getRet();
         if (ret == 200) {
-            RxToast.success(this, "修改密码成功").show();
+            ToastUtil.showToast("修改密码成功");
             finish();
 
         } else {
-            RxToast.warning(this, registerBean.getMsg()).show();
+            ToastUtil.showToast(registerBean.getMsg());
         }
     }
 
@@ -179,12 +179,12 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
             if (mLoginPresent != null) {
                 mLoginPresent.toLogin(loginMap);
             }
-            RxToast.success(this, "注册成功").show();
+            ToastUtil.showToast("注册成功");
         } else {
             if (mRxDialogLoading != null) {
                 mRxDialogLoading.dismiss();
             }
-            RxToast.warning(this, registerBean.getMsg()).show();
+            ToastUtil.showToast( registerBean.getMsg());
         }
         EventBus.getDefault().post(true);
     }
@@ -203,7 +203,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterCallback,
         if (mRxDialogLoading != null) {
             mRxDialogLoading.dismiss();
         }
-        RxToast.error(this,"登陆失败").show();
+        ToastUtil.showToast("登陆失败");
     }
 
     @Override

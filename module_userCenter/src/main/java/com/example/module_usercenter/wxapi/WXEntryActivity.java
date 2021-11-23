@@ -21,7 +21,7 @@ import com.example.module_usercenter.ui.activity.BuyVipActivity;
 import com.example.module_usercenter.utils.Contents;
 import com.example.module_usercenter.utils.SpUtil;
 import com.example.module_usercenter.view.IWeChatCallback;
-import com.tamsiree.rxui.view.dialog.RxDialogShapeLoading;
+import com.feisukj.base.widget.Rx.RxDialogShapeLoading;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;

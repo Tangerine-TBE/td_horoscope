@@ -8,12 +8,11 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
+import com.example.module_base.util.Rx.RxTimeTool;
 import com.example.module_base.util.SPUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;
-import com.tamsiree.rxkit.RxTimeTool;
 
 import java.util.Date;
 import java.util.HashMap;

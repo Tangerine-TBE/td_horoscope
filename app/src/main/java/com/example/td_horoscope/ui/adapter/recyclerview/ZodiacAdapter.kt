@@ -2,9 +2,9 @@ package com.example.td_horoscope.ui.adapter.recyclerview
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.module_base.util.ToastUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.bean.IconTitleBean
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.item_zodiac_container.view.*
 
 /**
@@ -45,7 +45,7 @@ class ZodiacAdapter :
                                 add(it)
                                 mZodiacInclude.setBackgroundResource(R.drawable.shape_zodiac_selecet_bg)
                             } else {
-                                RxToast.warning("最多只能选择两个生肖")
+                                ToastUtil.showToast("最多只能选择两个生肖")
                             }
 
                         }

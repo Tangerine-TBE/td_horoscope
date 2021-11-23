@@ -71,7 +71,7 @@ dependencies {
    //glide
     api rootProject.ext.dependencies["glide"]
     //RxTool
-    api rootProject.ext.dependencies["RxTool"]
+//    api rootProject.ext.dependencies["RxTool"]
     //materialedittext
     api rootProject.ext.dependencies["materialedittext"]
     //fastJSON
@@ -87,7 +87,7 @@ dependencies {
     //侧滑删除
     api rootProject.ext.dependencies["yanzhenjie"]
     //RxToolUi
-    api rootProject.ext.dependencies["RxToolUi"]
+//    api rootProject.ext.dependencies["RxToolUi"]
     //agentweb
     api rootProject.ext.dependencies["agentweb"]
     //wechat

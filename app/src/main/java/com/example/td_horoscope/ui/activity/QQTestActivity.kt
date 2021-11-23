@@ -2,6 +2,7 @@ package com.example.td_horoscope.ui.activity
 
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.module_base.util.ToastUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseActivity
@@ -10,7 +11,6 @@ import com.example.td_horoscope.bean.qq.QQBean
 import com.example.td_horoscope.present.impl.QQImpl
 import com.example.td_horoscope.ui.adapter.recyclerview.QQTestAdapter
 import com.example.td_horoscope.view.IQQCallback
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.activity_qq_test.*
 
 /**
@@ -40,7 +40,7 @@ class QQTestActivity: MainBaseActivity() , IQQCallback {
     override fun initEvent() {
         mQQTest.setOnClickListener {
             val qqData = mQQInput.text.toString()
-            if (TextUtils.isEmpty(qqData)) RxToast.warning("QQ号码不能为空") else QQImpl.getQQMsg(qqData)
+            if (TextUtils.isEmpty(qqData)) ToastUtil.showToast("QQ号码不能为空") else QQImpl.getQQMsg(qqData)
         }
 
         mQQBar.setOnBackClickListener(object: MyToolbar.OnBackClickListener{
@@ -68,7 +68,7 @@ class QQTestActivity: MainBaseActivity() , IQQCallback {
                 )
             }
         } else {
-            RxToast.warning(qqData.reason)
+            ToastUtil.showToast(qqData.reason)
         }
     }
 
@@ -78,7 +78,7 @@ class QQTestActivity: MainBaseActivity() , IQQCallback {
 
     override fun onError(t: String) {
         dismissLoading()
-        RxToast.warning("无网络连接，请检查网络设置")
+        ToastUtil.showToast("无网络连接，请检查网络设置")
     }
 
     override fun onEmpty() {

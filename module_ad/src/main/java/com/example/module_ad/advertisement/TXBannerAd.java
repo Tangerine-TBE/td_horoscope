@@ -6,11 +6,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
+import com.example.module_base.util.NetworkUtils;
 import com.qq.e.ads.banner2.UnifiedBannerADListener;
 import com.qq.e.ads.banner2.UnifiedBannerView;
 import com.qq.e.comm.managers.GDTADManager;
+import com.qq.e.comm.managers.GDTAdSdk;
 import com.qq.e.comm.util.AdError;
-import com.tamsiree.rxkit.RxNetTool;
 
 
 public class TXBannerAd  extends AdWatcher{
@@ -23,7 +24,7 @@ public class TXBannerAd  extends AdWatcher{
     public TXBannerAd(Activity activity, FrameLayout frameLayout) {
         this.mActivity=activity;
         this.mBannerContainer=frameLayout;
-        GDTADManager.getInstance().initWith(activity, mKgdtMobSDKAppKey);
+        GDTAdSdk.init(activity, mKgdtMobSDKAppKey);
 
     }
 
@@ -36,7 +37,7 @@ public class TXBannerAd  extends AdWatcher{
     }
 
     private UnifiedBannerView getBanner() {
-        if (RxNetTool.isNetworkAvailable(BaseApplication.Companion.getAppContext())) {
+        if (NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
         if(this.bv != null){
             mBannerContainer.removeView(bv);
             bv.destroy();

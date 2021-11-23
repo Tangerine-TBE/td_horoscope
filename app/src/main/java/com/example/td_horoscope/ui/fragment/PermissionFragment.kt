@@ -13,7 +13,9 @@ import com.example.module_ad.request.AdPresent
 import com.example.module_ad.request.IAdCallback
 import com.example.module_base.base.BaseApplication
 import com.example.module_base.base.BaseFragment
+import com.example.module_base.util.NetworkUtils
 import com.example.module_base.util.PackageUtil
+import com.example.module_base.util.ToastUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseApplication
 import com.example.td_horoscope.ui.activity.DealActivity
@@ -25,8 +27,6 @@ import com.example.td_horoscope.util.MyContentProvider
 import com.example.td_horoscope.util.top.checkRuntimePermission
 import com.example.td_horoscope.util.top.toOtherActivity
 import com.google.gson.Gson
-import com.tamsiree.rxkit.RxNetTool
-import com.tamsiree.rxkit.view.RxToast
 import kotlinx.android.synthetic.main.fragment_permissions.*
 
 /**
@@ -73,7 +73,7 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initPresent() {
         madPresent.registerCallback(this)
-        if (RxNetTool.isNetworkAvailable(mActivity)) {
+        if (NetworkUtils.isConnected(mActivity)) {
             madPresent.getAdMsg()
         }
     }
@@ -87,14 +87,15 @@ class PermissionFragment:BaseFragment(), IAdCallback {
         }
 
         bt_try.setOnClickListener {
-            RxToast.normal("您需要同意后才能继续使${PackageUtil.getAppMetaData(activity,"APP_NAME")}提供的服务")
+            ToastUtil.showToast("您需要同意后才能继续使${PackageUtil.getAppMetaData(activity,"APP_NAME")}提供的服务")
+            mActivity.finish()
         }
 
     }
 
 
     private fun goHome() {
-        if (RxNetTool.isNetworkAvailable(mActivity)) {
+        if (NetworkUtils.isConnected(mActivity)) {
             mSplashHelper.showAd()
         } else {
             toOtherActivity<MainActivity>(activity, true) {}

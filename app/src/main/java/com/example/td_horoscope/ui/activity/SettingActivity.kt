@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.module_ad.advertisement.AdType
 import com.example.module_ad.advertisement.FeedHelper
+import com.example.module_base.util.ToastUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.module_usercenter.bean.RegisterBean
 import com.example.module_usercenter.present.impl.LogoutPresentImpl
@@ -15,8 +16,7 @@ import com.example.td_horoscope.bean.IconTitleBean
 import com.example.td_horoscope.ui.adapter.recyclerview.SetAdapter
 import com.example.td_horoscope.util.Contents
 import com.example.td_horoscope.util.top.toOtherActivity
-import com.tamsiree.rxkit.view.RxToast
-import com.tamsiree.rxui.view.dialog.RxDialogSureCancel
+import com.feisukj.base.widget.Rx.RxDialogSureCancel
 import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity: MainBaseActivity(), ILogoutCallback {
@@ -82,14 +82,14 @@ class SettingActivity: MainBaseActivity(), ILogoutCallback {
                 }
                 2->{
                     if (!mSPUtil.getBoolean(com.example.module_usercenter.utils.Contents.USER_IS_LOGIN, false)) {
-                        RxToast.warning("您还没有登录")
+                        ToastUtil.showToast("您还没有登录")
                     } else {
                         mRxDialogSureCancel.show()
                     }
                 }
                 3->{
                     if (!mSPUtil.getBoolean(com.example.module_usercenter.utils.Contents.USER_IS_LOGIN, false)) {
-                        RxToast.warning("您还没有登录")
+                        ToastUtil.showToast("您还没有登录")
                     } else {
                         mLogoutDialogSureCancel.show()
                     }
@@ -137,16 +137,16 @@ class SettingActivity: MainBaseActivity(), ILogoutCallback {
         mLoadingDialog.dismiss()
         if (registerBean?.ret == 200) {
             SpUtil.deleteUserInfo()
-            RxToast.success("注销成功！")
+            ToastUtil.showToast("注销成功！")
             finish()
         } else {
-            RxToast.error("注销失败！")
+            ToastUtil.showToast("注销失败！")
         }
     }
 
     override fun onLogoutError() {
         mLoadingDialog.dismiss()
-        RxToast.error("注销失败！")
+        ToastUtil.showToast("注销失败！")
     }
 
     override fun onError() {

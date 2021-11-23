@@ -10,7 +10,7 @@ import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
-import com.tamsiree.rxkit.RxNetTool;
+import com.example.module_base.util.NetworkUtils;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class TTInsertAd extends AdWatcher  {
     }
 
     public void showAd() {
-        if (!RxNetTool.isNetworkAvailable(BaseApplication.Companion.getAppContext())) {
+        if (!NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
             return;
         }
         //设置广告参数

@@ -1,23 +1,13 @@
 package com.example.module_usercenter.ui.activity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import androidx.core.app.ActivityCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_base.base.BaseActivity;
@@ -25,6 +15,7 @@ import com.example.module_base.base.BaseApplication;
 import com.example.module_base.provider.ModuleProvider;
 import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.PackageUtil;
+import com.example.module_base.util.ToastUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.Data;
 import com.example.module_usercenter.bean.LoginBean;
@@ -43,13 +34,11 @@ import com.example.module_usercenter.utils.SpUtil;
 import com.example.module_usercenter.view.ILoginCallback;
 import com.example.module_usercenter.view.IRegisterCallback;
 import com.example.module_usercenter.view.IThirdlyLoginCallback;
+import com.feisukj.base.widget.Rx.RxDialogShapeLoading;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
 import com.mobile.auth.gatewayauth.ResultCode;
 import com.mobile.auth.gatewayauth.TokenResultListener;
 import com.mobile.auth.gatewayauth.model.TokenRet;
-import com.tamsiree.rxkit.RxNetTool;
-import com.tamsiree.rxkit.view.RxToast;
-import com.tamsiree.rxui.view.dialog.RxDialogShapeLoading;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.Constants;
@@ -180,7 +169,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
                     } else {
                         //  Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
                         //Toast.makeText(getApplicationContext(), "一键登录失败切换到其他登录方式", Toast.LENGTH_SHORT).show();
-                        RxToast.warning("一键登录失败，请开启移动网络后重试或使用其他登陆方式");
+                        ToastUtil.showToast("一键登录失败，请开启移动网络后重试或使用其他登陆方式");
                         //  Intent pIntent = new Intent(OneKeyLoginActivity.this, MessageActivity.class);
                         //  startActivityForResult(pIntent, 1002);
                         mPhoneNumberAuthHelper.quitLoginPage();
@@ -287,7 +276,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
                     isOauth=true;
                 }
             } else {
-                RxToast.warning("请输入11位手机号码和6个字符以上的密码");
+                ToastUtil.showToast("请输入11位手机号码和6个字符以上的密码");
             }
 
         });
@@ -476,7 +465,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
     @Override
     public void onLoginError() {
         mRxDialog.dismiss();
-        RxToast.warning(this, "登陆失败").show();
+        ToastUtil.showToast("登陆失败");
     }
 
     @Override
@@ -535,7 +524,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
 
     @Override
     public void onThirdlyLoginError() {
-        RxToast.error(this, "QQ登陆失败").show();
+        ToastUtil.showToast("QQ登陆失败");
     }
 
     @Override
@@ -598,7 +587,7 @@ public class LoginActivity extends BaseActivity implements ILoginCallback, IThir
 
     @Override
     public void onThirdlyRegisterError() {
-        RxToast.error(this, "QQ注册失败").show();
+        ToastUtil.showToast("QQ注册失败");
     }
 
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.FrameLayout;
 import com.example.module_base.base.BaseApplication;
 import com.example.module_base.util.LogUtils;
+import com.example.module_base.util.NetworkUtils;
 import com.qq.e.ads.cfg.VideoOption;
 import com.qq.e.ads.nativ.ADSize;
 import com.qq.e.ads.nativ.NativeExpressAD;
@@ -11,8 +12,8 @@ import com.qq.e.ads.nativ.NativeExpressADView;
 import com.qq.e.ads.nativ.NativeExpressMediaListener;
 import com.qq.e.comm.constants.AdPatternType;
 import com.qq.e.comm.managers.GDTADManager;
+import com.qq.e.comm.managers.GDTAdSdk;
 import com.qq.e.comm.util.AdError;
-import com.tamsiree.rxkit.RxNetTool;
 
 import java.util.List;
 
@@ -29,14 +30,14 @@ public class TXFeedAd extends AdWatcher {
         this.mActivity=activity;
 
         this.mFeedContainer=frameLayout;
-        GDTADManager.getInstance().initWith(activity, mKgdtMobSDKAppKey);
+        GDTAdSdk.init(activity, mKgdtMobSDKAppKey);
     }
 
 
     @Override
     public void showAd() {
 
-        if (!RxNetTool.isNetworkAvailable(BaseApplication.Companion.getAppContext())) {
+        if (!NetworkUtils.isConnected(BaseApplication.Companion.getAppContext())) {
             return;
         }
         nativeExpressAD = new NativeExpressAD(mActivity, new ADSize(ADSize.FULL_WIDTH, ADSize.AUTO_HEIGHT),mKgdtMobSDKNativeKey, new NativeExpressAD.NativeExpressADListener() {
