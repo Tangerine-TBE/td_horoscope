@@ -83,7 +83,7 @@ public class LoginPresentImpl implements ILoginPresent {
 
             @Override
             public void onFailure(Call<OauthBean> call, Throwable t) {
-
+                LogUtils.e("----------");
             }
         });
     }

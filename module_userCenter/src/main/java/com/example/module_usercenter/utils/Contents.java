@@ -8,7 +8,7 @@ public class Contents {
 
     //一键登录密钥
     //正式版
-    public static final String OAUTH="y+czmTYnrQxWjdb3ISbKZDo5Sy2ILDcvkHiV48RxiMHtVHA0g5msOElKeSzpbjACu0cSpMHVp9usRwMWwo8V6pRLpidoShvbPFh17P6UR314xxJj9PVSQc3KcITk6173MS8Z3wdp1FvnFWWGccvKxOcsHHRJVTjovaTNpo4D1j+F/t+lmz86IUxV6XqbJiqvOcbzfLYkdUrIQ6i6s8TRGxas6/0TVMXNa6Hwn41rzx/tUNXpvjMzk/MTRz66wqn7ok9pvaAeBPkwkUFtj0AmVcd20o+dqcZXPSmBzzxVoyZm9NDCnKY9iKIZdsJMazpT";
+    public static final String OAUTH="So4ZvfFKNK/lfGU0wLvud8nZ8DkNIZ+bIJWPucwt5YmnbFAMgCedXrMPL8BEt/SFlY+8hfdZ7Um2m/2r93SyoFUQlIGMpA2adYrjVr0KnDZr2Rdpn59vAT11k5B8LA0VR60phIobgZwc6qaF2MOZEDEGb/pUa3MglUneWe6BovaM669sfDGSIQONt19d3/rCMvj+tAoLDSb97F7ktezJfOr+2T39X4hwPmHFZEyS5lbNH5I+YeRN6d62LGImc6hjQsV4sniJTJyBPgzEfOcwwZD0RYauaxQhmnFQ6USjDwFXoXIIDGtAkiqS6aR6HRIN";
     //广告测试版
    // public static final String OAUTH="ERp1eKYioAS2vWah9le0FRXuM3HHB231sz4Fyc6CdgziGaveJOJehkP330uGtE0NqZCMcIyhrN0CipHmvWt7uHWoKaG6Cs2yfy6a+arR4NaZ7gQQOrc7st0HukYpVVWPtrlb4PcT8LLlsEUypASJsy4daWf12pbplNv7pP6ely0QnBvsLzHWdWrozWQcwaZAN3N3MH9YkaWBSi/8NDu7vbtEWW5uyJmn0qK58i9DNAZBvbM38kjRQFoZSbWXUu1hYtIsNg/9/6QXKJLtnOVqXh5BWZ5IwMuvsRRXEa56KKNiGP32DYnZoQ==";
     //包名

@@ -46,6 +46,7 @@ public class TXInsertAd extends AdWatcher implements UnifiedInterstitialADListen
     public void showAd() {
         mAd = new UnifiedInterstitialAD(mActivity,mKgdtMobSDKChaPingKey, this);
     //    setVideoOption();
+        mAd.setDownloadConfirmListener(GdtUtils.DOWNLOAD_CONFIRM_LISTENER);
         mAd.loadAD();
 
     }

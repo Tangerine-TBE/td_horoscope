@@ -37,6 +37,6 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 
-    implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
+    implementation 'com.pangle.cn:ads-sdk-pro:4.0.1.9'
     implementation 'com.qq.e.union:union:4.400.1270'
 }

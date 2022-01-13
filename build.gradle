@@ -9,9 +9,12 @@ buildscript {
         mavenCentral()
         maven {
             url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/yidian-android/open_android_sdk/" }
-        maven { url 'https://dl.bintray.com/umsdk/release' }
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven {
+            url 'https://artifact.bytedance.com/repository/pangle'
+        }
+//        maven { url "https://dl.bintray.com/yidian-android/open_android_sdk/" }
+//        maven { url 'https://dl.bintray.com/umsdk/release' }
+//        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
 
         flatDir {
             dirs 'libs'
@@ -33,12 +36,12 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/yidian-android/open_android_sdk/" }
-        maven { url 'https://dl.bintray.com/umsdk/release' }
-
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
-        }
+//        maven { url "https://dl.bintray.com/yidian-android/open_android_sdk/" }
+//        maven { url 'https://dl.bintray.com/umsdk/release' }
+//
+//        maven {
+//            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+//        }
 
         maven {
             url 'https://artifact.bytedance.com/repository/pangle'

@@ -52,6 +52,7 @@ public class TXFeedAd extends AdWatcher {
                 if (nativeExpressADView.getBoundData().getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
                     nativeExpressADView.setMediaListener(mediaListener);
                 }
+                nativeExpressADView.setDownloadConfirmListener(GdtUtils.DOWNLOAD_CONFIRM_LISTENER);
                 nativeExpressADView.render();
                /* if (mFeedContainer.getChildCount() > 0) {
 

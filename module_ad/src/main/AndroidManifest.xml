@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission      android:name="${applicationId}.openadsdk.permission.TT_PANGOLIN"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.openadsdk.permission.TT_PANGOLIN" />
 
     <application >
 
@@ -22,6 +26,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"   android:authorities="${applicationId}.TTMultiProvider"   android:exported="false" />
         <!-- ===================================================================== -->
 
 

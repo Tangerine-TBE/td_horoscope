@@ -95,6 +95,7 @@ public class TXBannerAd  extends AdWatcher{
         // this.bv = new UnifiedBannerView(this, Constants.APPID, posId, this);
         mBannerContainer.addView(bv, getUnifiedBannerLayoutParams());
         mBannerContainer.setVisibility(View.VISIBLE);
+        this.bv.setDownloadConfirmListener(GdtUtils.DOWNLOAD_CONFIRM_LISTENER);
         return this.bv;
         }
         return null;

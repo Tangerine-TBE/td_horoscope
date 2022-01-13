@@ -65,8 +65,8 @@ public class RetrofitManager {
                     .loggable(BuildConfig.DEBUG)
                     .setLevel(Level.BASIC)
                     .log(Platform.INFO)
-                    .request("请求")
-                    .response("响应")
+                    .request("LoggingInterceptor：请求")
+                    .response("LoggingInterceptor：响应")
                     .build();
             httpClientBuilder.addInterceptor(httpLoggingInterceptor);
         }

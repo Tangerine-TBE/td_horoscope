@@ -80,7 +80,7 @@ public class TXSplashAd extends AdWatcher{
 
             }
         }, outTime);
-
+        mSplashAD.setDownloadConfirmListener(GdtUtils.DOWNLOAD_CONFIRM_LISTENER);
         mSplashAD.fetchAndShowIn(mSplashContainer);
     }
 

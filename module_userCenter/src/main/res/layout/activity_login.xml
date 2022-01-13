@@ -184,14 +184,14 @@
 
     <ImageView
         android:id="@+id/iv_phone"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/icon_login_aouth"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="87dp"
-        android:layout_marginRight="68dp"
         android:layout_width="43dp"
-        android:layout_height="43dp"/>
+        android:layout_height="43dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="68dp"
+        android:layout_marginBottom="87dp"
+        android:src="@mipmap/icon_login_aouth" />
 
 
 

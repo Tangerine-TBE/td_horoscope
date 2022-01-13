@@ -50,6 +50,7 @@ public class TTSplashAd extends AdWatcher {
                 .setCodeId(mKTouTiaoKaiPing)
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(screenWidth, screenHeight)
+                .setDownloadType(TTAdConstant.DOWNLOAD_TYPE_POPUP)
                 .build();
         //step4:请求广告，调用开屏广告异步请求接口，对请求回调的广告作渲染处理
         mTTAdNative.loadSplashAd(adSlot, new TTAdNative.SplashAdListener() {
