@@ -1,4 +1,4 @@
-package com.example.module_usercenter.wxapi;
+package com.twx.constellation.wxapi;
 
 import android.content.Intent;
 import android.transition.Fade;
@@ -6,10 +6,8 @@ import android.view.KeyEvent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module_base.base.BaseActivity;
-import com.example.module_base.base.BaseApplication;
 import com.example.module_base.provider.ModuleProvider;
 import com.example.module_base.util.LogUtils;
-import com.example.module_base.util.MyStatusBarUtil;
 import com.example.module_base.util.PackageUtil;
 import com.example.module_usercenter.R;
 import com.example.module_usercenter.bean.LoginBean;

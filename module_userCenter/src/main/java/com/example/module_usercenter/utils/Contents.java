@@ -101,8 +101,8 @@ public class Contents {
     public static final String QQ_ID = "1111149899";
 
     //微信
-    public static final String WECHAT_APP_ID = "wx1708ad8d4a6e4f8f";
-    public static final String WECHAT_SECRET = "afdbbe33ed530310eed0b8863578ae28";
+    public static final String WECHAT_APP_ID = "wx1c375bfc5fbccab3";
+    public static final String WECHAT_SECRET = "0585c454c115bdf145efa42596826860";
     public static final String WXAPPID = "appid";
     public static final String WXSECRET = "secret";
     public static final String WXACODE = "code";

@@ -30,11 +30,11 @@
 
         <!--微信登陆-->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.twx.constellation.wxapi.WXEntryActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity="com.feisu.jisuanqi"
-            android:theme="@style/TransparentTheme"></activity>
+            android:theme="@style/TransparentTheme"/>
         <!--====================================================================================-->
 
 

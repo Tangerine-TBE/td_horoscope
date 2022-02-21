@@ -171,15 +171,15 @@
         android:layout_width="43dp"
         android:layout_height="43dp"/>
 
-        <ImageView
-            android:id="@+id/iv_wx"
-            android:visibility="invisible"
-           android:src="@mipmap/icon_login_wx"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="87dp"
-            android:layout_width="43dp"
-            android:layout_height="43dp"/>
+    <ImageView
+        android:id="@+id/iv_wx"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp"
+        android:src="@mipmap/icon_login_wx"
+        android:visibility="visible" />
 
 
     <ImageView
