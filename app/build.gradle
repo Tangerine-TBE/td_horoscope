@@ -26,11 +26,15 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
+        ndk {
+            //选择对应cpu类型的.so库。
+            abiFilters 'arm64-v8a', 'armeabi-v7a'//, 'x86'
+        }
     }
 
     signingConfigs {
         release {
-            storeFile file("E:\\Git_Project\\ruler\\app\\cn.yuntk.reader.jks")
+            storeFile file("E:\\Git_Project\\ruler_feisu\\app\\cn.yuntk.reader.jks")
             storePassword "ltreader888"
             keyAlias "reader"
             keyPassword "ltreader888"
@@ -40,7 +44,7 @@ android {
         }
 
         debug {
-            storeFile file("E:\\Git_Project\\ruler\\app\\cn.yuntk.reader.jks")
+            storeFile file("E:\\Git_Project\\ruler_feisu\\app\\cn.yuntk.reader.jks")
             storePassword "ltreader888"
             keyAlias "reader"
             keyPassword "ltreader888"
@@ -67,7 +71,7 @@ android {
 
     //    只在打包提测时改apk文件名，开发时记得注释掉
 //    applicationVariants.all { variant ->
-//        variant.getPackageApplication().outputDirectory = new File("F:/安装包/星座物语/天王星/2.4")
+//        variant.getPackageApplication().outputDirectory = new File("F:/安装包2/天王星/星座物语/2.5")
 //        variant.outputs.all {
 //            outputFileName = "${variant.productFlavors[0].manifestPlaceholders.get("app_name_channel")}" +
 //                    "_${variant.productFlavors[0].name}" +

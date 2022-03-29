@@ -15,6 +15,7 @@ import com.example.module_base.base.BaseApplication
 import com.example.module_base.base.BaseFragment
 import com.example.module_base.util.NetworkUtils
 import com.example.module_base.util.PackageUtil
+import com.example.module_base.util.SPUtil
 import com.example.module_base.util.ToastUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseApplication
@@ -80,6 +81,8 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
+            if (SPUtil.getInstance().getInt("freeCount") == 0)
+                SPUtil.getInstance().putInt("freeCount",3)
             MainBaseApplication.initSdk()
                 checkRuntimePermission(activity,MyContentProvider.permissions,false){
                     goHome()
@@ -87,7 +90,7 @@ class PermissionFragment:BaseFragment(), IAdCallback {
         }
 
         bt_try.setOnClickListener {
-            ToastUtil.showToast("您需要同意后才能继续使${PackageUtil.getAppMetaData(activity,"APP_NAME")}提供的服务")
+//            ToastUtil.showToast("您需要同意后才能继续使${PackageUtil.getAppMetaData(activity,"APP_NAME")}提供的服务")
             mActivity.finish()
         }
 

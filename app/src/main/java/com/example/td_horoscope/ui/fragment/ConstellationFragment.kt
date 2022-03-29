@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.module_base.base.BaseFragment
+import com.example.module_base.util.SPUtil
 import com.example.module_usercenter.ui.activity.BuyVipActivity
 import com.example.module_usercenter.utils.Contents
 import com.example.module_usercenter.utils.SpUtil
@@ -75,6 +76,7 @@ class ConstellationFragment:BaseFragment() {
         }
 
         mHomeContextAdapter.setOnItemClickListener { adapter, view, position ->
+            var freeCount = SPUtil.getInstance().getInt("freeCount")
             if (SpUtil.isVIP()) {
                 when (position) {
                     0 -> toOtherActivity<ZodiacActivity>(activity, false) {}
@@ -86,6 +88,9 @@ class ConstellationFragment:BaseFragment() {
                     2 -> toOtherActivity<QQTestActivity>(activity, false) {}
                     3 -> toOtherActivity<ZgDreamActivity>(activity, false) {}
                 }
+            }else if(position == 3&&freeCount>0){
+                toOtherActivity<ZgDreamActivity>(activity, false) {}
+                SPUtil.getInstance().putInt("freeCount",--freeCount)
             } else {
                 toOtherActivity<BuyVipActivity>(activity, false) {putExtra(Contents.TO_BUY,true)}
             }
