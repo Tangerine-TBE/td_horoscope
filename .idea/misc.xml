@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Git_Project/constellation-story_twx/app/src/main/res/layout/activity_deal.xml" value="0.16236068895643363" />
         <entry key="..\:/Git_Project/constellation-story_twx/app/src/main/res/layout/fragment_constellation.xml" value="0.11666666666666667" />
+        <entry key="..\:/Git_Project/constellation-story_twx/app/src/main/res/layout/fragment_my.xml" value="0.16236068895643363" />
         <entry key="..\:/Git_Project/constellation-story_twx/app/src/main/res/layout/item_home_context_container.xml" value="0.3338541666666667" />
         <entry key="..\:/Git_Project/constellation-story_twx/module_ad/src/main/res/layout/download_confirm_dialog.xml" value="0.18177083333333333" />
         <entry key="..\:/Git_Project/constellation-story_twx/module_userCenter/src/main/res/layout/activity_login.xml" value="0.362962962962963" />

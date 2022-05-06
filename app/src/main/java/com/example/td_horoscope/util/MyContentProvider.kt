@@ -83,6 +83,12 @@ object MyContentProvider {
         IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
         IconTitleBean(R.mipmap.icon_hp, "合盘")
     )
+    else if(PackageUtil.getAppMetaData(BaseApplication.application, "CHANNEL") == "_vivo")
+        arrayListOf(
+            IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
+            IconTitleBean(R.mipmap.icon_hp, "合盘"),
+            IconTitleBean(R.mipmap.icon_zgjm, "周公解梦")
+        )
     else arrayListOf(
         IconTitleBean(R.mipmap.icon_sxpd, "生肖配对"),
         IconTitleBean(R.mipmap.icon_hp, "合盘"),

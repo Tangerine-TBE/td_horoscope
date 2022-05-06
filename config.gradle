@@ -12,8 +12,8 @@ ext {
             //com.twx.constellation
             applicationId    : "com.twx.constellation",   //应用ID
             applicationName  : "星座运势专家",                  //应用名称
-            versionCode      : 10015,                    //版本号
-            versionName      : "2.5",              //版本名称
+            versionCode      : 10016,                    //版本号
+            versionName      : "2.6",              //版本名称
 
             compileSdkVersion: 30,
             minSdkVersion    : 23,

@@ -8,7 +8,6 @@ import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.NetworkUtils;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
-import com.qq.e.comm.managers.GDTADManager;
 import com.qq.e.comm.managers.GDTAdSdk;
 import com.qq.e.comm.util.AdError;
 

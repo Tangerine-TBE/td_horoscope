@@ -15,15 +15,15 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         >
+
         <TextView
-            android:text="Demo-APP详情"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            />
+            android:text="APP详情"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
         <ImageView
             android:id="@+id/download_confirm_close"
             android:layout_width="15dp"

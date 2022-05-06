@@ -81,12 +81,12 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
-            if (SPUtil.getInstance().getInt("freeCount") == 0)
+            if (SPUtil.getInstance().getInt("freeCount") == 0&&PackageUtil.getAppMetaData(BaseApplication.application, "CHANNEL") == "_vivo")
                 SPUtil.getInstance().putInt("freeCount",3)
             MainBaseApplication.initSdk()
-                checkRuntimePermission(activity,MyContentProvider.permissions,false){
+//                checkRuntimePermission(activity,MyContentProvider.permissions,false){
                     goHome()
-                }
+//                }
         }
 
         bt_try.setOnClickListener {

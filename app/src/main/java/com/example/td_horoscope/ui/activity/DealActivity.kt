@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -14,6 +15,10 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import com.example.module_base.util.PackageUtil
 import com.example.module_base.widget.MyToolbar
@@ -44,8 +49,9 @@ class DealActivity : MainBaseActivity()  {
             }
             1 -> {
                 mTitleMsg="隐私协议"
-                text.text = getYinsi()
-                text.movementMethod = LinkMovementMethod()
+//                text.text = getYinsi()
+//                text.movementMethod = LinkMovementMethod()
+                getYinsi()
             }
         }
         privacy_toolbar.setTitle(mTitleMsg)
@@ -62,23 +68,69 @@ class DealActivity : MainBaseActivity()  {
 
             }
         })
+    }
 
-        text.setOnClickListener {
-            count--
-            if (count == 0){
-                val cm: ClipboardManager = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                cm.setPrimaryClip(ClipData.newPlainText("text", getYinsi().toString())) //text也可以是"null"
+    private fun initWebView() {
+        webView.webChromeClient = WebChromeClient()
+        val webSettings = webView.settings
+        webSettings.javaScriptEnabled = true
+//        webSettings.useWideViewPort = true
+//        webSettings.loadWithOverviewMode = true
 
-                if (cm.hasPrimaryClip()) {
-                    cm.primaryClip?.getItemAt(0)?.text
-                }
-                Toast.makeText(this,"复制成功",Toast.LENGTH_SHORT).show()
-                count = 5
+        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+            webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+        webSettings.setSupportZoom(true)
+        webSettings.builtInZoomControls = true
+        webSettings.displayZoomControls = false
+
+        webSettings.domStorageEnabled = true//不加这句有些h5登陆窗口出不来 H5页面使用DOM storage API导致的页面加载问题
+        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
+        webSettings.allowFileAccess = true
+        webSettings.javaScriptCanOpenWindowsAutomatically = true
+        webSettings.loadsImagesAutomatically = true
+        webSettings.defaultTextEncodingName = "utf-8"
+        webView.webViewClient = object : WebViewClient(){
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                webView.loadUrl("javascript:androidSetAppName('${packageManager.getApplicationLabel(applicationInfo)}')")
+                webView.loadUrl("javascript:androidSetCompanyName('${com}')")
+                webView.loadUrl("javascript:androidSetEmail('${email}')")
             }
+        }
+        //加载网络资源
+        webView.loadUrl("file:///android_asset/privacy_policy_cn.html")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        webView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webView.onPause()
+    }
+
+    override fun onBackPressed() {
+        if (webView.canGoBack()){
+            webView.goBack()
+        }else{
+            finish()
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        webView.destroy()
+    }
+
     private fun getYinsi(): SpannableStringBuilder {
+
+        webView.visibility = View.VISIBLE
+        initWebView()
+
+
         val stringBuilder = SpannableStringBuilder()
         val um = SpannableString(umUrl)
         val gdt = SpannableString(gdtUrl)

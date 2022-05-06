@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.module_base.base.BaseApplication
 import com.example.module_base.base.BaseFragment
+import com.example.module_base.util.PackageUtil
 import com.example.module_base.util.SPUtil
 import com.example.module_usercenter.ui.activity.BuyVipActivity
 import com.example.module_usercenter.utils.Contents
@@ -85,10 +87,13 @@ class ConstellationFragment:BaseFragment() {
                             toOtherActivity<AlloyPlateActivity>(activity, false) {}
                         }
                     }
-                    2 -> toOtherActivity<QQTestActivity>(activity, false) {}
+                    2 -> if (PackageUtil.getAppMetaData(BaseApplication.application, "CHANNEL") == "_vivo")
+                            toOtherActivity<ZgDreamActivity>(activity, false) {}
+                        else
+                            toOtherActivity<QQTestActivity>(activity, false) {}
                     3 -> toOtherActivity<ZgDreamActivity>(activity, false) {}
                 }
-            }else if(position == 3&&freeCount>0){
+            }else if(position == adapter.itemCount-1&&freeCount>0){
                 toOtherActivity<ZgDreamActivity>(activity, false) {}
                 SPUtil.getInstance().putInt("freeCount",--freeCount)
             } else {

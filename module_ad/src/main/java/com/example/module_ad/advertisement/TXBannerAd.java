@@ -9,7 +9,6 @@ import com.example.module_base.util.LogUtils;
 import com.example.module_base.util.NetworkUtils;
 import com.qq.e.ads.banner2.UnifiedBannerADListener;
 import com.qq.e.ads.banner2.UnifiedBannerView;
-import com.qq.e.comm.managers.GDTADManager;
 import com.qq.e.comm.managers.GDTAdSdk;
 import com.qq.e.comm.util.AdError;
 
@@ -80,15 +79,6 @@ public class TXBannerAd  extends AdWatcher{
                 LogUtils.i("由于广告点击离开 APP 时调用----------------->" );
             }
 
-            @Override
-            public void onADOpenOverlay() {
-                LogUtils.i( "onADOpenOverlay----------------->" );
-            }
-
-            @Override
-            public void onADCloseOverlay() {
-                LogUtils.i(  "onADCloseOverlay----------------->" );
-            }
         });
 
         // 不需要传递tags使用下面构造函数
