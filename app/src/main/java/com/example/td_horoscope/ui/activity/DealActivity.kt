@@ -20,6 +20,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import com.example.module_base.base.BaseActivity
 import com.example.module_base.util.PackageUtil
 import com.example.module_base.widget.MyToolbar
 import com.example.td_horoscope.R
@@ -27,7 +28,7 @@ import com.example.td_horoscope.base.MainBaseActivity
 import com.example.td_horoscope.util.Contents
 import kotlinx.android.synthetic.main.activity_deal.*
 
-class DealActivity : MainBaseActivity()  {
+class DealActivity : BaseActivity()  {
 
     private var com="深圳市天王星互娱科技有限公司"
     private val umUrl = "https://www.umeng.com/page/policy?spm=a211eg.10560647.0.0.547034dcafEUZJ"

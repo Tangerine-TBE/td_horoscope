@@ -45,6 +45,14 @@ class PermissionFragment:BaseFragment(), IAdCallback {
         AdPresent.getInstance()
     }
     private lateinit var mSplashHelper: SplashHelper
+    private var isAgree = false
+        set(value) {
+            field = value
+            if (value)
+                iv_select.setImageResource(R.drawable.ic_select_y)
+            else
+                iv_select.setImageResource(R.drawable.ic_select_n)
+        }
 
     override fun initView() {
         mSPUtil.putBoolean(com.example.module_ad.utils.Contents.NO_BACK,true)
@@ -62,12 +70,16 @@ class PermissionFragment:BaseFragment(), IAdCallback {
         val str = resources.getString(R.string.user_agreement)
         val stringBuilder = SpannableStringBuilder(str)
         val span1 = TextViewSpan1()
-        stringBuilder.setSpan(span1, 10, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        stringBuilder.setSpan(span1, 7, 15, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         val span2 = TextViewSpan2()
-        stringBuilder.setSpan(span2, 19, 25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        stringBuilder.setSpan(span2, 16, 22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         user_agreement.text=stringBuilder
         user_agreement.movementMethod=LinkMovementMethod.getInstance()
+
+        iv_select.setOnClickListener {
+            isAgree = !isAgree
+        }
 
     }
 
@@ -81,12 +93,17 @@ class PermissionFragment:BaseFragment(), IAdCallback {
 
     override fun initEvent() {
         go_main.setOnClickListener {
-            if (SPUtil.getInstance().getInt("freeCount") == 0&&PackageUtil.getAppMetaData(BaseApplication.application, "CHANNEL") == "_vivo")
-                SPUtil.getInstance().putInt("freeCount",3)
-            MainBaseApplication.initSdk()
+            if (isAgree){
+                if (SPUtil.getInstance().getInt("freeCount") == 0&&PackageUtil.getAppMetaData(BaseApplication.application, "CHANNEL") == "_vivo")
+                    SPUtil.getInstance().putInt("freeCount",3)
+                MainBaseApplication.initSdk()
 //                checkRuntimePermission(activity,MyContentProvider.permissions,false){
-                    goHome()
+                goHome()
 //                }
+            }else{
+                ToastUtil.showToast("请勾选上方按钮")
+            }
+
         }
 
         bt_try.setOnClickListener {

@@ -1,6 +1,7 @@
 package com.example.td_horoscope.ui.activity
 
 import android.view.KeyEvent
+import com.example.module_base.base.BaseActivity
 import com.example.module_base.util.MyStatusBarUtil
 import com.example.td_horoscope.R
 import com.example.td_horoscope.base.MainBaseActivity
@@ -16,7 +17,7 @@ import com.example.td_horoscope.util.Contents
  * @time 2020/11/10 10:50
  * @class describe
  */
-class BeginActivity: MainBaseActivity()  {
+class BeginActivity: BaseActivity()  {
     override fun getLayoutView(): Int = R.layout.activity_begin
 
     private val mAdFragment by lazy {

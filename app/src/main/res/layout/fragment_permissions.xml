@@ -86,20 +86,28 @@
                 app:layout_constraintGuide_percent="0.64" />
 
 
-
+            <ImageView
+                android:id="@+id/iv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_select_n"
+                app:layout_constraintStart_toStartOf="@id/guideline5"
+                app:layout_constraintTop_toTopOf="@id/guideline50"/>
 
             <TextView
                 android:id="@+id/user_agreement"
                 android:layout_width="0dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:text="sss"
                 app:layout_constraintEnd_toStartOf="@+id/guideline45"
-                app:layout_constraintStart_toEndOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="@+id/guideline50" />
+                app:layout_constraintStart_toEndOf="@+id/iv_select"
+                app:layout_constraintTop_toTopOf="@+id/iv_select"
+                app:layout_constraintBottom_toBottomOf="@id/iv_select"/>
 
             <Button
                 android:id="@+id/go_main"
