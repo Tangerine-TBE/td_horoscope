@@ -51,7 +51,7 @@ class SettingActivity: MainBaseActivity(), ILogoutCallback {
                 IconTitleBean(hint = "用户协议"),
                 IconTitleBean(hint = "隐私政策"),
                 IconTitleBean(hint = "退出登录"),
-                IconTitleBean(hint = "账号注销")
+                IconTitleBean(hint = "永久注销")
         ))
         mSetRv.adapter=mSetAdapter
 
